@@ -1,11 +1,11 @@
 # Bridge Feed
 
-A social feed prototype that uses shared cultural taste to reach a view you would otherwise scroll
-past. Built for the Qloo Agentic Hackathon.
+Other platforms keep you in your bubble. Bridge Feed uses what you love to get you out. Built for
+the Qloo Agentic Hackathon.
 
 **Live demo:** https://bridge-feed.slate-app.online
 
-Choose a sample reader, then switch from **Typical feed** to **Bridge feed**. The same posts are
+Choose a sample reader, then switch from **Your bubble** to **Bridge feed**. The same posts are
 ranked the usual way, plus a few from people far from you on the scale, each with the Qloo link that
 brought it there. Open **Why this reached you** to see what came from the post, what came from Qloo
 and what is this app's own interpretation. Then **Rate again** and see if anything moved, or
@@ -13,7 +13,16 @@ and what is this app's own interpretation. Then **Rate again** and see if anythi
 
 ## The idea
 
-Agreement and cultural affinity are different things. Bridge Feed keeps them apart:
+Most social platforms learn what you like and keep showing you people who agree with you. Over time,
+your interests become your bubble. Bridge Feed is a prototype of a platform built the other way
+around: it deliberately brings you views you disagree with, and uses the culture you already share
+as the way in.
+
+This demo is the feed at the heart of that platform. Profiles, follows and conversations would come
+next, and none of them exist yet.
+
+It works because agreement and cultural affinity are different things. Two people can disagree about
+free speech and love the same film. Bridge Feed keeps the two apart:
 
 - **Positions** sit on six 0 to 100 scales: AI in creative work, animal welfare, free speech, privacy,
   success and personal freedom. Everyone claims to support free speech, so every 10 points is a
@@ -28,13 +37,14 @@ written.
 
 ## Measuring change
 
-Instead of asking once, Bridge Feed asks again after you read. Your scores show how far you moved, in
-either direction, and staying put counts as an answer. A yes or no question would miss a move from 80
+A platform built to open people up should be able to check whether it does. So Bridge Feed asks
+again after you read. Your scores show how far you moved, in either direction, and staying put
+counts as an answer. A yes or no question would miss a move from 80
 to 70, but a scale catches it, and each step means endorsing a different statement.
 
 This demo sees only you, so it measures nothing about people in general. It makes no claim about
-polarization. It shows how a platform could test whether a feed changes minds, and the evidence on
-exposure to opposing views is mixed, so the honest result might be that it does not. See the
+polarization. It shows how the full platform could test whether leaving the bubble changes minds, and the evidence
+on exposure to opposing views is mixed, so the honest result might be that it does not. See the
 [evaluation](docs/evidence/evaluation.md).
 
 ## How it works
@@ -47,7 +57,7 @@ Post text ──> Gemini agent ──> topic, position, named references
 
 Profile ──> one ranking per interest and type ──> Qloo /v2/insights
                    │
-                   └──> deterministic rules ──> Typical feed, Bridge feed
+                   └──> deterministic rules ──> Your bubble, Bridge feed
 ```
 
 The agent chooses its own steps, and the server enforces what it cannot break: references must

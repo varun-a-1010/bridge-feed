@@ -5,22 +5,25 @@ description: Submission text for the Qloo Agentic Hackathon.
 timestamp: 2026-10-31
 ---
 
-**Tagline:** A feed that uses what you share to reach what you disagree with.
+**Tagline:** Other platforms keep you in your bubble. This one uses what you love to get you out.
 
 ## Inspiration
 
-Most feeds use similarity to find more similarity. Agreement and taste get treated as one signal,
-so a good post from someone you disagree with never reaches you. But two people can disagree about
-remote work and love the same film. We wanted to see if shared taste could be the path to a view
-you would otherwise scroll past.
+Social platforms learn what you like and show you more of it. Agreement and taste get treated as one
+signal, so your interests slowly become a bubble, and a good post from someone you disagree with
+never reaches you. But two people can disagree about free speech and love the same film. We wanted
+to build the opposite of the usual platform: one that uses what you share to bring you what you
+would otherwise never see.
 
 ## What it does
 
-Bridge Feed keeps two things apart: what you believe, which you score yourself, and what you love,
+Bridge Feed is a prototype of a social platform built against the bubble. This demo is the feed at
+its heart. It keeps two things apart: what you believe, which you score yourself, and what you love,
 which Qloo understands. Score six contested topics from 0 to 100. Everyone says they support free
 speech, so every 10 points is a specific statement you have to endorse. Add a few interests and you
-get a normal feed. Switch to Bridge feed and a few posts from people far from you cross over, each
-showing why it reached you: "Qloo compared 48 films for Björk alone, and Her ranked #1."
+see your bubble: the feed most platforms would give you. Switch to Bridge feed and a few posts from
+people far from you cross over, each showing why it reached you: "Qloo compared 48 films for Björk
+alone, and Her ranked #1."
 
 Then rate again. Your scores show whether anything moved, in either direction, and staying put is a
 real answer. Posts are never rewritten. Write your own and an agent scores it, finds its references
@@ -60,14 +63,15 @@ storyboards belongs near the skeptical end, which a yes or no label would have m
 ## What we learned
 
 The honest claim is smaller and stronger than "fixing polarization", which the research does not
-support. Rating again gives a platform a way to find out whether a feed changes minds at all, and it
-counts movement in either direction, because exposure to opposing views can backfire. This demo sees
+support. Rating again gives the platform a way to find out whether leaving the bubble changes minds
+at all, and it counts movement in either direction, because exposure to opposing views can backfire. This demo sees
 one reader at a time, so it proves nothing about people yet. The instrument is the point.
 
 ## What's next
 
-A study with real readers comparing score movement between the two feeds, control over how many
-differing posts you see, and feedback that tunes the bridge cutoff.
+Turning the feed into the full platform: real profiles, follows and conversations between people
+who disagree, with bridges as the way they meet. Alongside that, a study with real readers comparing
+score movement between the two feeds, and control over how many differing posts you see.
 
 ## Limits
 

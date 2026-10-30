@@ -8,6 +8,8 @@
 - Made author scores public and kept each reader's own scores in their browser.
 - Added sports as interests, using Qloo brands, and a control check for entities that rank highly
   for nearly everyone. Rebuilt all sample posts through the agent.
+- Repositioned the product as a prototype of a social platform built against the bubble. Renamed
+  the Typical feed to Your bubble, and moved sample readers into a single-row carousel.
 
 ## 2026-10-31
 

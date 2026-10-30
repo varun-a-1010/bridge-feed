@@ -161,12 +161,13 @@ export function FeedView({
       {mode === 'bridge' ? (
         <p className="summary">
           {stats.shown === 0
-            ? 'No post cleared the bar, so nothing was forced in. Try different interests.'
-            : `${stats.shown} ${stats.shown === 1 ? 'post' : 'posts'} crossed over from the ${stats.opposing} at least ${MIN_GAP} points from your scores. ${stats.qlooOnly} of them ${stats.qlooOnly === 1 ? 'shares' : 'share'} no title with your interests, so matching words alone would have missed ${stats.qlooOnly === 1 ? 'it' : 'them'}.`}
+            ? 'Nothing from outside your bubble cleared the bar, so nothing was forced in. Try different interests.'
+            : `${stats.shown} ${stats.shown === 1 ? 'post' : 'posts'} reached you from outside your bubble, out of ${stats.opposing} at least ${MIN_GAP} points from your scores. ${stats.qlooOnly} of them ${stats.qlooOnly === 1 ? 'shares' : 'share'} no title with your interests, so matching words alone would have missed ${stats.qlooOnly === 1 ? 'it' : 'them'}.`}
         </p>
       ) : (
         <p className="summary">
-          Same posts, ranked the usual way: closest to your scores first. {stats.opposing}{' '}
+          This is your bubble, ranked the way most platforms would: closest to your scores first.{' '}
+          {stats.opposing}{' '}
           {stats.opposing === 1 ? 'post that disagrees stays' : 'posts that disagree stay'} out of
           sight.
         </p>
@@ -190,7 +191,10 @@ export function FeedView({
       </ol>
       {mode === 'bridge' && onRate && stats.shown > 0 && (
         <aside className="checkin">
-          <p>You read {stats.shown} posts you would not normally see. Did anything shift?</p>
+          <p>
+            You read {stats.shown} {stats.shown === 1 ? 'post' : 'posts'} from outside your bubble.
+            Did anything shift?
+          </p>
           <button className="primary" onClick={onRate}>
             Rate again
           </button>

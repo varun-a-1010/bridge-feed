@@ -11,6 +11,7 @@ import {
   type Topic,
 } from '../shared/model';
 import { searchEntities, type Bootstrap } from './api';
+import { Carousel } from './Carousel';
 import { Scale } from './Scale';
 
 const MAX_INTERESTS = 6;
@@ -49,24 +50,26 @@ export function Onboarding({
   return (
     <main className="onboarding">
       <header className="intro">
-        <h1>Disagreement is easier to read when you share something first.</h1>
+        <h1>
+          Other platforms keep you in your bubble. This one uses what you love to get you out.
+        </h1>
         <p>
-          Bridge Feed keeps what you believe and what you love apart, then uses the second to reach
-          a view you would normally scroll past. Score where you stand, read, then rate again and
-          see if anything moved.
+          Most social platforms learn what you like and keep showing you people who agree with you.
+          Bridge Feed is a prototype of one built the other way around: it brings you views you
+          disagree with, and reaches you through the culture you already share.
         </p>
+        <p>Score where you stand, read, then rate again and see if anything moved.</p>
       </header>
 
       {bootstrap.presets.length > 0 && step === 1 && (
-        <section className="presets" aria-label="Sample readers">
-          <h2>Start as a sample reader</h2>
-          <div className="preset-grid">
+        <div className="presets">
+          <Carousel title="Start as a sample reader">
             {bootstrap.presets.map((preset) => (
               <PresetCard key={preset.id} preset={preset} onPick={onDone} />
             ))}
-          </div>
+          </Carousel>
           <p className="or">Or build your own in two steps.</p>
-        </section>
+        </div>
       )}
 
       {step === 1 ? (

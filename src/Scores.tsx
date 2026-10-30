@@ -92,8 +92,8 @@ export function ScoresPanel({
         })}
       </ul>
       <p className="hint">
-        On a real platform, these check-ins could show whether a feed changes minds at all. This
-        demo only ever sees you, so it measures nothing beyond your own answers.
+        As a full platform, check-ins like these could show whether leaving the bubble changes minds
+        at all. This demo only ever sees you, so it measures nothing beyond your own answers.
       </p>
       <div className="actions">
         <button className="quiet" onClick={onRestart}>

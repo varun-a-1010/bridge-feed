@@ -1,7 +1,7 @@
 # Bridge Feed
 
-Qloo hackathon project: a social feed prototype that uses cultural affinity to reach a
-differing viewpoint. Work on `main`. Do not touch other repos from here.
+Qloo hackathon project: a prototype of a social platform built against the filter bubble. It
+shows opposing views, reached through cultural affinity people already share. Work on `main`. Do not touch other repos from here.
 
 - Follow `~/code/AGENTS.md`. No unsolicited browser or visual QA.
 - `npm run check` runs formatting, tests, type checking and production build.
@@ -15,6 +15,8 @@ differing viewpoint. Work on `main`. Do not touch other repos from here.
   match can never qualify a post on its own.
 - Original posts are never rewritten. Sample posts are fictional and labelled, with no invented
   engagement counts.
+- This is a prototype of the feed at the heart of a future platform. Do not describe profiles,
+  follows or other platform features as if they exist.
 - Never claim reduced polarization or any effect on real people. The evaluation measures the
   ranker with simulated readers.
 - Secrets stay server-side in Doppler project `qloo`. Ship with

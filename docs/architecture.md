@@ -12,8 +12,8 @@ and their own posts in local storage, so one person's writing never reaches anot
 
 `POST /api/feed` receives a profile and any local posts. `server/feed.ts` asks Qloo to rank every
 entity of each relevant type for each interest alone, then `shared/feed.ts` composes both feeds
-deterministically. The typical feed holds posts within 40 points of the reader's scores, closest
-first. The bridge feed is the same list with up to five qualified posts added, at most one in four
+deterministically. The Your bubble feed holds posts within 40 points of the reader's scores, closest
+first, to show how most platforms would rank them. The bridge feed is the same list with up to five qualified posts added, at most one in four
 slots and two per topic.
 
 ## Scales and rating again

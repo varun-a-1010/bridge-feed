@@ -79,7 +79,7 @@ export function App() {
         <h1 className="wordmark">Bridge Feed</h1>
         <div className="mode" role="group" aria-label="Feed type">
           <button aria-pressed={mode === 'typical'} onClick={() => setMode('typical')}>
-            Typical feed
+            Your bubble
           </button>
           <button aria-pressed={mode === 'bridge'} onClick={() => setMode('bridge')}>
             Bridge feed
