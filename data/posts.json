@@ -1,0 +1,1139 @@
+[
+ {
+  "id": "seed-01",
+  "source": "seed",
+  "author": "Maya R.",
+  "text": "Rewatched Blade Runner this weekend and all I could think about was how every frame was drawn, argued over and lit by someone who cared. I do not want studios swapping concept artists for prompts.",
+  "createdAt": "2026-10-30T12:00:00.000Z",
+  "topic": "ai_creativity",
+  "viewpoint": "ai_skeptical",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "A74A74BB-CE73-4A76-807B-8BD1714BC463",
+    "name": "Blade Runner",
+    "type": "movie",
+    "surface": "Blade Runner"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-02",
+  "source": "seed",
+  "author": "Tomás V.",
+  "text": "Spirited Away took years because a whole team fought over how a bath house should feel. A model can copy that palette, but it cannot want anything. That is the part of art I refuse to give up.",
+  "createdAt": "2026-10-30T11:13:00.000Z",
+  "topic": "ai_creativity",
+  "viewpoint": "ai_skeptical",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "9B33A620-68CA-49B3-BFCF-F09CCF8AD595",
+    "name": "Spirited Away",
+    "type": "movie",
+    "surface": "Spirited Away"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-03",
+  "source": "seed",
+  "author": "Priya N.",
+  "text": "Bought the new Bon Iver record on vinyl. If a label ever slips AI vocals onto something I love, I am done with them. The human crack in a voice is the whole point.",
+  "createdAt": "2026-10-30T10:26:00.000Z",
+  "topic": "ai_creativity",
+  "viewpoint": "ai_skeptical",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "E51DB8F2-7A93-4746-A283-E55B5216FDE1",
+    "name": "Bon Iver",
+    "type": "artist",
+    "surface": "Bon Iver"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-04",
+  "source": "seed",
+  "author": "Hannah L.",
+  "text": "Klara and the Sun made me more protective of human writers, not less. A machine describing love is a clever mirror, and publishers should stop treating it as a replacement for authors.",
+  "createdAt": "2026-10-30T09:39:00.000Z",
+  "topic": "ai_creativity",
+  "viewpoint": "ai_skeptical",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "504A59EF-54E1-4911-8015-8FA64FC6AA8C",
+    "name": "Klara and the Sun",
+    "type": "book",
+    "surface": "Klara and the Sun"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-05",
+  "source": "seed",
+  "author": "Devon K.",
+  "text": "I grew up wanting to build worlds like Cyberpunk 2077, but I do not have a 500-person studio. Generative tools let me rough out a city in a weekend, and that is the first time making one has felt possible.",
+  "createdAt": "2026-10-30T08:52:00.000Z",
+  "topic": "ai_creativity",
+  "viewpoint": "ai_supportive",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "2575A4C0-5459-42E9-B119-FE7CFC8D558B",
+    "name": "Cyberpunk 2077",
+    "type": "videogame",
+    "surface": "Cyberpunk 2077"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-06",
+  "source": "seed",
+  "author": "Lena F.",
+  "text": "Indie director here. I use image models for previs the way the crew of The Matrix used storyboards. The film is still ours, and I get to test forty shots before we spend a dollar.",
+  "createdAt": "2026-10-30T08:05:00.000Z",
+  "topic": "ai_creativity",
+  "viewpoint": "ai_supportive",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "C6046119-7760-4733-B84E-374E029B14DC",
+    "name": "The Matrix",
+    "type": "movie",
+    "surface": "The Matrix"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-07",
+  "source": "seed",
+  "author": "Marcus O.",
+  "text": "Grimes has the right idea: let people make songs with her voice and split the money. Fighting generative music just hands the whole thing to the biggest companies.",
+  "createdAt": "2026-10-30T07:18:00.000Z",
+  "topic": "ai_creativity",
+  "viewpoint": "ai_supportive",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "0CD4E0AE-E657-4C2F-B37B-FD8FEBDDD3B1",
+    "name": "Grimes",
+    "type": "artist",
+    "surface": "Grimes"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-08",
+  "source": "seed",
+  "author": "Sofia G.",
+  "text": "Adobe and Figma quietly put AI into my daily work and I am making more, not less. Nobody mourned Photoshop replacing the darkroom for long. I am glad to have these tools.",
+  "createdAt": "2026-10-30T06:31:00.000Z",
+  "topic": "ai_creativity",
+  "viewpoint": "ai_supportive",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "294532D6-1030-4658-A57E-4FB8D4D2F14A",
+    "name": "Adobe",
+    "type": "brand",
+    "surface": "Adobe"
+   },
+   {
+    "id": "1E488095-7A33-4AAE-A0AD-2AF999DB446F",
+    "name": "Adobe Photoshop",
+    "type": "brand",
+    "surface": "Photoshop"
+   }
+  ],
+  "unresolved": [
+   {
+    "text": "Figma",
+    "reason": "No entity found for Figma in the brand category; likely not in the database despite being a major design brand."
+   }
+  ],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-09",
+  "source": "seed",
+  "author": "Wade B.",
+  "text": "A good brisket takes fourteen hours and a lot of patience. Chef’s Table made me respect pitmasters and butchers as craftspeople, and I do not feel I need to apologize for eating what they make.",
+  "createdAt": "2026-10-30T05:44:00.000Z",
+  "topic": "eating_meat",
+  "viewpoint": "meat_positive",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "35D9EDC3-DC6A-42A5-B73B-7A18DCF0C024",
+    "name": "Chef's Table",
+    "type": "tv_show",
+    "surface": "Chef’s Table"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-10",
+  "source": "seed",
+  "author": "Nadia A.",
+  "text": "Kitchen Confidential is why I eat everything. Refusing a stranger’s lamb in Marrakech would have been rude, and I would have missed the best meal of my life. I am keeping meat on my table.",
+  "createdAt": "2026-10-30T04:57:00.000Z",
+  "topic": "eating_meat",
+  "viewpoint": "meat_positive",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "35E706AE-3CAD-44AE-B68A-0B9CF67C47E2",
+    "name": "Kitchen Confidential: Adventures in the Culinary Underbelly",
+    "type": "book",
+    "surface": "Kitchen Confidential"
+   },
+   {
+    "id": "E4226E25-46BA-4EF7-AB94-4F4E53E80408",
+    "name": "Marrakesh",
+    "type": "destination",
+    "surface": "Marrakech"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-11",
+  "source": "seed",
+  "author": "Joe C.",
+  "text": "Say what you like, The Bear got one thing right: a beef sandwich can carry a family’s whole history. I will keep eating meat, just from butchers I can name.",
+  "createdAt": "2026-10-30T04:10:00.000Z",
+  "topic": "eating_meat",
+  "viewpoint": "meat_positive",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "4C305B2F-5A46-4885-A6DA-5E22D11E86E0",
+    "name": "The Bear",
+    "type": "tv_show",
+    "surface": "The Bear"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-12",
+  "source": "seed",
+  "author": "Camila S.",
+  "text": "Buenos Aires ruined me for everything else. Sunday asado with friends, six hours at the table. Eating meat like that is culture, not a lifestyle problem to be solved.",
+  "createdAt": "2026-10-30T03:23:00.000Z",
+  "topic": "eating_meat",
+  "viewpoint": "meat_positive",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "B4ECD874-B852-4AE6-8249-C102714F874C",
+    "name": "Ciudad Autónoma de Buenos Aires",
+    "type": "destination",
+    "surface": "Buenos Aires"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-13",
+  "source": "seed",
+  "author": "Aiko T.",
+  "text": "I went mostly vegetarian without losing my love of good food. Eating temple cuisine in Kyoto convinced me that plant-based cooking is its own tradition, not a bland substitute.",
+  "createdAt": "2026-10-30T02:36:00.000Z",
+  "topic": "eating_meat",
+  "viewpoint": "plant_based",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "95E19B2C-553A-46A6-AD73-5562AF7124E5",
+    "name": "Kyoto",
+    "type": "destination",
+    "surface": "Kyoto"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-14",
+  "source": "seed",
+  "author": "Ben H.",
+  "text": "Okja wrecked me and I have not bought a steak since. I am not here to shame anyone, but I cannot unsee what that film shows about how meat gets made.",
+  "createdAt": "2026-10-30T01:49:00.000Z",
+  "topic": "eating_meat",
+  "viewpoint": "plant_based",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "9C0F7C3B-D081-4440-876E-0F742D29C976",
+    "name": "Okja",
+    "type": "movie",
+    "surface": "Okja"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-15",
+  "source": "seed",
+  "author": "Ingrid P.",
+  "text": "Oatly in my coffee, Impossible Foods in my burgers, and honestly I do not miss much. If the swap tastes this good, why keep eating animals at all?",
+  "createdAt": "2026-10-30T01:02:00.000Z",
+  "topic": "eating_meat",
+  "viewpoint": "plant_based",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "012081EE-E2BA-420E-9904-417CAF65214B",
+    "name": "Oatly",
+    "type": "brand",
+    "surface": "Oatly"
+   },
+   {
+    "id": "6E5EF952-22E9-459A-AF6D-865BB3685D69",
+    "name": "Impossible Foods",
+    "type": "brand",
+    "surface": "Impossible Foods"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-16",
+  "source": "seed",
+  "author": "Zoe M.",
+  "text": "Billie Eilish talking openly about being vegan is what got me to try it. A copy of Plenty now sits open on my counter, my cooking is better, and I am not going back to meat.",
+  "createdAt": "2026-10-30T00:15:00.000Z",
+  "topic": "eating_meat",
+  "viewpoint": "plant_based",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "D7BCE4CD-5135-4608-8A7D-78E08FFD52F3",
+    "name": "Billie Eilish",
+    "type": "artist",
+    "surface": "Billie Eilish"
+   }
+  ],
+  "unresolved": [
+   {
+    "text": "Plenty",
+    "reason": "Qloo failed to return the Yotam Ottolenghi cookbook 'Plenty' after multiple searches, and other candidates for 'Plenty' are not cookbooks."
+   }
+  ],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-17",
+  "source": "seed",
+  "author": "Rafael D.",
+  "text": "Working from Lisbon means a long lunch, Khruangbin on the headphones and a sunset walk instead of a commute. My output went up and I am never returning to an office.",
+  "createdAt": "2026-10-29T23:28:00.000Z",
+  "topic": "remote_work",
+  "viewpoint": "remote_first",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "F5031AA6-799B-4FC7-B38F-E23F14F1ED4C",
+    "name": "Lisbon",
+    "type": "destination",
+    "surface": "Lisbon"
+   },
+   {
+    "id": "BAF6317A-DF94-4C90-92AE-63F86560C21B",
+    "name": "Khruangbin",
+    "type": "artist",
+    "surface": "Khruangbin"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-18",
+  "source": "seed",
+  "author": "Grace W.",
+  "text": "Zoom and Notion replaced everything an office gave me except the bad coffee. I would rather work from home and be there when my kids get out of school.",
+  "createdAt": "2026-10-29T22:41:00.000Z",
+  "topic": "remote_work",
+  "viewpoint": "remote_first",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "00E61203-9C64-413B-802E-B5A61D226730",
+    "name": "Zoom",
+    "type": "brand",
+    "surface": "Zoom"
+   },
+   {
+    "id": "233A4F29-9585-46B8-81A4-400469312E75",
+    "name": "Notion",
+    "type": "brand",
+    "surface": "Notion"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-19",
+  "source": "seed",
+  "author": "Owen J.",
+  "text": "Severance is supposed to be dystopian, but it is just what commuting to a badge-access building feels like. Remote work gave me my actual life back.",
+  "createdAt": "2026-10-29T21:54:00.000Z",
+  "topic": "remote_work",
+  "viewpoint": "remote_first",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "569F8294-72DA-4935-B9F2-4FC697AB2A1E",
+    "name": "Severance",
+    "type": "tv_show",
+    "surface": "Severance"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-20",
+  "source": "seed",
+  "author": "Mei C.",
+  "text": "Moved to Chiang Mai, kept my job, and started reading again. Deep Work makes a lot more sense when you work remotely and nobody can tap you on the shoulder.",
+  "createdAt": "2026-10-29T21:07:00.000Z",
+  "topic": "remote_work",
+  "viewpoint": "remote_first",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "2F49431A-5F78-4FB3-875F-709368D7731A",
+    "name": "Chiang Mai",
+    "type": "destination",
+    "surface": "Chiang Mai"
+   },
+   {
+    "id": "C42A1B79-7B4E-45FD-B975-A83892C936E9",
+    "name": "Deep Work: Rules for Focused Success in a Distracted World",
+    "type": "book",
+    "surface": "Deep Work"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-21",
+  "source": "seed",
+  "author": "Adaeze U.",
+  "text": "The Social Network dorm scenes are why I still go in. The best ideas I have had came from overhearing someone at the next desk, and that does not happen on a video call.",
+  "createdAt": "2026-10-29T20:20:00.000Z",
+  "topic": "remote_work",
+  "viewpoint": "office_first",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "74C401D6-D3B3-4B08-BBC3-22A9F13E40C7",
+    "name": "The Social Network",
+    "type": "movie",
+    "surface": "The Social Network"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-22",
+  "source": "seed",
+  "author": "Paul E.",
+  "text": "The Office is funny because those people really know each other. You do not get that from a grid of muted faces, and it is the youngest staff who lose the most by staying home.",
+  "createdAt": "2026-10-29T19:33:00.000Z",
+  "topic": "remote_work",
+  "viewpoint": "office_first",
+  "confidence": 1,
+  "language": "en",
+  "entities": [
+   {
+    "id": "E5AE1F26-04CB-4CDD-BBA4-87FB6541F848",
+    "name": "The Office",
+    "type": "tv_show",
+    "surface": "The Office"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-23",
+  "source": "seed",
+  "author": "Rina B.",
+  "text": "I like a real Monday in Manhattan: Blue Bottle on the way in, whiteboards all morning, lunch with someone from another team. Slack can not replace being in the room together.",
+  "createdAt": "2026-10-29T18:46:00.000Z",
+  "topic": "remote_work",
+  "viewpoint": "office_first",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "22B1BC87-CDFE-4340-86F8-8E0E6E1E6A7D",
+    "name": "Blue Bottle Coffee",
+    "type": "brand",
+    "surface": "Blue Bottle"
+   },
+   {
+    "id": "7E8DE6C5-C965-430A-B361-E0FAD394C262",
+    "name": "Slack",
+    "type": "brand",
+    "surface": "Slack"
+   }
+  ],
+  "unresolved": [
+   {
+    "text": "Manhattan",
+    "reason": "No specific Qloo destination entity for the borough of Manhattan was returned (only Manhattan Beach and broader New York City)."
+   }
+  ],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-24",
+  "source": "seed",
+  "author": "Theo S.",
+  "text": "Read Creativity, Inc. and it is obvious Pixar built its campus so people would collide. Fully remote teams are giving that up for convenience. Get back in the building.",
+  "createdAt": "2026-10-29T17:59:00.000Z",
+  "topic": "remote_work",
+  "viewpoint": "office_first",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "EB5994C6-3D2E-4639-9C11-7CAD740316D4",
+    "name": "Creativity, Inc.: Overcoming the Unseen Forces That Stand in the Way of True Inspiration",
+    "type": "book",
+    "surface": "Creativity, Inc."
+   },
+   {
+    "id": "7665BC54-FC2B-4D52-808E-DCB591BFC8FB",
+    "name": "Pixar",
+    "type": "brand",
+    "surface": "Pixar"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-25",
+  "source": "seed",
+  "author": "Cody R.",
+  "text": "Public transit makes sense somewhere, but road trips are why I love this country. A car on the way to Yosemite gives me a freedom no timetable can match.",
+  "createdAt": "2026-10-29T17:12:00.000Z",
+  "topic": "transport",
+  "viewpoint": "pro_driving",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [],
+  "unresolved": [
+   {
+    "text": "Yosemite",
+    "reason": "No matching destination entity for Yosemite National Park was found in Qloo."
+   }
+  ],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-26",
+  "source": "seed",
+  "author": "Elena Z.",
+  "text": "Ford v Ferrari made me want to drive forever. I like my old Toyota, I like a winding road, and I am tired of being told that owning a car is a moral failure.",
+  "createdAt": "2026-10-29T16:25:00.000Z",
+  "topic": "transport",
+  "viewpoint": "pro_driving",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "D2DF5D6E-1233-4B1C-BB40-45FDD1382819",
+    "name": "Ford v Ferrari",
+    "type": "movie",
+    "surface": "Ford v Ferrari"
+   },
+   {
+    "id": "19528A4D-B470-4D0E-BEAB-BC4CA0C68650",
+    "name": "Toyota",
+    "type": "brand",
+    "surface": "Toyota"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-27",
+  "source": "seed",
+  "author": "Sam Y.",
+  "text": "Forza Horizon was as close as I got to driving when I lived in a city. Now I live where there are no buses, and the car is how my kids get to anything.",
+  "createdAt": "2026-10-29T15:38:00.000Z",
+  "topic": "transport",
+  "viewpoint": "pro_driving",
+  "confidence": 0.85,
+  "language": "en",
+  "entities": [
+   {
+    "id": "14D2CCF2-2F93-4B22-9622-68CEA7E5874A",
+    "name": "Forza Horizon",
+    "type": "videogame",
+    "surface": "Forza Horizon"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-28",
+  "source": "seed",
+  "author": "Dale N.",
+  "text": "Nothing beats Bruce Springsteen on the highway after dark. Towns like mine die without cars, and big transit plans never reach us anyway.",
+  "createdAt": "2026-10-29T14:51:00.000Z",
+  "topic": "transport",
+  "viewpoint": "pro_driving",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "120E288E-858F-4AC1-A825-736D5A16D65F",
+    "name": "Bruce Springsteen",
+    "type": "artist",
+    "surface": "Bruce Springsteen"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-29",
+  "source": "seed",
+  "author": "Yuna K.",
+  "text": "Tokyo spoiled me. Trains every three minutes, no parking stress, and you can actually read on the way home. Everyone should get to live without needing a car.",
+  "createdAt": "2026-10-29T14:04:00.000Z",
+  "topic": "transport",
+  "viewpoint": "pro_transit",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "1EB0550F-0F82-43A2-B501-4D33B5488FD1",
+    "name": "Tokyo",
+    "type": "destination",
+    "surface": "Tokyo"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-30",
+  "source": "seed",
+  "author": "Lars V.",
+  "text": "Spent a month in Amsterdam on a rental bike and came home angry at my own city’s parking lots. We built for cars and forgot to build for people. Give us trams.",
+  "createdAt": "2026-10-29T13:17:00.000Z",
+  "topic": "transport",
+  "viewpoint": "pro_transit",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "4D5C88B0-E1D0-4DAD-838A-EE94592479C1",
+    "name": "Amsterdam",
+    "type": "destination",
+    "surface": "Amsterdam"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-31",
+  "source": "seed",
+  "author": "Nia T.",
+  "text": "Walkable City should be required reading for anyone on a city council. Take a lane from cars, run a real bus through it, and everything else on the street gets better.",
+  "createdAt": "2026-10-29T12:30:00.000Z",
+  "topic": "transport",
+  "viewpoint": "pro_transit",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "D5A83088-17F1-4FC0-A740-4FEEBC70C17F",
+    "name": "Walkable City: How Downtown Can Save America, One Step at a Time",
+    "type": "book",
+    "surface": "Walkable City"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-32",
+  "source": "seed",
+  "author": "Ravi P.",
+  "text": "Cities: Skylines taught me more about traffic than any commute. Add a lane and it fills up. Add a good tram and it does not. We should stop building roads.",
+  "createdAt": "2026-10-29T11:43:00.000Z",
+  "topic": "transport",
+  "viewpoint": "pro_transit",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "01BD171B-1C78-4338-9269-CE8BEB5843FF",
+    "name": "Cities: Skylines",
+    "type": "videogame",
+    "surface": "Cities: Skylines"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-33",
+  "source": "seed",
+  "author": "Tasha L.",
+  "text": "Uniqlo and H&M are how I dressed myself on a first-job salary. Telling people to buy one $300 sweater instead is a class thing, whether you mean it or not.",
+  "createdAt": "2026-10-29T10:56:00.000Z",
+  "topic": "fashion",
+  "viewpoint": "affordable_fashion",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "46C9F889-EC89-4715-A767-DEABACF52C41",
+    "name": "Uniqlo",
+    "type": "brand",
+    "surface": "Uniqlo"
+   },
+   {
+    "id": "108EB684-257B-42D7-84E5-6E9D8BE3E793",
+    "name": "H&M",
+    "type": "brand",
+    "surface": "H&M"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-34",
+  "source": "seed",
+  "author": "Bri C.",
+  "text": "Clueless is all fun until you realize most kids cannot afford that closet. Shein hauls get mocked, but for plenty of teens cheap clothes are the only way to play with style.",
+  "createdAt": "2026-10-29T10:09:00.000Z",
+  "topic": "fashion",
+  "viewpoint": "affordable_fashion",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "48788AF8-AFBF-4505-AC7C-073C3590E5AC",
+    "name": "Clueless",
+    "type": "movie",
+    "surface": "Clueless"
+   },
+   {
+    "id": "A8146EFF-7B77-457E-88B9-BF878463B185",
+    "name": "Shein",
+    "type": "brand",
+    "surface": "Shein"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-35",
+  "source": "seed",
+  "author": "Imani F.",
+  "text": "Rihanna proved style should fit every body and every budget. Fashion should not be a gated club for people who can afford the ethical option.",
+  "createdAt": "2026-10-29T09:22:00.000Z",
+  "topic": "fashion",
+  "viewpoint": "affordable_fashion",
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "723BCD5C-AA73-4E13-AAA6-9FBE10A889E4",
+    "name": "Rihanna",
+    "type": "artist",
+    "surface": "Rihanna"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-36",
+  "source": "seed",
+  "author": "Jon A.",
+  "text": "Queer Eye gets this right: feeling good in your clothes changes your week, and a cheap rack at Target can do that just fine. Price should not decide who gets to feel that.",
+  "createdAt": "2026-10-29T08:35:00.000Z",
+  "topic": "fashion",
+  "viewpoint": "affordable_fashion",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "DD6C52A9-9FAA-429B-8914-8785B856E330",
+    "name": "Queer Eye",
+    "type": "tv_show",
+    "surface": "Queer Eye"
+   },
+   {
+    "id": "BFC8D7B1-BDD2-478E-85AB-F4FEE868177A",
+    "name": "Target",
+    "type": "brand",
+    "surface": "Target"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-37",
+  "source": "seed",
+  "author": "Freya O.",
+  "text": "The True Cost changed how I read a price tag. A $5 shirt means somebody else paid the difference. I have bought secondhand ever since.",
+  "createdAt": "2026-10-29T07:48:00.000Z",
+  "topic": "fashion",
+  "viewpoint": "sustainable_fashion",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "DB28BF14-E0D4-4B01-8D56-AE76B90C3F9B",
+    "name": "The True Cost",
+    "type": "movie",
+    "surface": "The True Cost"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-38",
+  "source": "seed",
+  "author": "Hugo M.",
+  "text": "Patagonia’s repair program is the whole idea: buy less, fix it, keep it for a decade. My jacket is older than my marriage and I want every brand to work like that.",
+  "createdAt": "2026-10-29T07:01:00.000Z",
+  "topic": "fashion",
+  "viewpoint": "sustainable_fashion",
+  "confidence": 1,
+  "language": "en",
+  "entities": [
+   {
+    "id": "DB4CE34E-3A63-4947-946F-9D52502C5762",
+    "name": "Patagonia",
+    "type": "brand",
+    "surface": "Patagonia"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-39",
+  "source": "seed",
+  "author": "Amara D.",
+  "text": "Stella McCartney showed you could do real luxury without leather. If high fashion can change, the fast brands have no excuse for all that waste.",
+  "createdAt": "2026-10-29T06:14:00.000Z",
+  "topic": "fashion",
+  "viewpoint": "sustainable_fashion",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "1A8FD8BE-6FAC-4759-A242-614C3A0810CD",
+    "name": "Stella Mccartney",
+    "type": "brand",
+    "surface": "Stella McCartney"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-40",
+  "source": "seed",
+  "author": "Signe H.",
+  "text": "Thrifting in Copenhagen, where half my friends wear the same coat for ten winters, cured me of hauls. Vinted is my only shopping app now. Buy less, wear it longer.",
+  "createdAt": "2026-10-29T05:27:00.000Z",
+  "topic": "fashion",
+  "viewpoint": "sustainable_fashion",
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "82DCD455-A5AB-42D0-B390-11218B0C7FF0",
+    "name": "Copenhagen",
+    "type": "destination",
+    "surface": "Copenhagen"
+   },
+   {
+    "id": "2882B018-26E1-4777-8E41-9A63CA624BEF",
+    "name": "Vinted",
+    "type": "brand",
+    "surface": "Vinted"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-41",
+  "source": "seed",
+  "author": "Carol W.",
+  "text": "A Roomba, a Nest thermostat and a few Alexa routines gave my mom with arthritis real independence. Convenience is not laziness when you cannot reach the dial.",
+  "createdAt": "2026-10-29T04:40:00.000Z",
+  "topic": "smart_tech",
+  "viewpoint": "smart_convenience",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "9BCABE41-D838-4878-A6D5-9878622AD3FF",
+    "name": "Irobot",
+    "type": "brand",
+    "surface": "Roomba"
+   }
+  ],
+  "unresolved": [
+   {
+    "text": "Nest",
+    "reason": "No specific entity for Nest thermostat or Google Nest found in Qloo; linking general Google is too broad."
+   },
+   {
+    "text": "Alexa",
+    "reason": "No specific entity for Amazon Alexa found in Qloo; linking general Amazon is too broad."
+   }
+  ],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-42",
+  "source": "seed",
+  "author": "Ethan G.",
+  "text": "Her is the future I am hoping for, minus the heartbreak. I want an assistant at home who knows my calendar and just handles things, and I am fine trading some data for that.",
+  "createdAt": "2026-10-29T03:53:00.000Z",
+  "topic": "smart_tech",
+  "viewpoint": "smart_convenience",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "4F8EBD51-46DB-4527-BC61-75B56472A50E",
+    "name": "Her",
+    "type": "movie",
+    "surface": "Her"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-43",
+  "source": "seed",
+  "author": "Lucia R.",
+  "text": "My Fitbit flagged my dad’s irregular heartbeat. I will happily take the data collection when the tradeoff is having a house full of devices that look after him.",
+  "createdAt": "2026-10-29T03:06:00.000Z",
+  "topic": "smart_tech",
+  "viewpoint": "smart_convenience",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "4042DEAC-EDA5-43FE-8A64-0A200E535EE9",
+    "name": "Fitbit",
+    "type": "brand",
+    "surface": "Fitbit"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-44",
+  "source": "seed",
+  "author": "Kai J.",
+  "text": "Star Trek: The Next Generation made talking to the ship feel normal. Sonos and a smart home are a small version of that and I love living in it.",
+  "createdAt": "2026-10-29T02:19:00.000Z",
+  "topic": "smart_tech",
+  "viewpoint": "smart_convenience",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "DBCCA6B1-07FB-4941-9028-BF64D8F53E1E",
+    "name": "Star Trek: The Next Generation",
+    "type": "tv_show",
+    "surface": "Star Trek: The Next Generation"
+   },
+   {
+    "id": "9847B888-65A3-404C-82DB-80F37DB5DF59",
+    "name": "Sonos",
+    "type": "brand",
+    "surface": "Sonos"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-45",
+  "source": "seed",
+  "author": "Noor A.",
+  "text": "I love the simplicity of Apple hardware, but Black Mirror made me much more cautious about putting cameras and microphones in every room just because it is convenient.",
+  "createdAt": "2026-10-29T01:32:00.000Z",
+  "topic": "smart_tech",
+  "viewpoint": "privacy_first",
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "D5B78065-6DBB-4DDB-80DF-6495B9B1006B",
+    "name": "Apple Inc",
+    "type": "brand",
+    "surface": "Apple"
+   },
+   {
+    "id": "B36C968C-63BF-49C2-A031-3974337D9ABB",
+    "name": "Black Mirror",
+    "type": "tv_show",
+    "surface": "Black Mirror"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-46",
+  "source": "seed",
+  "author": "Peter S.",
+  "text": "Reading 1984 in high school felt like fiction. Reading it again with an Amazon Echo in the kitchen felt like something else. I unplugged it that night.",
+  "createdAt": "2026-10-29T00:45:00.000Z",
+  "topic": "smart_tech",
+  "viewpoint": "privacy_first",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "B776A6C0-4BD5-4773-A5FC-266FF59932FB",
+    "name": "1984",
+    "type": "book",
+    "surface": "1984"
+   }
+  ],
+  "unresolved": [
+   {
+    "text": "Amazon Echo",
+    "reason": "No Qloo entity specifically matches the Amazon Echo smart speaker product/brand, only parent brand Amazon and unrelated services."
+   }
+  ],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-47",
+  "source": "seed",
+  "author": "Vera L.",
+  "text": "Watch Dogs was a fun game until I noticed how much of it already exists. My house has dumb light switches, nothing listening, and I sleep great.",
+  "createdAt": "2026-10-28T23:58:00.000Z",
+  "topic": "smart_tech",
+  "viewpoint": "privacy_first",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "590C5023-F298-4F4A-9EF6-AF10056EAB3D",
+    "name": "Watch Dogs",
+    "type": "videogame",
+    "surface": "Watch Dogs"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-48",
+  "source": "seed",
+  "author": "Isaac B.",
+  "text": "Minority Report’s ads that know your name were meant as a warning. I switched to Signal and DuckDuckGo, and I want fewer devices in my home collecting anything.",
+  "createdAt": "2026-10-28T23:11:00.000Z",
+  "topic": "smart_tech",
+  "viewpoint": "privacy_first",
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "1758263A-DD6D-4340-AC78-84152A79B46A",
+    "name": "Minority Report",
+    "type": "movie",
+    "surface": "Minority Report"
+   },
+   {
+    "id": "65A09DC2-D086-4DD0-B1EF-9123CBEA83EA",
+    "name": "Signal",
+    "type": "brand",
+    "surface": "Signal"
+   },
+   {
+    "id": "6C240A78-8A9A-4CEF-AE25-B33DFD60A2C9",
+    "name": "DuckDuckGo",
+    "type": "brand",
+    "surface": "DuckDuckGo"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ }
+]

@@ -1,0 +1,177 @@
+[
+ {
+  "id": "70CAE5BF-2F4C-445C-A3E5-4EDACFC3591C",
+  "name": "Radiohead",
+  "type": "artist"
+ },
+ {
+  "id": "F6754C46-B3E7-457F-8B7E-06C613597320",
+  "name": "Beyoncé",
+  "type": "artist"
+ },
+ {
+  "id": "C915A918-39C5-47A3-A101-D9FA1DECBD9C",
+  "name": "Kendrick Lamar",
+  "type": "artist"
+ },
+ {
+  "id": "4BBEF799-A0C4-4110-AB01-39216993C312",
+  "name": "Taylor Swift",
+  "type": "artist"
+ },
+ {
+  "id": "012EF80C-B187-4ECB-9C3D-9CA5228B503C",
+  "name": "Daft Punk",
+  "type": "artist"
+ },
+ {
+  "id": "BDA1B73F-10E7-4D09-AC51-B796CCEC5FF3",
+  "name": "Bad Bunny",
+  "type": "artist"
+ },
+ {
+  "id": "B1414851-6A23-4C52-B647-2A0249B664F9",
+  "name": "Fleetwood Mac",
+  "type": "artist"
+ },
+ {
+  "id": "01381184-B533-4E3C-B9DB-43A2FE326744",
+  "name": "Björk",
+  "type": "artist"
+ },
+ {
+  "id": "A499EC25-7FF6-46DE-9DA5-3E78E99B9E26",
+  "name": "Parasite",
+  "type": "movie"
+ },
+ {
+  "id": "3037F0E8-C912-4DC0-BDE3-1F94631F9DA6",
+  "name": "Dune",
+  "type": "movie"
+ },
+ {
+  "id": "DF788007-B5EA-4F29-872B-96BCB8EEC42F",
+  "name": "The Grand Budapest Hotel",
+  "type": "movie"
+ },
+ {
+  "id": "F0D354AA-BA7E-49D2-8ABA-9A8250F5C852",
+  "name": "Everything Everywhere All at Once",
+  "type": "movie"
+ },
+ {
+  "id": "4344F84A-69CE-46D1-B09C-02F31EC13117",
+  "name": "Mad Max: Fury Road",
+  "type": "movie"
+ },
+ {
+  "id": "BAF6FB9E-7E2E-4008-944B-97C0CF430D41",
+  "name": "Barbie",
+  "type": "movie"
+ },
+ {
+  "id": "65EAC55F-6FDC-452D-A633-A9E9F2BBD45E",
+  "name": "Succession",
+  "type": "tv_show"
+ },
+ {
+  "id": "6CA05BAF-DC37-45D4-BED4-1BC9EA0B9B03",
+  "name": "The Last of Us",
+  "type": "tv_show"
+ },
+ {
+  "id": "D03D0913-A7B9-4C46-BFEB-958C1B3FA387",
+  "name": "Breaking Bad",
+  "type": "tv_show"
+ },
+ {
+  "id": "07F1170E-BB69-4982-82C6-255F477EBBAD",
+  "name": "Stranger Things",
+  "type": "tv_show"
+ },
+ {
+  "id": "DCA1F3CA-7A25-421C-BB4D-A864B6D53848",
+  "name": "Ted Lasso",
+  "type": "tv_show"
+ },
+ {
+  "id": "FFD31D42-DF50-4B60-932C-7497C8E73A80",
+  "name": "Nintendo",
+  "type": "brand"
+ },
+ {
+  "id": "7E9A2E74-1CB5-43E9-8B74-69CA8283BFBD",
+  "name": "IKEA",
+  "type": "brand"
+ },
+ {
+  "id": "C70CE2B8-0AD1-4150-BF18-5A6347F2E860",
+  "name": "Nike",
+  "type": "brand"
+ },
+ {
+  "id": "C5E85462-1B81-40FF-A7B4-849DEE5120E9",
+  "name": "The Lego Group",
+  "type": "brand"
+ },
+ {
+  "id": "D9B9B404-7B35-4E4B-A0CE-4CAB8155FE9E",
+  "name": "Lululemon",
+  "type": "brand"
+ },
+ {
+  "id": "096B986E-3D63-44F4-BE44-F85D52A2979D",
+  "name": "Trader Joe's",
+  "type": "brand"
+ },
+ {
+  "id": "7E606158-8878-49D6-82AB-4C83A83F9974",
+  "name": "The Legend of Zelda: Breath of the Wild",
+  "type": "videogame"
+ },
+ {
+  "id": "875DB771-9C4C-4DD0-9249-D2ABD95711F1",
+  "name": "Stardew Valley",
+  "type": "videogame"
+ },
+ {
+  "id": "CDBDE254-71F0-4640-8D04-5373BEAE5278",
+  "name": "Minecraft",
+  "type": "videogame"
+ },
+ {
+  "id": "46CBADC5-F4A6-4E97-93B2-959066C9F608",
+  "name": "Elden Ring",
+  "type": "videogame"
+ },
+ {
+  "id": "DE0A1AFF-A2C1-4B08-A04C-6DFD7F781A08",
+  "name": "Sapiens: A Brief History of Humankind",
+  "type": "book"
+ },
+ {
+  "id": "28D688C4-0760-4042-BEC1-F6EE75E71CC7",
+  "name": "Normal People",
+  "type": "book"
+ },
+ {
+  "id": "C83D215D-A38A-44D1-BD15-34D282C220AC",
+  "name": "The Three-Body Problem (Remembrance of Earth’s Past, #1)",
+  "type": "book"
+ },
+ {
+  "id": "5AED339A-8815-402E-B524-C218D45E5BB9",
+  "name": "The Hobbit",
+  "type": "book"
+ },
+ {
+  "id": "70E3820A-B1CF-4676-9CDA-C5F6539C53B9",
+  "name": "Paris",
+  "type": "destination"
+ },
+ {
+  "id": "98B97D1C-9BC8-40EA-A3AC-831A83D0A8A4",
+  "name": "Mexico City",
+  "type": "destination"
+ }
+]
