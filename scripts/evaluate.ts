@@ -3,7 +3,7 @@ import { loadCorpus } from '../server/corpus';
 import { computeFeed } from '../server/feed';
 import { createQloo } from '../server/qloo';
 import { literalMatches } from '../shared/feed';
-import { TOPICS, type Profile, type Topic } from '../shared/model';
+import { TOPICS, type Profile, type Stance, type Topic } from '../shared/model';
 
 /** Replays recorded Qloo rankings for simulated readers. It measures the ranker, not people. */
 const corpus = loadCorpus();
@@ -31,7 +31,8 @@ let opposing = 0;
 let failed = 0;
 for (let i = 0; i < READERS; i++) {
   const stances: Profile['stances'] = {};
-  for (const topic of pick(TOPICS, 4)) stances[topic.id as Topic] = pick(topic.stances, 1)[0]!.id;
+  for (const topic of pick(TOPICS, 4))
+    stances[topic.id as Topic] = pick([...topic.stances] as { id: Stance }[], 1)[0]!.id;
   const profile: Profile = { stances, interests: pick(corpus.interests, 4) };
   const feed = await computeFeed(qloo, corpus, profile, []);
   failed += feed.failedQueries;
