@@ -28,8 +28,8 @@ tests which opposing readers it could reach. You can then open one of their feed
 
 An LLM can tell that two posts disagree. It cannot supply a measured link between a privacy-minded
 Radiohead fan and a post about the film Her. In Bridge Feed, only a Qloo ranking can qualify a post.
-A shared word cannot: a literal match alone never creates a bridge. Every bridge shown across 200
-simulated readers came from a Qloo ranking, and none relied on a shared title.
+A shared word cannot: a literal match alone never creates a bridge. Across 200 simulated readers,
+every reader saw at least one bridge, and every bridge came from a Qloo ranking.
 
 ## How we built it
 
