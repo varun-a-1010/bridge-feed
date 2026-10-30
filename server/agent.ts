@@ -70,7 +70,15 @@ const toolDeclarations: FunctionDeclaration[] = [
           description: 'Named cultural references exactly as written in the post.',
         },
       },
-      required: ['safety', 'topic', 'viewpoint', 'confidence', 'ambiguous', 'language', 'references'],
+      required: [
+        'safety',
+        'topic',
+        'viewpoint',
+        'confidence',
+        'ambiguous',
+        'language',
+        'references',
+      ],
     },
   },
   {

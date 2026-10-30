@@ -10,7 +10,7 @@ import type {
 } from './model';
 
 export const MIN_CONFIDENCE = 0.7;
-export const MIN_CANDIDATES = 4;
+export const MIN_CANDIDATES = 12;
 const MAX_BRIDGES = 5;
 const MAX_PER_TOPIC = 2;
 /** One bridge in every four slots, starting high enough to be seen. */
@@ -18,7 +18,7 @@ const BRIDGE_SLOTS = [1, 5, 9, 13, 17];
 const FEED_LENGTH = 16;
 
 /** Qloo affinities are normalized per query, so a bridge is gated on position, not raw score. */
-export const bridgeCutoff = (of: number) => Math.max(2, Math.ceil(of * 0.2));
+export const bridgeCutoff = (of: number) => Math.max(3, Math.ceil(of * 0.1));
 
 const fold = (value: string) =>
   value
@@ -74,7 +74,7 @@ export function strongestEvidence(
   return best;
 }
 
-const strength = (e: Evidence) => 1 - (e.rank - 1) / e.of + e.alsoSupportedBy.length * 0.02;
+const strength = (e: Evidence) => 1 - e.rank / e.of + e.alsoSupportedBy.length * 0.01;
 
 const isOpposing = (post: Post, stance: StanceChoice | undefined) =>
   !!stance && stance !== 'mixed' && !!post.viewpoint && post.viewpoint !== 'mixed'
@@ -83,8 +83,7 @@ const isOpposing = (post: Post, stance: StanceChoice | undefined) =>
 
 export function composeFeeds(posts: Post[], profile: Profile, ranks: RankRow[]) {
   const published = posts.filter((p) => p.safety === 'publish');
-  const stanceFor = (post: Post) =>
-    post.topic ? profile.stances[post.topic as Topic] : undefined;
+  const stanceFor = (post: Post) => (post.topic ? profile.stances[post.topic as Topic] : undefined);
 
   const mine: FeedItem[] = published
     .filter((p) => p.source === 'user')
@@ -121,6 +120,7 @@ export function composeFeeds(posts: Post[], profile: Profile, ranks: RankRow[]) 
   });
   qualified.sort(
     (a, b) =>
+      Number(b.post.source === 'peer') - Number(a.post.source === 'peer') ||
       strength(b.evidence) - strength(a.evidence) ||
       a.literal.length - b.literal.length ||
       a.post.id.localeCompare(b.post.id),

@@ -56,8 +56,7 @@ export async function buildApp(options: AppOptions) {
   app.setErrorHandler((error, _request, reply) => {
     if (error instanceof z.ZodError)
       return reply.code(400).send({ error: 'That request is not valid.' });
-    if (error instanceof QlooError)
-      return reply.code(error.status).send({ error: error.message });
+    if (error instanceof QlooError) return reply.code(error.status).send({ error: error.message });
     const status = (error as { statusCode?: number }).statusCode;
     if (status && status < 500) return reply.code(status).send({ error: (error as Error).message });
     console.error('Unhandled error:', String(error).slice(0, 300));

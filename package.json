@@ -17,6 +17,7 @@
     "check": "npm run format:check && npm test && npm run build",
     "data:interests": "tsx scripts/build-interests.ts",
     "data:posts": "tsx scripts/build-posts.ts",
+    "data:pool": "tsx scripts/build-pool.ts",
     "data:ranks": "tsx scripts/build-ranks.ts",
     "evaluate": "tsx scripts/evaluate.ts"
   },

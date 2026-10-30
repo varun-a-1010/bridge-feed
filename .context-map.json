@@ -1,0 +1,71 @@
+{
+  "project": "bridge-feed",
+  "entrypoints": ["src/main.tsx", "server/index.ts"],
+  "files": [
+    {
+      "path": "shared/model.ts",
+      "role": "Domain contracts, topics, stances and request schemas",
+      "depends_on": []
+    },
+    {
+      "path": "shared/feed.ts",
+      "role": "Deterministic eligibility, evidence and feed composition",
+      "depends_on": ["shared/model.ts"]
+    },
+    {
+      "path": "server/qloo.ts",
+      "role": "Server-only Qloo search and single-interest ranking",
+      "depends_on": ["shared/model.ts"]
+    },
+    {
+      "path": "server/models.ts",
+      "role": "Model chains and fallback that survives rate limits",
+      "depends_on": []
+    },
+    {
+      "path": "server/agent.ts",
+      "role": "Gemini tool loop with server-enforced guardrails",
+      "depends_on": ["server/models.ts", "server/qloo.ts", "shared/feed.ts"]
+    },
+    {
+      "path": "server/corpus.ts",
+      "role": "Loads sample posts, interests, presets, pool and recorded ranks",
+      "depends_on": ["server/qloo.ts"]
+    },
+    {
+      "path": "server/feed.ts",
+      "role": "Collects Qloo rankings for a profile and composes feeds",
+      "depends_on": ["server/corpus.ts", "shared/feed.ts"]
+    },
+    {
+      "path": "server/app.ts",
+      "role": "API, origin guard, rate limits, daily budget and streamed agent runs",
+      "depends_on": ["server/agent.ts", "server/feed.ts"]
+    },
+    {
+      "path": "src/App.tsx",
+      "role": "Profile, mode and local post state",
+      "depends_on": ["src/Feed.tsx", "src/Compose.tsx", "src/Onboarding.tsx"]
+    },
+    {
+      "path": "src/Feed.tsx",
+      "role": "Two-bank feed, cable and provenance panel",
+      "depends_on": ["shared/feed.ts"]
+    },
+    {
+      "path": "src/Compose.tsx",
+      "role": "Post writing, live agent trace and reach results",
+      "depends_on": ["src/api.ts"]
+    },
+    {
+      "path": "scripts/seed-data.ts",
+      "role": "Fictional sample posts and interest catalog",
+      "depends_on": []
+    },
+    {
+      "path": "scripts/evaluate.ts",
+      "role": "Reproducible replay over simulated readers",
+      "depends_on": ["server/feed.ts"]
+    }
+  ]
+}

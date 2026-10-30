@@ -21,7 +21,7 @@ export async function computeFeed(
   localPosts: Post[],
 ): Promise<FeedResponse & { failedQueries: number }> {
   const posts = [...localPosts, ...corpus.posts];
-  const byType = indexEntities(posts);
+  const byType = indexEntities(posts, corpus.pool);
   const opposingTypes = new Set<EntityType>();
   for (const post of posts) {
     const stance = post.topic ? profile.stances[post.topic as Topic] : undefined;

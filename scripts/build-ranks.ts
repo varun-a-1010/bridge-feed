@@ -4,6 +4,7 @@ import { createQloo, rankKey } from '../server/qloo';
 import type { EntityType } from '../shared/model';
 
 const corpus = loadCorpus();
+const shown = new Set(corpus.posts.flatMap((p) => p.entities.map((e) => e.id)));
 const qloo = createQloo({ apiKey: process.env.QLOO_API_KEY });
 const jobs = corpus.interests.flatMap((interest) =>
   [...corpus.idsByType.keys()].map((type) => ({ interest, type })),
@@ -15,7 +16,10 @@ await Promise.all(
     for (;;) {
       const job = jobs.shift();
       if (!job) return;
-      const { interest, type } = job as { interest: (typeof corpus.interests)[number]; type: EntityType };
+      const { interest, type } = job as {
+        interest: (typeof corpus.interests)[number];
+        type: EntityType;
+      };
       const ids = [...new Set(corpus.idsByType.get(type) ?? [])].filter((id) => id !== interest.id);
       try {
         const { rows } = await qloo.rank(interest, type, ids);
@@ -25,7 +29,8 @@ await Promise.all(
           interestId: interest.id,
           type,
           candidates: ids.length,
-          rows: rows.map((r) => [r.entityId, r.rank]),
+          of: rows[0]?.of ?? 0,
+          rows: rows.filter((r) => shown.has(r.entityId)).map((r) => [r.entityId, r.rank]),
         });
       } catch (error) {
         failed++;

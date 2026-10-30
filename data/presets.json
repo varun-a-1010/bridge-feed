@@ -1,0 +1,23 @@
+[
+  {
+    "id": "sana",
+    "name": "Sana",
+    "blurb": "Plant-based, remote worker, wary of smart homes.",
+    "stances": { "eating_meat": "plant_based", "ai_creativity": "ai_supportive", "remote_work": "remote_first", "smart_tech": "privacy_first" },
+    "interests": ["Stardew Valley", "Daft Punk", "The Last of Us", "IKEA"]
+  },
+  {
+    "id": "ines",
+    "name": "Ines",
+    "blurb": "Skeptical of AI art, rides transit, guards her privacy.",
+    "stances": { "ai_creativity": "ai_skeptical", "transport": "pro_transit", "smart_tech": "privacy_first", "remote_work": "remote_first" },
+    "interests": ["Radiohead", "Parasite", "Nintendo", "The Three-Body Problem (Remembrance of Earth’s Past, #1)"]
+  },
+  {
+    "id": "theo",
+    "name": "Theo",
+    "blurb": "Likes AI tools and gadgets, eats meat, buys cheap clothes.",
+    "stances": { "ai_creativity": "ai_supportive", "smart_tech": "smart_convenience", "fashion": "affordable_fashion", "eating_meat": "meat_positive" },
+    "interests": ["Taylor Swift", "Barbie", "Lululemon", "Ted Lasso"]
+  }
+]

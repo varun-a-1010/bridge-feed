@@ -106,7 +106,7 @@ export type PostEntity = z.infer<typeof postEntitySchema>;
 
 export const postSchema = z.object({
   id: z.string().min(1).max(80),
-  source: z.enum(['seed', 'user']),
+  source: z.enum(['seed', 'user', 'peer']),
   author: z.string().min(1).max(60),
   text: z.string().min(1).max(600),
   createdAt: z.string().max(40),

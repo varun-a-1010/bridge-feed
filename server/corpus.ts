@@ -17,6 +17,8 @@ export type Corpus = {
   interests: Entity[];
   presets: Preset[];
   recorded: Map<string, RankAnswer>;
+  /** Qloo entities of each type that post entities are ranked against. */
+  pool: Partial<Record<EntityType, string[]>>;
   idsByType: Map<EntityType, string[]>;
 };
 
@@ -38,12 +40,15 @@ type RankFile = {
     interestId: string;
     type: EntityType;
     candidates: number;
+    of: number;
     rows: [string, number][];
   }[];
 };
 
-export const indexEntities = (posts: Post[]) => {
-  const byType = new Map<EntityType, Set<string>>();
+export const indexEntities = (posts: Post[], pool: Partial<Record<EntityType, string[]>> = {}) => {
+  const byType = new Map<EntityType, Set<string>>(
+    Object.entries(pool).map(([type, ids]) => [type as EntityType, new Set(ids)]),
+  );
   for (const post of posts)
     for (const entity of post.entities) {
       if (!byType.has(entity.type)) byType.set(entity.type, new Set());
@@ -78,18 +83,19 @@ export function loadCorpus(directory = 'data'): Corpus {
           type: answer.type,
           entityId,
           rank,
-          of: answer.rows.length,
+          of: answer.of,
         })),
         receipt: {
           interest: answer.interest,
           type: answer.type,
           candidates: answer.candidates,
-          returned: answer.rows.length,
+          returned: answer.of,
           source: 'recorded',
           retrievedAt: ranks.retrievedAt,
         },
       },
     ]),
   );
-  return { posts, interests, presets, recorded, idsByType: indexEntities(posts) };
+  const pool = read<Corpus['pool']>('pool.json', {});
+  return { posts, interests, presets, recorded, pool, idsByType: indexEntities(posts, pool) };
 }
