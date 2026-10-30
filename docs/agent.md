@@ -19,6 +19,7 @@ The model cannot talk its way past these, and each has a test:
 - A reference must literally appear in the post, so it cannot add culture of its own.
 - A link must use an entity returned by a search in this run.
 - `finish` is refused while any reference is unresolved.
+- A position snaps to the nearest stop on the scale, and off-topic posts stay unscored.
 - Ambiguous posts are capped below the confidence bar.
 - Turn and call budgets are hard limits.
 
@@ -35,4 +36,6 @@ A failed call moves straight to the next model. If every model fails, the agent 
 walks the whole chain again, up to four passes inside a 60-second deadline per call. Models that
 failed in a run are tried last. Switching models mid-run was tested live in every direction.
 
-Seed building hit 24 Argon timeouts and finished 48 of 48 posts, all on the intended side.
+Seed building finished 48 of 48 posts through repeated Argon timeouts. Positions matched the intended
+side, and the one disagreement was the agent's correction: a director using AI only for previs belongs
+at stop 30, "fine for rough ideas, never in the finished work", which a binary label had wrong.

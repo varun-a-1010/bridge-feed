@@ -1,22 +1,24 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { PenLine, SlidersHorizontal } from 'lucide-react';
+import { Gauge, PenLine } from 'lucide-react';
 import type { Post, Preset, Profile } from '../shared/model';
 import { getBootstrap, getFeed, loadSaved, save, type Bootstrap, type Feed } from './api';
 import { Compose } from './Compose';
 import { FeedView } from './Feed';
 import { Onboarding } from './Onboarding';
+import { ScoresPanel } from './Scores';
 
 export function App() {
   const saved = useMemo(loadSaved, []);
   const [bootstrap, setBootstrap] = useState<Bootstrap>();
   const [profile, setProfile] = useState<Profile | undefined>(saved.profile);
+  const [baseline, setBaseline] = useState<Profile['scores']>(saved.baseline ?? {});
   const [posts, setPosts] = useState<Post[]>(saved.posts ?? []);
   const [feed, setFeed] = useState<Feed>();
   const [mode, setMode] = useState<'typical' | 'bridge'>('typical');
   const [viewing, setViewing] = useState<string>();
   const [own, setOwn] = useState<Profile>();
-  const [editing, setEditing] = useState(false);
-  const [composing, setComposing] = useState(false);
+  const [restarting, setRestarting] = useState(false);
+  const [panel, setPanel] = useState<'none' | 'write' | 'scores' | 'rate'>('none');
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -35,20 +37,30 @@ export function App() {
   }, [profile, posts, viewing]);
 
   useEffect(load, [load]);
-  useEffect(() => save({ profile: own ?? profile, posts }), [own, profile, posts]);
+  useEffect(
+    () => save({ profile: own ?? profile, baseline, posts }),
+    [own, profile, baseline, posts],
+  );
 
-  const choose = (next: Profile) => {
+  const begin = (next: Profile) => {
     setProfile(next);
+    setBaseline(next.scores);
     setOwn(undefined);
     setViewing(undefined);
-    setEditing(false);
+    setRestarting(false);
+    setPanel('none');
     setMode('typical');
+  };
+  const backToOwn = () => {
+    if (own) setProfile(own);
+    setOwn(undefined);
+    setViewing(undefined);
   };
   const viewAs = (preset: Preset) => {
     setOwn((current) => current ?? profile);
-    setProfile({ stances: preset.stances, interests: preset.interests });
+    setProfile({ scores: preset.scores, interests: preset.interests });
     setViewing(preset.name);
-    setComposing(false);
+    setPanel('none');
     setMode('bridge');
   };
 
@@ -58,9 +70,9 @@ export function App() {
         {error ? <p className="error">{error}</p> : <p>Opening the feed</p>}
       </div>
     );
-  if (!profile || editing)
-    return <Onboarding bootstrap={bootstrap} initial={profile} onDone={choose} />;
+  if (!profile || restarting) return <Onboarding bootstrap={bootstrap} onDone={begin} />;
 
+  const yours = own ?? profile;
   return (
     <div className={`shell shell-${mode}`}>
       <header className="topbar">
@@ -74,11 +86,19 @@ export function App() {
           </button>
         </div>
         <div className="tools">
-          <button className="quiet" onClick={() => setComposing(!composing)}>
+          <button
+            className="quiet"
+            aria-pressed={panel === 'write'}
+            onClick={() => setPanel(panel === 'write' ? 'none' : 'write')}
+          >
             <PenLine size={15} aria-hidden /> Write
           </button>
-          <button className="quiet" onClick={() => setEditing(true)}>
-            <SlidersHorizontal size={15} aria-hidden /> Change views
+          <button
+            className="quiet"
+            aria-pressed={panel === 'scores' || panel === 'rate'}
+            onClick={() => setPanel(panel === 'none' || panel === 'write' ? 'scores' : 'none')}
+          >
+            <Gauge size={15} aria-hidden /> Your scores
           </button>
         </div>
       </header>
@@ -87,18 +107,34 @@ export function App() {
         {viewing && (
           <p className="viewing">
             You are viewing this as {viewing}, a sample reader.{' '}
-            <button className="link" onClick={() => own && choose(own)}>
-              Go back to your own views
+            <button className="link" onClick={backToOwn}>
+              Go back to your own feed
             </button>
           </p>
         )}
-        {composing && (
+        {panel === 'write' && (
           <Compose
             connected={bootstrap.connected.agent}
             presets={bootstrap.presets}
             onPublish={(post) => setPosts((list) => [post, ...list].slice(0, 8))}
             onViewAs={viewAs}
-            onClose={() => setComposing(false)}
+            onClose={() => setPanel('none')}
+          />
+        )}
+        {(panel === 'scores' || panel === 'rate') && (
+          <ScoresPanel
+            baseline={baseline}
+            scores={yours.scores}
+            rating={panel === 'rate'}
+            onRate={() => setPanel('rate')}
+            onSave={(scores) => {
+              const next = { ...yours, scores };
+              if (own) setOwn(next);
+              else setProfile(next);
+              setPanel('scores');
+            }}
+            onRestart={() => setRestarting(true)}
+            onClose={() => setPanel('none')}
           />
         )}
         {error && (
@@ -110,7 +146,14 @@ export function App() {
           </p>
         )}
         {!feed && !error && <p className="loading-line">Asking Qloo about your interests</p>}
-        {feed && <FeedView feed={feed} mode={mode} profile={profile} />}
+        {feed && (
+          <FeedView
+            feed={feed}
+            mode={mode}
+            profile={profile}
+            onRate={viewing ? undefined : () => setPanel('rate')}
+          />
+        )}
       </main>
     </div>
   );

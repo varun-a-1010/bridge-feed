@@ -2,22 +2,29 @@
   {
     "id": "sana",
     "name": "Sana",
-    "blurb": "Plant-based, remote worker, wary of smart homes.",
-    "stances": { "eating_meat": "plant_based", "ai_creativity": "ai_supportive", "remote_work": "remote_first", "smart_tech": "privacy_first" },
+    "blurb": "Mostly vegetarian, wary of smart homes, thinks luck decides a lot.",
+    "scores": { "animal_welfare": 70, "ai_art": 60, "privacy": 70, "success": 70 },
     "interests": ["Stardew Valley", "Daft Punk", "The Last of Us", "IKEA"]
   },
   {
     "id": "ines",
     "name": "Ines",
-    "blurb": "Skeptical of AI art, rides transit, guards her privacy.",
-    "stances": { "ai_creativity": "ai_skeptical", "transport": "pro_transit", "smart_tech": "privacy_first", "remote_work": "remote_first" },
-    "interests": ["Radiohead", "Parasite", "Björk", "The Grand Budapest Hotel"]
+    "blurb": "Wants AI out of art and tracking off by default.",
+    "scores": { "ai_art": 20, "privacy": 80, "free_speech": 60, "success": 80 },
+    "interests": ["Radiohead", "Björk", "The Grand Budapest Hotel", "Seven Samurai"]
   },
   {
     "id": "theo",
     "name": "Theo",
-    "blurb": "Likes AI tools and gadgets, eats meat, buys cheap clothes.",
-    "stances": { "ai_creativity": "ai_supportive", "smart_tech": "smart_convenience", "fashion": "affordable_fashion", "eating_meat": "meat_positive" },
-    "interests": ["Taylor Swift", "Barbie", "Lululemon", "Ted Lasso"]
+    "blurb": "Likes AI tools and gadgets, and lets adults make their own choices.",
+    "scores": { "ai_art": 70, "privacy": 20, "animal_welfare": 20, "personal_freedom": 20 },
+    "interests": ["Taylor Swift", "Barbie", "Ted Lasso", "Nike"]
+  },
+  {
+    "id": "cal",
+    "name": "Cal",
+    "blurb": "A sports and prestige TV fan who believes in effort and open debate.",
+    "scores": { "free_speech": 20, "success": 10, "animal_welfare": 10, "personal_freedom": 30 },
+    "interests": ["New York Knicks", "Boardwalk Empire", "The Mandalorian", "Tears for Fears"]
   }
 ]

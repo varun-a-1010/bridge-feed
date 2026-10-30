@@ -15,10 +15,12 @@ providers. Live checks used the real Qloo and Vertex APIs.
 - 10 signals against 29 candidates, and per-input explanations.
 - Model reachability and tool-calling on the app's Vertex project.
 - The agent on real posts, including a prompt-injection attempt and misspelled references.
-- 48 sample posts built with 0 viewpoint mismatches against the intended side.
+- 48 sample posts built through the live agent, with positions checked against the intended side.
+- Sports teams and leagues resolve as Qloo brands.
 
 ## Not checked
 
 - No browser or visual QA was performed, following the owner's standing instruction.
 - Nothing here measures real people. The evaluation replays recorded rankings for simulated
-  readers. No claim is made about persuasion or polarization.
+  readers, and rating again reports one reader's own answers. No claim is made about persuasion or
+  polarization.

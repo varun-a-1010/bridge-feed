@@ -8,10 +8,10 @@ import {
   type EntityType,
   type Preset,
   type Profile,
-  type StanceChoice,
   type Topic,
 } from '../shared/model';
 import { searchEntities, type Bootstrap } from './api';
+import { Scale } from './Scale';
 
 const MAX_INTERESTS = 6;
 
@@ -25,9 +25,17 @@ export function Onboarding({
   onDone: (profile: Profile) => void;
 }) {
   const [step, setStep] = useState<1 | 2>(1);
-  const [stances, setStances] = useState<Profile['stances']>(initial?.stances ?? {});
+  const [scores, setScores] = useState<Profile['scores']>(initial?.scores ?? {});
   const [interests, setInterests] = useState<Entity[]>(initial?.interests ?? []);
-  const chosen = TOPICS.filter((t) => stances[t.id]).length;
+  const chosen = TOPICS.filter((t) => scores[t.id] !== undefined).length;
+
+  const groups = [
+    { label: 'Sports', items: bootstrap.interests.filter((i) => i.group === 'sports') },
+    ...ENTITY_TYPES.map((type) => ({
+      label: TYPE_LABELS[type].one,
+      items: bootstrap.interests.filter((i) => i.type === type && !i.group),
+    })),
+  ].filter((group) => group.items.length > 0);
 
   const toggle = (entity: Entity) =>
     setInterests((list) =>
@@ -44,7 +52,8 @@ export function Onboarding({
         <h1>Disagreement is easier to read when you share something first.</h1>
         <p>
           Bridge Feed keeps what you believe and what you love apart, then uses the second to reach
-          a view you would normally scroll past. The post stays exactly as its author wrote it.
+          a view you would normally scroll past. Score where you stand, read, then rate again and
+          see if anything moved.
         </p>
       </header>
 
@@ -63,32 +72,18 @@ export function Onboarding({
       {step === 1 ? (
         <section className="step" aria-labelledby="step-one">
           <h2 id="step-one">Where do you stand?</h2>
-          <p className="hint">Pick at least two topics. Skip any you do not care about.</p>
-          <div className="stances">
+          <p className="hint">
+            Score at least two topics. Each number means something specific, so read it before you
+            choose. You can rate again after reading your feed.
+          </p>
+          <div className="scales">
             {TOPICS.map((topic) => (
-              <fieldset key={topic.id}>
-                <legend>{topic.label}</legend>
-                <div className="choice">
-                  {[...topic.stances, { id: 'mixed' as const, label: 'Mixed or unsure' }].map(
-                    (option) => (
-                      <label key={option.id}>
-                        <input
-                          type="radio"
-                          name={topic.id}
-                          checked={stances[topic.id] === option.id}
-                          onChange={() =>
-                            setStances((s) => ({
-                              ...s,
-                              [topic.id as Topic]: option.id as StanceChoice,
-                            }))
-                          }
-                        />
-                        <span>{option.label}</span>
-                      </label>
-                    ),
-                  )}
-                </div>
-              </fieldset>
+              <Scale
+                key={topic.id}
+                topic={topic}
+                value={scores[topic.id]}
+                onChange={(score) => setScores((s) => ({ ...s, [topic.id as Topic]: score }))}
+              />
             ))}
           </div>
           <button className="primary" disabled={chosen < 2} onClick={() => setStep(2)}>
@@ -99,31 +94,27 @@ export function Onboarding({
         <section className="step" aria-labelledby="step-two">
           <h2 id="step-two">What are you actually into?</h2>
           <p className="hint">
-            Pick up to {MAX_INTERESTS}. These go to Qloo as entity IDs. Your views never do.
+            Pick up to {MAX_INTERESTS}. These go to Qloo as entity IDs. Your scores never do.
           </p>
           <EntitySearch selected={interests} onPick={toggle} />
           <div className="catalog">
-            {ENTITY_TYPES.map((type) => {
-              const items = bootstrap.interests.filter((i) => i.type === type);
-              if (!items.length) return null;
-              return (
-                <div key={type} className="catalog-row">
-                  <h3>{TYPE_LABELS[type].one}</h3>
-                  <div className="chips">
-                    {items.map((item) => (
-                      <button
-                        key={item.id}
-                        className="chip"
-                        aria-pressed={interests.some((i) => i.id === item.id)}
-                        onClick={() => toggle(item)}
-                      >
-                        {shortName(item.name)}
-                      </button>
-                    ))}
-                  </div>
+            {groups.map(({ label, items }) => (
+              <div key={label} className="catalog-row">
+                <h3>{label}</h3>
+                <div className="chips">
+                  {items.map((item) => (
+                    <button
+                      key={item.id}
+                      className="chip"
+                      aria-pressed={interests.some((i) => i.id === item.id)}
+                      onClick={() => toggle(item)}
+                    >
+                      {shortName(item.name)}
+                    </button>
+                  ))}
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
           {interests.length > 0 && (
             <ul className="picked" aria-label="Your interests">
@@ -144,7 +135,12 @@ export function Onboarding({
             <button
               className="primary"
               disabled={interests.length < 2}
-              onClick={() => onDone({ stances, interests })}
+              onClick={() =>
+                onDone({
+                  scores,
+                  interests: interests.map(({ id, name, type }) => ({ id, name, type })),
+                })
+              }
             >
               Build my feed
             </button>
@@ -159,11 +155,16 @@ function PresetCard({ preset, onPick }: { preset: Preset; onPick: (profile: Prof
   return (
     <button
       className="preset"
-      onClick={() => onPick({ stances: preset.stances, interests: preset.interests })}
+      onClick={() => onPick({ scores: preset.scores, interests: preset.interests })}
     >
       <strong>{preset.name}</strong>
       <span>{preset.blurb}</span>
       <em>{preset.interests.map((i) => shortName(i.name)).join(', ')}</em>
+      <small>
+        {TOPICS.filter((t) => preset.scores[t.id] !== undefined)
+          .map((t) => `${t.label} ${preset.scores[t.id]}`)
+          .join(', ')}
+      </small>
     </button>
   );
 }

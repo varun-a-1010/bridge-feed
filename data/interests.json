@@ -1,5 +1,41 @@
 [
  {
+  "id": "9E65EACE-19B1-446B-ABE3-713CCA8D37C7",
+  "name": "New York Knicks",
+  "type": "brand",
+  "group": "sports"
+ },
+ {
+  "id": "9EF3B4AA-C638-4930-B673-0A930A4063AD",
+  "name": "National Basketball Association",
+  "type": "brand",
+  "group": "sports"
+ },
+ {
+  "id": "A21D248A-7379-458E-A3BE-7B8C4B961AF6",
+  "name": "Chelsea F.C.",
+  "type": "brand",
+  "group": "sports"
+ },
+ {
+  "id": "C676E01F-BEA7-4822-87BA-945CBDC11D86",
+  "name": "Pga Tour",
+  "type": "brand",
+  "group": "sports"
+ },
+ {
+  "id": "199E0ABE-BF9C-498A-A6C9-95EBFC178C6B",
+  "name": "National Football League",
+  "type": "brand",
+  "group": "sports"
+ },
+ {
+  "id": "096748F7-CBE7-40A9-A23D-C1CF0F28C99A",
+  "name": "Formula One",
+  "type": "brand",
+  "group": "sports"
+ },
+ {
   "id": "70CAE5BF-2F4C-445C-A3E5-4EDACFC3591C",
   "name": "Radiohead",
   "type": "artist"
@@ -40,8 +76,18 @@
   "type": "artist"
  },
  {
-  "id": "A499EC25-7FF6-46DE-9DA5-3E78E99B9E26",
-  "name": "Parasite",
+  "id": "9235D2F0-1843-4709-B121-8F5F908BF2A8",
+  "name": "Tears for Fears",
+  "type": "artist"
+ },
+ {
+  "id": "047CC36A-3ECC-4107-9FF9-48448912A77B",
+  "name": "Spandau Ballet",
+  "type": "artist"
+ },
+ {
+  "id": "DF788007-B5EA-4F29-872B-96BCB8EEC42F",
+  "name": "The Grand Budapest Hotel",
   "type": "movie"
  },
  {
@@ -50,8 +96,8 @@
   "type": "movie"
  },
  {
-  "id": "DF788007-B5EA-4F29-872B-96BCB8EEC42F",
-  "name": "The Grand Budapest Hotel",
+  "id": "7F1163D3-D842-4121-AA13-68FA930E0F09",
+  "name": "Seven Samurai",
   "type": "movie"
  },
  {
@@ -70,8 +116,23 @@
   "type": "movie"
  },
  {
-  "id": "65EAC55F-6FDC-452D-A633-A9E9F2BBD45E",
-  "name": "Succession",
+  "id": "05049FF9-844A-4481-9FFD-95F2874B28DD",
+  "name": "The Original Kings of Comedy",
+  "type": "movie"
+ },
+ {
+  "id": "1E1C19B5-F0DF-43E2-9887-37E31A3DD9BF",
+  "name": "Boardwalk Empire",
+  "type": "tv_show"
+ },
+ {
+  "id": "24FA08F2-0B47-4A01-B44E-CF18C06E5781",
+  "name": "The Mandalorian",
+  "type": "tv_show"
+ },
+ {
+  "id": "88B37E0A-4353-4A75-A0EE-2A44B353B120",
+  "name": "Curb Your Enthusiasm",
   "type": "tv_show"
  },
  {
@@ -115,8 +176,8 @@
   "type": "brand"
  },
  {
-  "id": "D9B9B404-7B35-4E4B-A0CE-4CAB8155FE9E",
-  "name": "Lululemon",
+  "id": "7E904879-87BC-4BA6-B4AB-6E380A4C250D",
+  "name": "A24",
   "type": "brand"
  },
  {
@@ -155,8 +216,13 @@
   "type": "book"
  },
  {
-  "id": "C83D215D-A38A-44D1-BD15-34D282C220AC",
-  "name": "The Three-Body Problem (Remembrance of Earth’s Past, #1)",
+  "id": "2333C53E-7369-4BBC-9E49-FFAF4EA2EC91",
+  "name": "On Writing",
+  "type": "book"
+ },
+ {
+  "id": "074B2ED6-B6EE-4690-9C7A-687A056F7DB2",
+  "name": "Born Standing Up: A Comic's Life",
   "type": "book"
  },
  {

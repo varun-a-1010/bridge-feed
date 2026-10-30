@@ -16,30 +16,33 @@ you would otherwise scroll past.
 
 ## What it does
 
-Bridge Feed keeps two things apart: what you believe, which you state outright, and what you love,
-which Qloo understands. Pick your views and a few interests, and you get a normal feed. Switch to
-Bridge feed and a few posts from the other side cross over. Each one shows why it reached you:
-"Qloo compared 40 films for Radiohead alone, and Her ranked #1."
+Bridge Feed keeps two things apart: what you believe, which you score yourself, and what you love,
+which Qloo understands. Score six contested topics from 0 to 100. Everyone says they support free
+speech, so every 10 points is a specific statement you have to endorse. Add a few interests and you
+get a normal feed. Switch to Bridge feed and a few posts from people far from you cross over, each
+showing why it reached you: "Qloo compared 48 films for Björk alone, and Her ranked #1."
 
-Posts are never rewritten. Write your own and an agent reads it, finds its references on Qloo, and
-tests which opposing readers it could reach. You can then open one of their feeds and see it arrive.
+Then rate again. Your scores show whether anything moved, in either direction, and staying put is a
+real answer. Posts are never rewritten. Write your own and an agent scores it, finds its references
+on Qloo, and tests which readers it could reach. You can then open their feed and see it arrive.
 
 ## Why Qloo is essential
 
-An LLM can tell that two posts disagree. It cannot supply a measured link between a privacy-minded
-Radiohead fan and a post about the film Her. In Bridge Feed, only a Qloo ranking can qualify a post.
-A shared word cannot: a literal match alone never creates a bridge. Across 200 simulated readers,
-every reader saw at least one bridge, and every bridge came from a Qloo ranking.
+An LLM can tell that two posts disagree. It cannot supply a measured link between a Knicks fan and
+Hoop Dreams, or a Stardew Valley player and a post about barbecue. In Bridge Feed, only a Qloo ranking
+can qualify a post. A shared word cannot: a literal match alone never creates a bridge. A control
+check also rejects anything that ranks highly for nearly everyone, because popularity is not a
+connection.
 
 ## How we built it
 
-- **Agent:** a Gemini tool loop chooses each step: search, retry a spelling, reject a doubtful
-  match, test reach, finish. The server enforces the rules the model cannot break.
+- **Agent:** a Gemini tool loop chooses each step: place the post on its scale, search, retry a
+  spelling, reject a doubtful match, test reach, finish. The server enforces the rules the model cannot break.
 - **Qloo:** `/search` resolves entities, and `/v2/insights` ranks candidates for one interest at a
   time. Blended signals washed taste out in testing, while single signals separated it clearly.
 - **Reliability:** Gemini 4 Argon handles the critical judgment, with a chain of Flash models behind
   it, so a rate limit on any model delays a post instead of breaking it.
-- **Stack:** TypeScript, Fastify and React, with 43 tests.
+- **Stack:** TypeScript, Fastify and React, with automated tests for every rule above.
 
 ## Challenges
 
@@ -50,22 +53,23 @@ about a third.
 
 ## Accomplishments
 
-48 sample posts went through the real agent, with 64 confirmed Qloo entities and no viewpoint
-mismatches. The agent left 7 references unresolved instead of guessing. One post has no entities
-and so can never bridge, which is the behaviour we wanted.
+48 sample posts went through the real agent, and positions matched the side we wrote them for, with
+one exception where the agent was right and we were wrong: a director using AI only for rough
+storyboards belongs near the skeptical end, which a yes or no label would have missed.
 
 ## What we learned
 
 The honest claim is smaller and stronger than "fixing polarization", which the research does not
-support. Bridge Feed shows that cultural similarity can create an intelligible path to a different
-perspective. Whether that changes anything for real people would need a real study.
+support. Rating again gives a platform a way to find out whether a feed changes minds at all, and it
+counts movement in either direction, because exposure to opposing views can backfire. This demo sees
+one reader at a time, so it proves nothing about people yet. The instrument is the point.
 
 ## What's next
 
-A study with real readers, control over how many differing posts you see, and feedback that tunes
-the bridge cutoff.
+A study with real readers comparing score movement between the two feeds, control over how many
+differing posts you see, and feedback that tunes the bridge cutoff.
 
 ## Limits
 
 Sample posts are fictional. Rankings show cultural association, not what anyone believes. Qloo
-never receives your views, and the app never infers them from your taste.
+never receives your scores, and the app never infers them from your taste.

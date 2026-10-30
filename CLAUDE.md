@@ -5,8 +5,12 @@ differing viewpoint. Work on `main`. Do not touch other repos from here.
 
 - Follow `~/code/AGENTS.md`. No unsolicited browser or visual QA.
 - `npm run check` runs formatting, tests, type checking and production build.
-- Viewpoints come only from explicit selections and the text of a post. Qloo receives opaque
+- Scores come only from what a reader chooses and from the text of a post. Qloo receives opaque
   entity IDs and nothing else. Never infer beliefs from taste, or imply Qloo did.
+- Rating again counts movement in either direction, and no change is a valid answer. Never treat
+  moving toward the other side as success.
+- Tailor the catalog and posts to the audience, but never name, profile or assign views to a real
+  person in the app, repo or docs.
 - A bridge is earned only from a Qloo ranking of an entity the reader did not select. A literal
   match can never qualify a post on its own.
 - Original posts are never rewritten. Sample posts are fictional and labelled, with no invented

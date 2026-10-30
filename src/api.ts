@@ -1,6 +1,7 @@
 import type {
   AgentResult,
   AgentStep,
+  CatalogItem,
   Entity,
   EntityType,
   FeedResponse,
@@ -10,7 +11,7 @@ import type {
 } from '../shared/model';
 
 export type Bootstrap = {
-  interests: Entity[];
+  interests: CatalogItem[];
   presets: Preset[];
   posts: number;
   entities: number;
@@ -69,8 +70,8 @@ export async function analyze(text: string, onStep: (step: AgentStep) => void) {
   return result;
 }
 
-const key = 'bridge-feed:v1';
-export type Saved = { profile?: Profile; posts?: Post[] };
+const key = 'bridge-feed:v2';
+export type Saved = { profile?: Profile; baseline?: Profile['scores']; posts?: Post[] };
 
 export function loadSaved(): Saved {
   try {

@@ -1,16 +1,9 @@
-import type {
-  Evidence,
-  FeedItem,
-  FeedStats,
-  Post,
-  Profile,
-  RankRow,
-  StanceChoice,
-  Topic,
-} from './model';
+import type { Evidence, FeedItem, FeedStats, Post, Profile, RankRow, Topic } from './model';
 
 export const MIN_CONFIDENCE = 0.7;
 export const MIN_CANDIDATES = 12;
+/** Four stops apart on an 11-stop scale counts as a genuinely different view. */
+export const MIN_GAP = 40;
 const MAX_BRIDGES = 5;
 const MAX_PER_TOPIC = 2;
 /** One bridge in every four slots, starting high enough to be seen. */
@@ -76,30 +69,31 @@ export function strongestEvidence(
 
 const strength = (e: Evidence) => 1 - e.rank / e.of + e.alsoSupportedBy.length * 0.01;
 
-const isOpposing = (post: Post, stance: StanceChoice | undefined) =>
-  !!stance && stance !== 'mixed' && !!post.viewpoint && post.viewpoint !== 'mixed'
-    ? post.viewpoint !== stance
-    : false;
+export const gapBetween = (post: Post, profile: Profile) => {
+  const score = post.topic ? profile.scores[post.topic as Topic] : undefined;
+  return score === undefined || post.position === null
+    ? undefined
+    : Math.abs(score - post.position);
+};
 
 export function composeFeeds(posts: Post[], profile: Profile, ranks: RankRow[]) {
   const published = posts.filter((p) => p.safety === 'publish');
-  const stanceFor = (post: Post) => (post.topic ? profile.stances[post.topic as Topic] : undefined);
 
   const mine: FeedItem[] = published
     .filter((p) => p.source === 'user')
     .map((post) => ({ post, kind: 'mine', literal: literalMatches(post, profile) }));
 
   const ordinary: (FeedItem & { score: number })[] = published.flatMap((post) => {
-    const stance = stanceFor(post);
-    if (post.source === 'user' || !stance || isOpposing(post, stance)) return [];
+    const gap = gapBetween(post, profile);
+    if (post.source === 'user' || gap === undefined || gap >= MIN_GAP) return [];
     const literal = literalMatches(post, profile);
-    const aligned = post.viewpoint === stance;
     return [
       {
         post,
-        kind: aligned ? ('aligned' as const) : ('mixed' as const),
+        kind: gap <= 20 ? ('aligned' as const) : ('nearby' as const),
+        gap,
         literal,
-        score: (aligned ? 2 : 1) + (literal.length ? 1 : 0),
+        score: (literal.length ? 15 : 0) - gap,
       },
     ];
   });
@@ -110,12 +104,23 @@ export function composeFeeds(posts: Post[], profile: Profile, ranks: RankRow[]) 
       a.post.id.localeCompare(b.post.id),
   );
 
-  const opposing = published.filter((p) => p.source !== 'user' && isOpposing(p, stanceFor(p)));
+  const opposing = published.filter((p) => {
+    const gap = gapBetween(p, profile);
+    return p.source !== 'user' && gap !== undefined && gap >= MIN_GAP;
+  });
   const qualified: (FeedItem & { evidence: Evidence })[] = opposing.flatMap((post) => {
     if (post.confidence < MIN_CONFIDENCE) return [];
     const evidence = strongestEvidence(post, profile, ranks);
     return evidence
-      ? [{ post, kind: 'bridge' as const, evidence, literal: literalMatches(post, profile) }]
+      ? [
+          {
+            post,
+            kind: 'bridge' as const,
+            gap: gapBetween(post, profile),
+            evidence,
+            literal: literalMatches(post, profile),
+          },
+        ]
       : [];
   });
   qualified.sort(
@@ -136,10 +141,11 @@ export function composeFeeds(posts: Post[], profile: Profile, ranks: RankRow[]) 
     if (chosen.length === MAX_BRIDGES) break;
   }
 
-  const strip = ({ post, kind, literal, evidence }: FeedItem): FeedItem => ({
+  const strip = ({ post, kind, gap, literal, evidence }: FeedItem): FeedItem => ({
     post,
     kind,
     literal,
+    ...(gap === undefined ? {} : { gap }),
     ...(evidence ? { evidence } : {}),
   });
   const typical = [...mine, ...ordinary].slice(0, FEED_LENGTH).map(strip);

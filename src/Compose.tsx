@@ -49,8 +49,8 @@ export function Compose({
         </button>
       </div>
       <p className="hint">
-        Take a side on one of the six topics and name a film, artist, brand or place. An agent reads
-        it, finds those references on Qloo and works out who it could reach.
+        Take a position on one of the six topics and name a film, artist, brand or team. An agent
+        scores it, finds those references on Qloo and works out who it could reach.
       </p>
       <textarea
         value={text}
@@ -104,10 +104,10 @@ export function Compose({
                       <strong>{r.audience}</strong>
                       <p>
                         {r.outcome === 'bridge' && r.evidence
-                          ? `Holds the other view. ${r.evidence.interest} ranks ${r.evidence.entity} #${r.evidence.rank} of ${r.evidence.of}.`
+                          ? `Scores ${r.score} here, so this is a real difference. ${r.evidence.interest} ranks ${r.evidence.entity} #${r.evidence.rank} of ${r.evidence.of}.`
                           : r.outcome === 'same_side'
-                            ? 'Already on your side.'
-                            : 'Holds the other view, but Qloo found no connection.'}
+                            ? `Scores ${r.score} here, close to your post.`
+                            : `Scores ${r.score} here, but Qloo found no connection.`}
                       </p>
                     </div>
                     {preset && result.status !== 'held' && r.outcome !== 'no_evidence' && (

@@ -15,6 +15,7 @@ const corpus: Corpus = {
   recorded: new Map(),
   pool: {},
   idsByType: new Map(),
+  commonness: new Map(),
 };
 const qloo: Qloo = {
   status: 'configured',
@@ -54,9 +55,86 @@ describe('api', () => {
       method: 'POST',
       url: '/api/feed',
       headers,
-      payload: JSON.stringify({ profile: { stances: {}, interests: [] } }),
+      payload: JSON.stringify({ profile: { scores: {}, interests: [] } }),
     });
     expect(bad.statusCode).toBe(400);
+  });
+
+  it('rejects a score outside the scale', async () => {
+    const app = await setup();
+    const bad = await app.inject({
+      method: 'POST',
+      url: '/api/feed',
+      headers,
+      payload: JSON.stringify({
+        profile: {
+          scores: { privacy: 140 },
+          interests: [{ id: '11111111-1111-4111-8111-111111111111', name: 'A', type: 'artist' }],
+        },
+      }),
+    });
+    expect(bad.statusCode).toBe(400);
+  });
+
+  it('leaves out an entity that ranks high for nearly everyone', async () => {
+    const entity = '22222222-2222-4222-8222-222222222222';
+    const interest = {
+      id: '11111111-1111-4111-8111-111111111111'.toUpperCase(),
+      name: 'A',
+      type: 'artist' as const,
+    };
+    const shared = {
+      ...corpus,
+      commonness: new Map([[entity.toUpperCase(), 0.9]]),
+      posts: [
+        {
+          id: 'p',
+          source: 'seed' as const,
+          author: 'S',
+          text: 'Text',
+          createdAt: 'now',
+          topic: 'privacy' as const,
+          position: 10,
+          confidence: 0.9,
+          language: 'en',
+          entities: [
+            { id: entity.toUpperCase(), name: 'Common', type: 'brand' as const, surface: 'Text' },
+          ],
+          unresolved: [],
+          safety: 'publish' as const,
+        },
+      ],
+    };
+    const ranking: Qloo = {
+      ...qloo,
+      rank: vi.fn(async () => ({
+        rows: [
+          {
+            interestId: interest.id,
+            type: 'brand' as const,
+            entityId: entity.toUpperCase(),
+            rank: 1,
+            of: 40,
+          },
+        ],
+        receipt: {
+          interest: 'A',
+          type: 'brand' as const,
+          candidates: 40,
+          returned: 40,
+          source: 'live' as const,
+          retrievedAt: 'now',
+        },
+      })),
+    };
+    const { computeFeed } = await import('../server/feed');
+    const feed = await computeFeed(
+      ranking,
+      shared,
+      { scores: { privacy: 90 }, interests: [interest] },
+      [],
+    );
+    expect(feed.stats).toMatchObject({ opposing: 1, shown: 0 });
   });
 
   it('streams agent steps and the result as lines', async () => {

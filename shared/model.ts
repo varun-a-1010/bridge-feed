@@ -21,78 +21,138 @@ export const TYPE_LABELS: Record<EntityType, { one: string; many: string }> = {
   videogame: { one: 'Game', many: 'games' },
 };
 
+/** Each topic is an 11-stop scale. Every stop is a statement a person would have to endorse. */
 export const TOPICS = [
   {
-    id: 'ai_creativity',
+    id: 'ai_art',
     label: 'AI in creative work',
-    stances: [
-      { id: 'ai_skeptical', label: 'Mostly skeptical' },
-      { id: 'ai_supportive', label: 'Mostly supportive' },
+    low: 'Keep it out',
+    high: 'Embrace it',
+    tiers: [
+      'AI-made art should be banned from anything sold commercially.',
+      'Studios and labels should not be allowed to use generative AI at all.',
+      'Artists can experiment privately, but AI stays out of anything released.',
+      'Fine for rough ideas and mock-ups, never in the finished work.',
+      'Fine as a small tool, if it is credited and the artists it trained on are paid.',
+      'It depends on the project. I judge the result case by case.',
+      'AI is a normal creative tool now, as long as its use is disclosed.',
+      'It does not need a label. If the work is good, it is good.',
+      'Training on public work is fair, the way artists learn from each other.',
+      'Studios can replace whole roles with AI if audiences are happy.',
+      'AI should make most art. Human-only work will become a niche craft.',
     ],
   },
   {
-    id: 'eating_meat',
-    label: 'Eating meat',
-    stances: [
-      { id: 'meat_positive', label: 'I eat meat' },
-      { id: 'plant_based', label: 'Mostly plant-based' },
+    id: 'animal_welfare',
+    label: 'Animal welfare',
+    low: 'Meat is fine',
+    high: 'Go vegan',
+    tiers: [
+      'Meat is natural. There is no ethical question here.',
+      'I eat what I like, though I would avoid needless cruelty.',
+      'Meat is fine, but I try to buy from farms that treat animals well.',
+      'Meat is fine a few times a week. Most of us just eat too much.',
+      'I should eat less meat, and I am trying to.',
+      'Meat is morally gray. I eat it and I am not comfortable about it.',
+      'Mostly vegetarian is the right way to live, with meat as an exception.',
+      'Eating meat is wrong when alternatives exist. Eggs and dairy are fine.',
+      'Factory farming is a moral catastrophe, so I avoid meat entirely.',
+      'Vegan is the ethical default. Dairy and eggs cause harm too.',
+      'Using animals for food is wrong and should eventually be illegal.',
     ],
   },
   {
-    id: 'remote_work',
-    label: 'Remote work',
-    stances: [
-      { id: 'remote_first', label: 'Prefer remote' },
-      { id: 'office_first', label: 'Prefer in-person' },
+    id: 'free_speech',
+    label: 'Free speech',
+    low: 'No limits',
+    high: 'Strict limits',
+    tiers: [
+      'All speech should be legal, including speech most people find vile.',
+      'Only direct threats and fraud should be restricted.',
+      'Platforms should remove what is illegal and nothing else.',
+      'Offense is the price of freedom, but targeted harassment can come down.',
+      'Platforms can set rules, but should almost always leave things up.',
+      'Some limits are needed. I decide case by case.',
+      'Platforms should remove hate speech, even when it is legal.',
+      'Platforms should also limit false claims that can hurt people.',
+      'Hate speech should be illegal, not just banned by platforms.',
+      'Speech that demeans any group should carry legal penalties.',
+      'Governments should actively decide what is safe to publish.',
     ],
   },
   {
-    id: 'transport',
-    label: 'Getting around',
-    stances: [
-      { id: 'pro_driving', label: 'Prefer driving' },
-      { id: 'pro_transit', label: 'Prefer public transit' },
+    id: 'privacy',
+    label: 'Privacy',
+    low: 'Take my data',
+    high: 'Protect it',
+    tiers: [
+      'I will share any data that makes life easier. I have nothing to hide.',
+      'Cameras and microphones at home are worth the convenience.',
+      'Companies can keep my data if they keep it secure.',
+      'Personalized ads are a fair trade for free services.',
+      'I accept tracking, but I want to see it and be able to opt out.',
+      'Some sharing is fine. It depends who is asking and why.',
+      'Tracking should be off unless I turn it on.',
+      'I keep always-listening devices out of my home.',
+      'Companies should be barred from selling personal data at all.',
+      'I give up real convenience to use privacy tools everywhere.',
+      'Nobody should collect personal data without a court-level reason.',
     ],
   },
   {
-    id: 'fashion',
-    label: 'What we wear',
-    stances: [
-      { id: 'affordable_fashion', label: 'Affordability first' },
-      { id: 'sustainable_fashion', label: 'Sustainability first' },
+    id: 'success',
+    label: 'Success',
+    low: 'It is earned',
+    high: 'It is luck',
+    tiers: [
+      'Anyone can make it. Success comes down to effort.',
+      'Effort decides almost everything. Luck evens out over a life.',
+      'Talent and hard work explain most success.',
+      'Hard work matters most, though a good start helps.',
+      'Effort and circumstance both matter, with effort slightly ahead.',
+      'It is an even split between effort and luck.',
+      'Where you start matters a bit more than how hard you try.',
+      'Most successful people were lucky and rarely admit it.',
+      'Family, money and connections explain most success.',
+      'Hard work rarely beats where you were born.',
+      'Success is almost all luck. Nobody really earns a fortune.',
     ],
   },
   {
-    id: 'smart_tech',
-    label: 'Smart tech at home',
-    stances: [
-      { id: 'smart_convenience', label: 'Worth the convenience' },
-      { id: 'privacy_first', label: 'Privacy comes first' },
+    id: 'personal_freedom',
+    label: 'Personal freedom',
+    low: 'Let adults choose',
+    high: 'Protect people',
+    tiers: [
+      'Adults can do anything to themselves. The state should stay out of it.',
+      'Gambling, drugs and other vices should all be legal for adults.',
+      'Legalize it all, with age limits and nothing else.',
+      'Keep risky things legal, with warnings and no more.',
+      'Keep them legal, but tax them and limit the advertising.',
+      'It depends on the harm. I judge each one on its own.',
+      'Ads for gambling, vaping and alcohol should be banned.',
+      'Risky products should be hard to get, with strict limits.',
+      'Sports betting apps and similar products should be banned.',
+      'Society should ban most addictive products, even for adults.',
+      'Governments should protect people from harmful choices, whatever they want.',
     ],
   },
 ] as const;
 
 export type Topic = (typeof TOPICS)[number]['id'];
-export type Stance = (typeof TOPICS)[number]['stances'][number]['id'];
-export type StanceChoice = Stance | 'mixed';
 export const TOPIC_IDS = TOPICS.map((t) => t.id) as [Topic, ...Topic[]];
-export const STANCE_IDS = TOPICS.flatMap((t) => t.stances.map((s) => s.id)) as [
-  Stance,
-  ...Stance[],
-];
+export const STOPS = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100] as const;
 
-export const topicOf = (id: string) => TOPICS.find((t) => t.id === id);
-export const stanceLabel = (id: string) =>
-  TOPICS.flatMap((t) => [...t.stances]).find((s) => s.id === id)?.label ?? 'Mixed';
-export const opposingStance = (stance: Stance): Stance => {
-  const topic = TOPICS.find((t) => t.stances.some((s) => s.id === stance))!;
-  return topic.stances.find((s) => s.id !== stance)!.id;
-};
+export const topicOf = (id: string | null | undefined) => TOPICS.find((t) => t.id === id);
+export const tierFor = (topic: string | null | undefined, score: number) =>
+  topicOf(topic)?.tiers[Math.round(score / 10)] ?? '';
 
 const entityId = z
   .string()
   .uuid()
   .transform((id) => id.toUpperCase());
+
+const score = z.number().int().min(0).max(100);
 
 export const entitySchema = z.object({
   id: entityId,
@@ -111,7 +171,8 @@ export const postSchema = z.object({
   text: z.string().min(1).max(600),
   createdAt: z.string().max(40),
   topic: z.enum(TOPIC_IDS).nullable(),
-  viewpoint: z.union([z.enum(STANCE_IDS), z.literal('mixed')]).nullable(),
+  /** Where the text sits on the topic's scale, read by Gemini. Public, as an author's score. */
+  position: score.nullable(),
   confidence: z.number().min(0).max(1),
   language: z.string().min(2).max(20),
   entities: z.array(postEntitySchema).max(8),
@@ -121,7 +182,7 @@ export const postSchema = z.object({
 export type Post = z.infer<typeof postSchema>;
 
 export const profileSchema = z.object({
-  stances: z.partialRecord(z.enum(TOPIC_IDS), z.union([z.enum(STANCE_IDS), z.literal('mixed')])),
+  scores: z.partialRecord(z.enum(TOPIC_IDS), score),
   interests: z.array(entitySchema).min(1).max(6),
 });
 export type Profile = z.infer<typeof profileSchema>;
@@ -132,6 +193,8 @@ export const feedRequestSchema = z.object({
 });
 
 export type Preset = Profile & { id: string; name: string; blurb: string };
+
+export type CatalogItem = Entity & { group?: 'sports' };
 
 /** One Qloo answer: this entity's position among the candidates, for one interest alone. */
 export type RankRow = {
@@ -158,11 +221,15 @@ export type Evidence = {
   of: number;
   /** Other selected interests that also rank this entity inside the bridge cutoff. */
   alsoSupportedBy: { interest: string; rank: number }[];
+  /** Share of tested interests that place this entity inside the cutoff. Absent if untested. */
+  commonness?: number;
 };
 
 export type FeedItem = {
   post: Post;
-  kind: 'aligned' | 'mixed' | 'bridge' | 'mine';
+  kind: 'aligned' | 'nearby' | 'bridge' | 'mine';
+  /** Distance between the reader's score and the post's position on the topic. */
+  gap?: number;
   evidence?: Evidence;
   /** Selected interests literally named in the post. Never enough to bridge on its own. */
   literal: string[];
@@ -187,7 +254,7 @@ export type FeedResponse = {
 export type ReachResult = {
   audience: string;
   audienceId: string;
-  stance: string;
+  score: number;
   outcome: 'bridge' | 'no_evidence' | 'same_side';
   evidence?: { entity: string; interest: string; rank: number; of: number };
 };

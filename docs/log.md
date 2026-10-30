@@ -1,5 +1,14 @@
 # Change log
 
+## 2026-10-31, second pass
+
+- Replaced preferences with six contested topics, and yes or no stances with 11-stop scales where
+  every stop is a specific statement. Gemini now places each post on the same scale.
+- Replaced "Change views" with rating again after reading. Movement is counted in either direction.
+- Made author scores public and kept each reader's own scores in their browser.
+- Added sports as interests, using Qloo brands, and a control check for entities that rank highly
+  for nearly everyone. Rebuilt all sample posts through the agent.
+
 ## 2026-10-31
 
 - Built Bridge Feed: single-interest Qloo ranking, deterministic bridge eligibility, a Gemini

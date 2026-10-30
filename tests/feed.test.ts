@@ -4,7 +4,7 @@ import type { Post, Profile, RankRow } from '../shared/model';
 
 const RADIOHEAD = { id: 'A', name: 'Radiohead', type: 'artist' as const };
 const profile: Profile = {
-  stances: { smart_tech: 'privacy_first', ai_creativity: 'mixed', transport: 'pro_transit' },
+  scores: { privacy: 80, ai_art: 50, success: 20 },
   interests: [RADIOHEAD],
 };
 const post = (id: string, over: Partial<Post> = {}): Post => ({
@@ -13,8 +13,8 @@ const post = (id: string, over: Partial<Post> = {}): Post => ({
   author: 'Sample',
   text: `Post ${id}`,
   createdAt: '2026-10-30T00:00:00Z',
-  topic: 'smart_tech',
-  viewpoint: 'smart_convenience',
+  topic: 'privacy',
+  position: 20,
   confidence: 0.9,
   language: 'en',
   entities: [{ id: `E${id}`, name: `Entity ${id}`, type: 'movie', surface: `Post ${id}` }],
@@ -67,21 +67,35 @@ describe('bridge eligibility', () => {
     expect(strongestEvidence(post('1'), profile, [rank('E1', 4, 40)])?.rank).toBe(4);
   });
 
-  it('gates on viewpoint, confidence, safety and a held opinion', () => {
+  it('requires a real gap, and gates on confidence, safety and a scored topic', () => {
     const cases: Partial<Post>[] = [
-      { viewpoint: 'privacy_first' },
-      { viewpoint: 'mixed' },
+      { position: 80 },
+      { position: 50 },
+      { position: null },
       { confidence: 0.69 },
       { safety: 'review' },
       { safety: 'reject' },
-      { topic: 'ai_creativity', viewpoint: 'ai_supportive' },
-      { topic: 'eating_meat', viewpoint: 'plant_based' },
+      { topic: 'ai_art', position: 40 },
+      { topic: 'animal_welfare', position: 90 },
     ];
     for (const over of cases)
       expect(
         composeFeeds([post('1', over)], profile, [rank('E1')]).stats.shown,
         JSON.stringify(over),
       ).toBe(0);
+    expect(composeFeeds([post('1', { position: 40 })], profile, [rank('E1')]).stats.shown).toBe(1);
+  });
+
+  it('lets a reader in the middle bridge only to a position far enough away', () => {
+    const middle = post('1', { topic: 'ai_art', position: 10 });
+    expect(composeFeeds([middle], profile, [rank('E1')]).stats.shown).toBe(1);
+    const near = post('2', { topic: 'ai_art', position: 20 });
+    expect(composeFeeds([near], profile, [rank('E2')]).stats.shown).toBe(0);
+  });
+
+  it('reports how far apart the reader and the post are', () => {
+    const [item] = composeFeeds([post('1')], profile, [rank('E1')]).bridge;
+    expect(item?.gap).toBe(60);
   });
 
   it('prefers the rarer rank across different pool sizes', () => {
@@ -99,7 +113,12 @@ describe('bridge eligibility', () => {
 });
 
 describe('feed composition', () => {
-  const aligned = (id: string) => post(id, { viewpoint: 'privacy_first', entities: [] });
+  const aligned = (id: string) => post(id, { position: 80, entities: [] });
+
+  it('puts the closest scores first in the typical feed', () => {
+    const posts = [post('far', { position: 50 }), post('near', { position: 80 })];
+    expect(composeFeeds(posts, profile, []).typical.map((i) => i.post.id)).toEqual(['near', 'far']);
+  });
 
   it('keeps the same ordinary posts in both feeds and adds only bridges', () => {
     const posts = ['a', 'b', 'c'].map(aligned).concat(post('1'));
@@ -113,8 +132,8 @@ describe('feed composition', () => {
   it('spaces bridges no closer than one in four', () => {
     const posts = Array.from({ length: 12 }, (_, i) => aligned(`a${i}`)).concat(
       post('1'),
-      post('2', { topic: 'transport', viewpoint: 'pro_driving' }),
-      post('3', { topic: 'transport', viewpoint: 'pro_driving' }),
+      post('2', { topic: 'success', position: 80 }),
+      post('3', { topic: 'success', position: 80 }),
     );
     const feeds = composeFeeds(posts, profile, [rank('E1'), rank('E2'), rank('E3')]);
     const slots = feeds.bridge.flatMap((item, index) => (item.kind === 'bridge' ? [index] : []));

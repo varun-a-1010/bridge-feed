@@ -26,13 +26,21 @@ meaningless: with four games in the feed, something has to be #1.
 
 An entity Qloo omits from a response counts as no evidence. It is never filled in.
 
+## Control check
+
+A re-ranking always returns an order, so a high rank alone can just mean something is popular. The
+recorded rankings show how many tested interests place each entity inside the cutoff. An entity that
+one in four or more of them rank that highly is treated as popular, not as a connection, and the app
+shows that share in the explanation. Entities from new posts have no recorded history, so this check
+does not apply to them.
+
 ## What leaves the server
 
-Only entity IDs. Stances, post text, names and identifiers never go to Qloo, and a test asserts
+Only entity IDs. Scores, post text, names and identifiers never go to Qloo, and a test asserts
 the exact parameter list.
 
 ## Known limits
 
-The pools come from Qloo results for the interest catalog, so they lean: TV skews toward K-drama
-and books toward music biographies. Ranks are relative to these pools. A bridge states a cultural
+The pools come from Qloo results for the interest catalog, so they lean toward what that catalog
+contains. Sports teams and leagues are Qloo brands, not a separate type. Ranks are relative to these pools. A bridge states a cultural
 association between two things, not anything about what fans of either one believe.

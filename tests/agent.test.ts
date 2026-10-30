@@ -14,8 +14,8 @@ const reply = (...calls: ReturnType<typeof call>[]) =>
 const analysis = (over: Record<string, unknown> = {}) =>
   call('record_analysis', {
     safety: 'publish',
-    topic: 'smart_tech',
-    viewpoint: 'privacy_first',
+    topic: 'privacy',
+    position: 80,
     confidence: 0.9,
     ambiguous: false,
     language: 'en',
@@ -183,15 +183,10 @@ describe('intake agent', () => {
       id: 'theo',
       name: 'Theo',
       blurb: '',
-      stances: { smart_tech: 'smart_convenience' },
+      scores: { privacy: 20 },
       interests: [{ id: 'B', name: 'Ted Lasso', type: 'tv_show' }],
     };
-    const same: Preset = {
-      ...reader,
-      id: 'ines',
-      name: 'Ines',
-      stances: { smart_tech: 'privacy_first' },
-    };
+    const same: Preset = { ...reader, id: 'ines', name: 'Ines', scores: { privacy: 70 } };
     const generate = script(
       reply(analysis()),
       reply(searchCall),
@@ -210,6 +205,46 @@ describe('intake agent', () => {
       { audience: 'Theo', outcome: 'bridge', evidence: { interest: 'Ted Lasso', rank: 1, of: 30 } },
       { audience: 'Ines', outcome: 'same_side' },
     ]);
+  });
+
+  it('snaps a position to the nearest stop and leaves an off-topic post unscored', async () => {
+    const first = script(
+      reply(analysis({ position: 74, references: [] })),
+      reply(call('finish', {})),
+    );
+    expect((await createAgent({ generate: first, qloo: qloo() }).run(POST)).post.position).toBe(70);
+    const second = script(
+      reply(analysis({ topic: 'none', references: [] })),
+      reply(call('finish', {})),
+    );
+    const offTopic = await createAgent({ generate: second, qloo: qloo() }).run(POST);
+    expect(offTopic.post).toMatchObject({ topic: null, position: null });
+    expect(offTopic.status).toBe('topic_only');
+  });
+
+  it('does not count something that ranks high for everyone as reach', async () => {
+    const reader: Preset = {
+      id: 'theo',
+      name: 'Theo',
+      blurb: '',
+      scores: { privacy: 20 },
+      interests: [{ id: 'B', name: 'Ted Lasso', type: 'tv_show' }],
+    };
+    const generate = script(
+      reply(analysis()),
+      reply(searchCall),
+      reply(linkCall),
+      reply(call('test_reach')),
+      reply(call('finish', {})),
+    );
+    const agent = createAgent({
+      generate,
+      qloo: qloo(),
+      audiences: [reader],
+      corpus: () => [ID],
+      isCommon: () => true,
+    });
+    expect((await agent.run(POST)).reach[0]?.outcome).toBe('no_evidence');
   });
 
   it('holds a post the model refuses to process', async () => {

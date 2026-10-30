@@ -1,9 +1,9 @@
 import { writeFileSync } from 'node:fs';
 import { loadCorpus } from '../server/corpus';
-import { computeFeed } from '../server/feed';
+import { MAX_COMMONNESS, computeFeed } from '../server/feed';
 import { createQloo } from '../server/qloo';
-import { literalMatches } from '../shared/feed';
-import { TOPICS, type Profile, type Stance, type Topic } from '../shared/model';
+import { MIN_GAP, gapBetween, literalMatches } from '../shared/feed';
+import { STOPS, TOPICS, type Profile, type Topic } from '../shared/model';
 
 /** Replays recorded Qloo rankings for simulated readers. It measures the ranker, not people. */
 const corpus = loadCorpus();
@@ -30,10 +30,9 @@ let qualified = 0;
 let opposing = 0;
 let failed = 0;
 for (let i = 0; i < READERS; i++) {
-  const stances: Profile['stances'] = {};
-  for (const topic of pick(TOPICS, 4))
-    stances[topic.id as Topic] = pick([...topic.stances] as { id: Stance }[], 1)[0]!.id;
-  const profile: Profile = { stances, interests: pick(corpus.interests, 4) };
+  const scores: Profile['scores'] = {};
+  for (const topic of pick(TOPICS, 4)) scores[topic.id as Topic] = pick(STOPS, 1)[0]!;
+  const profile: Profile = { scores, interests: pick(corpus.interests, 4) };
   const feed = await computeFeed(qloo, corpus, profile, []);
   failed += feed.failedQueries;
   bridges += feed.stats.shown;
@@ -43,8 +42,8 @@ for (let i = 0; i < READERS; i++) {
   if (feed.stats.shown) withBridge++;
   feed.bridge.filter((b) => b.kind === 'bridge').forEach((b) => reached.add(b.post.id));
   literalOnly += corpus.posts.filter((post) => {
-    const stance = post.topic ? stances[post.topic as Topic] : undefined;
-    return stance && post.viewpoint !== stance && literalMatches(post, profile).length > 0;
+    const gap = gapBetween(post, profile);
+    return gap !== undefined && gap >= MIN_GAP && literalMatches(post, profile).length > 0;
   }).length;
 }
 const percent = (a: number, b: number) => `${((100 * a) / b).toFixed(1)}%`;
@@ -56,7 +55,7 @@ description: Reproducible replay of recorded Qloo rankings for simulated readers
 timestamp: ${new Date().toISOString().slice(0, 10)}
 ---
 
-Run \`npm run evaluate\`. ${READERS} simulated readers, each with four random stances and four
+Run \`npm run evaluate\`. ${READERS} simulated readers, each with four random scores and four
 random catalog interests, replayed against recorded Qloo rankings. This measures how the ranker
 behaves. It says nothing about how real people respond.
 
@@ -67,11 +66,13 @@ overlap still cannot create a bridge on its own.
 
 | Measure | Result |
 |---|---|
+| Topics, each an 11-stop scale | ${TOPICS.length} |
 | Sample posts through the live agent | ${corpus.posts.length} |
 | Posts with at least one Qloo entity | ${corpus.posts.filter((p) => p.entities.length).length} of ${corpus.posts.length} |
 | Confirmed Qloo entities | ${entities} |
 | References left unresolved | ${corpus.posts.reduce((n, p) => n + p.unresolved.length, 0)} |
 | Recorded Qloo rankings | ${corpus.recorded.size} |
+| Entities removed by the control check | ${[...corpus.commonness.values()].filter((v) => v > MAX_COMMONNESS).length} |
 | Readers with at least one bridge | ${percent(withBridge, READERS)} |
 | Bridges per reader | ${(bridges / READERS).toFixed(2)} |
 | Opposing posts that cleared the cutoff | ${percent(qualified, opposing)} |

@@ -34,7 +34,7 @@ describe('qloo adapter', () => {
       'take',
     ]);
     expect(parsed.searchParams.get('signal.interests.entities')).toBe(interest.id);
-    expect(parsed.search.toLowerCase()).not.toMatch(/stance|viewpoint|privacy|skeptic/);
+    expect(parsed.search.toLowerCase()).not.toMatch(/score|position|privacy|speech/);
   });
 
   it('ranks by affinity, keeps ties equal and never invents an omitted candidate', async () => {

@@ -2,6 +2,7 @@ import { resolve } from 'node:path';
 import { createAgent } from './agent';
 import { buildApp } from './app';
 import { loadCorpus } from './corpus';
+import { MAX_COMMONNESS } from './feed';
 import { createQloo } from './qloo';
 
 const production = process.env.NODE_ENV === 'production';
@@ -14,6 +15,7 @@ const agent = createAgent({
   qloo,
   audiences: corpus.presets,
   corpus: (type) => corpus.idsByType.get(type) ?? [],
+  isCommon: (id) => (corpus.commonness.get(id) ?? 0) > MAX_COMMONNESS,
 });
 const app = await buildApp({
   qloo,
