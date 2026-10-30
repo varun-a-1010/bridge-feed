@@ -11,7 +11,7 @@
     "name": "Ines",
     "blurb": "Skeptical of AI art, rides transit, guards her privacy.",
     "stances": { "ai_creativity": "ai_skeptical", "transport": "pro_transit", "smart_tech": "privacy_first", "remote_work": "remote_first" },
-    "interests": ["Radiohead", "Parasite", "Nintendo", "The Three-Body Problem (Remembrance of Earth’s Past, #1)"]
+    "interests": ["Radiohead", "Parasite", "Björk", "The Grand Budapest Hotel"]
   },
   {
     "id": "theo",

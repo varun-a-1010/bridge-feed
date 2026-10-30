@@ -3,7 +3,7 @@ import type { AgentResult, AgentStep, Post, Preset } from '../shared/model';
 import { analyze } from './api';
 
 const SAMPLE =
-  'I love how easy smart speakers make the kitchen, but Black Mirror made me unplug the one in our bedroom. Convenience is not worth a microphone by the bed.';
+  'I loved The Sims as a kid, but I do not want my real house to work that way. Every smart speaker and camera is one more thing watching us. We took ours out of the bedroom and they are staying out.';
 
 export function Compose({
   connected,
