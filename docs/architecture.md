@@ -19,12 +19,16 @@ slots and two per topic.
 ## Scales and rating again
 
 Each topic is an 11-stop scale in `shared/model.ts`, and every stop is a specific statement. Stops
-are radio inputs, so "not rated" stays distinct from a chosen 50. The baseline is saved at
+are radio inputs, so "not rated" stays distinct from a chosen 50. Elsewhere a position is drawn
+between the scale's two named ends instead of shown as a number, because a bare number says nothing
+about which way it points and neither end should read as better. The baseline is saved at
 onboarding. Rating again updates the scores and re-ranks the feed, and **Your scores** shows the
 movement in either direction. Author scores are public and read from their posts. A reader's own
 scores stay in their browser.
 
-`POST /api/analyze` runs the intake agent and streams each step as a line of JSON.
+`POST /api/analyze` runs the intake agent and streams each step as a line of JSON. The client shows
+the outcome first, meaning who the post could reach and why, and keeps the agent's steps one click
+away.
 
 ## Limits
 
@@ -38,8 +42,9 @@ searches, 2 reach checks and 30 ranking calls.
 Qloo entities for comparison, capped at 42 per type with the entities posts name, because Qloo ranks
 at most 50 candidates in one query and new posts need room. `data/ranks.json` records every catalog interest
 against every type, so the demo keeps working if Qloo is unavailable. Rebuild them with
-`npm run data:interests`, `data:posts`, `data:pool`, `data:ranks` and `data:images`, in that order.
+`npm run data:interests`, `data:posts`, `data:pool`, `data:ranks`, `data:images` and `data:links`, in
+that order. `data/links.json` holds the reviewed links and `data/tags.json` the hints behind them.
 
 Entity images are Qloo's own URLs, loaded directly from `images.qloo.com`. The API schema and the
 content security policy both refuse any other image host, because a browser can send posts back.
-Most destinations have no image, so the client falls back to a plain tile.
+Some entities have no image, so the client falls back to a plain tile.

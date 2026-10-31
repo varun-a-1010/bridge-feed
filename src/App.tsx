@@ -71,18 +71,27 @@ export function App() {
         {error ? <p className="error">{error}</p> : <p>Opening the feed</p>}
       </div>
     );
-  if (!profile || restarting) return <Onboarding bootstrap={bootstrap} onDone={begin} />;
+  if (!profile || restarting)
+    return (
+      <Onboarding
+        bootstrap={bootstrap}
+        onDone={begin}
+        onBack={profile ? () => setRestarting(false) : undefined}
+      />
+    );
 
   const yours = own ?? profile;
   return (
     <div className={`shell shell-${mode}`}>
       <header className="topbar">
         <h1 className="wordmark">
-          <svg viewBox="0 0 32 20" aria-hidden>
-            <path d="M1 15 C 10 -3, 22 -3, 31 15" />
-            <path d="M1 17 H31" />
-          </svg>
-          Bridge Feed
+          <button onClick={() => setRestarting(true)} aria-label="Bridge Feed, go to the start">
+            <svg viewBox="0 0 32 20" aria-hidden>
+              <path d="M1 15 C 10 -3, 22 -3, 31 15" />
+              <path d="M1 17 H31" />
+            </svg>
+            Bridge Feed
+          </button>
         </h1>
         <div className="mode" role="group" aria-label="Feed type">
           <button aria-pressed={mode === 'typical'} onClick={() => setMode('typical')}>
@@ -98,7 +107,7 @@ export function App() {
             aria-pressed={panel === 'write'}
             onClick={() => setPanel(panel === 'write' ? 'none' : 'write')}
           >
-            <PenLine size={15} aria-hidden /> Write
+            <PenLine size={15} aria-hidden /> Post your view
           </button>
           <button
             className="quiet"

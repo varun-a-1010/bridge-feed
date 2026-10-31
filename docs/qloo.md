@@ -21,15 +21,27 @@ put La La Land and The Devil Wears Prada first.
 
 ## From rank to bridge
 
-Affinity is normalized per query, so it is used only to order one response. A post qualifies
-when an entity it names, which the reader did not select, reaches the top 3 or top 10% among at
-least 12 entities of its type. The reference pool exists because a small pool makes first place
+Affinity is normalized per query, so it is used only to order one response. An entity a post
+names, which the reader did not select, becomes a candidate when it reaches the top 5 or top 20%
+among at least 12 entities of its type. A candidate becomes a bridge only if it passes the sense
+check below. The reference pool exists because a small pool makes first place
 meaningless: with four games in the feed, something has to be #1.
 
 An entity Qloo omits from a response counts as no evidence. It is never filled in.
 
-Destinations never create a bridge. Their pool is mostly US cities, so any international city ranked
-first for almost any interest, and Qloo has no images for them.
+## Sense check
+
+A high rank is a statistical signal, not a connection. Radiohead ranked Buenos Aires first among a
+pool of mostly US cities, and the app called that a bridge, which meant nothing to a reader. Taste
+tags alone do not fix this, because audience labels link Radiohead to design software.
+
+So `server/links.ts` shows Gemini each candidate pair, with Qloo's tags as hints, and asks whether a
+thoughtful person would recognise a real connection. It rejects shared audiences, broad genres,
+popularity and obvious containment. It can only remove a link Qloo proposed, every approved link
+carries a one-line reason, and anything it could not check stays out. Sample links are reviewed
+ahead of time in `data/links.json`, and links for other interests are reviewed live.
+
+Places were removed entirely: Qloo has no images for them, and they produced the weakest links.
 
 ## Control check
 

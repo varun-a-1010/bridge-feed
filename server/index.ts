@@ -3,16 +3,27 @@ import { createAgent } from './agent';
 import { buildApp } from './app';
 import { loadCorpus } from './corpus';
 import { MAX_COMMONNESS } from './feed';
+import { createLinker } from './links';
 import { createQloo } from './qloo';
+import { createGenerate } from './vertex';
 
 const production = process.env.NODE_ENV === 'production';
 const corpus = loadCorpus();
 const qloo = createQloo({ apiKey: process.env.QLOO_API_KEY, recorded: corpus.recorded });
-const agent = createAgent({
+const generate = createGenerate({
   project: process.env.VERTEX_LLM_PROJECT_ID,
   serviceAccount: process.env.VERTEX_LLM_SERVICE_ACCOUNT,
   location: process.env.VERTEX_LLM_REGION,
+  backup: {
+    project: process.env.VERTEX_LLM_BACKUP_PROJECT_ID,
+    serviceAccount: process.env.VERTEX_LLM_BACKUP_SERVICE_ACCOUNT,
+  },
+});
+const linker = createLinker({ generate, qloo, tags: corpus.tags, links: corpus.links });
+const agent = createAgent({
+  generate,
   qloo,
+  linker,
   audiences: corpus.presets,
   catalog: corpus.interests,
   corpus: (type) => corpus.idsByType.get(type) ?? [],
@@ -22,6 +33,7 @@ const app = await buildApp({
   qloo,
   agent,
   corpus,
+  linker,
   origin: process.env.APP_ORIGIN,
   production,
   staticRoot: production ? resolve('dist/client') : undefined,

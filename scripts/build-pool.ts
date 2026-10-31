@@ -34,7 +34,7 @@ for (const type of ENTITY_TYPES) {
   const named = new Set(
     corpus.posts.flatMap((p) => p.entities.filter((e) => e.type === type).map((e) => e.id)),
   );
-  pool[type] = [...found.keys()].slice(0, Math.min(30, MAX_RECORDED - named.size));
+  pool[type] = [...found.keys()].slice(0, Math.max(0, Math.min(30, MAX_RECORDED - named.size)));
   console.log(
     type.padEnd(12),
     pool[type].length,

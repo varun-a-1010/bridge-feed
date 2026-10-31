@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Entity, Hero } from '../shared/model';
-import { TYPE_LABELS } from '../shared/model';
+import { TYPE_LABELS, leanFor, topicOf } from '../shared/model';
 import { shortName } from './names';
 
 const TINTS = ['#2f6672', '#4a7c6f', '#5c6f94', '#7d6a58', '#5f5a82', '#3f7f95'];
@@ -43,29 +43,65 @@ export function EntityImage({ entity, className = '' }: { entity: Entity; classN
   );
 }
 
-export function ScoreLine({ you, them, name }: { you: number; them: number; name: string }) {
-  const left = Math.min(you, them);
+/** A position between two named ends. No number to decode, and neither end reads as better. */
+export function PositionLine({ topic, score }: { topic: string | null; score: number }) {
+  const found = topicOf(topic);
+  if (!found) return null;
+  return (
+    <div
+      className="position"
+      role="img"
+      aria-label={`${found.label}: leans ${leanFor(topic, score)}`}
+    >
+      <span className="position-label">{found.label}</span>
+      <div className="position-ends">
+        <span>{found.low}</span>
+        <span className="position-track">
+          <i style={{ left: `${score}%` }} />
+        </span>
+        <span>{found.high}</span>
+      </div>
+    </div>
+  );
+}
+
+export const distanceLabel = (gap: number) =>
+  gap >= 80 ? 'Opposite ends' : gap >= 60 ? 'Far apart' : 'Apart';
+
+export function ScoreLine({
+  topic,
+  you,
+  them,
+  name,
+}: {
+  topic: string | null;
+  you: number;
+  them: number;
+  name: string;
+}) {
+  const found = topicOf(topic);
+  const first = name.split(' ')[0];
   return (
     <div
       className="score-line"
       role="img"
-      aria-label={`You score ${you}. ${name} scores ${them}. ${Math.abs(you - them)} points apart.`}
+      aria-label={`On ${found?.label}, you lean ${leanFor(topic, you)} and ${first} leans ${leanFor(topic, them)}.`}
     >
       <div className="score-track">
         <span
           className="score-gap"
-          style={{ left: `${left}%`, width: `${Math.abs(you - them)}%` }}
+          style={{ left: `${Math.min(you, them)}%`, width: `${Math.abs(you - them)}%` }}
         />
         <span className="score-dot you" style={{ left: `${you}%` }} />
         <span className="score-dot them" style={{ left: `${them}%` }} />
       </div>
       <div className="score-labels">
-        <span>You {you}</span>
-        <span>{Math.abs(you - them)} apart</span>
-        <span>
-          {name.split(' ')[0]} {them}
-        </span>
+        <span>{found?.low}</span>
+        <span>{found?.high}</span>
       </div>
+      <p className="score-key">
+        <i className="key-you" /> You <i className="key-them" /> {first}
+      </p>
     </div>
   );
 }
@@ -110,8 +146,8 @@ export function HeroBridge({ hero }: { hero: Hero }) {
         </div>
       </div>
       <figcaption>
-        Qloo compared {hero.of} {label.many} for {interest} alone, and {reference} ranked #
-        {hero.rank}. That is how a post you would never see finds you.
+        {hero.reason ?? `${interest} and ${reference} connect.`} Qloo found that link across{' '}
+        {hero.of} {label.many}. That is how a post you would never see finds you.
       </figcaption>
     </figure>
   );

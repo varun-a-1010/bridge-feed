@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import type { GenerateContentResponse } from '@google/genai';
 import { AgentUnavailable, createAgent } from '../server/agent';
+import { createLinker, linkKey } from '../server/links';
 import type { Qloo } from '../server/qloo';
 import type { AgentStep, Preset } from '../shared/model';
 
@@ -25,6 +26,7 @@ const analysis = (over: Record<string, unknown> = {}) =>
 const qloo = (): Qloo => ({
   status: 'configured',
   searchAll: vi.fn(async () => []),
+  tags: vi.fn(async () => []),
   search: vi.fn(async () => [
     { id: ID, name: 'Black Mirror', type: 'tv_show' as const, description: '' },
   ]),
@@ -266,7 +268,7 @@ describe('intake agent', () => {
     const { reach } = await agent.run(POST);
     expect(reach).toHaveLength(3);
     expect(reach[0]).toMatchObject({
-      audience: 'Someone at 30 on Privacy who likes Barbie',
+      audience: 'Someone who likes Barbie and leans “Share it”',
       score: 30,
       outcome: 'bridge',
       reader: { scores: { privacy: 30 }, interests: [{ name: 'Barbie' }] },
@@ -297,6 +299,26 @@ describe('intake agent', () => {
     });
     const { reach } = await agent.run(POST);
     expect(reach.map((r) => r.evidence?.interest)).toEqual(['Nike']);
+  });
+
+  it('does not offer a reach a person would not accept', async () => {
+    const linker = createLinker({
+      links: new Map([[linkKey('C1', ID), { ok: false, reason: '' }]]),
+    });
+    const generate = script(
+      reply(analysis()),
+      reply(searchCall),
+      reply(linkCall),
+      reply(call('finish', {})),
+    );
+    const agent = createAgent({
+      generate,
+      qloo: qloo(),
+      linker,
+      catalog: [{ id: 'C1', name: 'Barbie', type: 'movie' }],
+      corpus: () => [ID],
+    });
+    expect((await agent.run(POST)).reach).toEqual([]);
   });
 
   it('never tests reach for a post held for safety', async () => {

@@ -9,7 +9,7 @@ Choose a sample reader, then switch from **Your bubble** to **Bridge feed**. The
 ranked the usual way, plus a few from people far from you on the scale, each with the Qloo link that
 brought it there. Open **Why this reached you** to see what came from the post, what came from Qloo
 and what is this app's own interpretation. Then **Rate again** and see if anything moved, or
-**Write** a post and watch the agent work.
+**Post your view** to see who it could reach, and why.
 
 ## The idea
 
@@ -30,10 +30,12 @@ free speech and love the same film. Bridge Feed keeps the two apart:
   by platforms." Gemini places each post on the same scale from its text.
 - **Cultural connections** come only from Qloo, which receives opaque entity IDs and nothing else.
 
-A post at least 40 points from your score qualifies only when Qloo ranks something it names near the
-top for one of your interests alone, you did not select that thing yourself, and it is not something
-that ranks highly for nearly everyone. A shared word can never do it. The post is shown exactly as
-written.
+A post from the far side of a scale reaches you only if all of this holds: Qloo ranks something it
+names near the top for one of your interests alone, you did not select that thing yourself, it is not
+something that ranks highly for nearly everyone, and the connection survives a sense check. Gemini
+reviews each link the way a skeptical person would and can only remove it, never add one. Every
+bridge you see carries a plain line on what the two actually share. A shared word can never create a
+bridge, and a link that cannot be checked is left out. The post is shown exactly as written.
 
 ## Measuring change
 
@@ -88,7 +90,8 @@ npm run evaluate   # replays recorded rankings for 200 simulated readers
 
 ## Data
 
-Sample posts are by fictional authors and are labelled in the app. They were written by hand, then
+Sample posts are by fictional authors and are labelled in the app. Simulated readers, used to show
+where a new post could go, are built from real Qloo rankings and labelled too. They were written by hand, then
 processed by the real agent and real Qloo calls. Nothing in `data/` is an invented Qloo result, and
 every image comes from Qloo.
 Recorded rankings exist so the demo survives a Qloo outage, and the app says when it uses them.

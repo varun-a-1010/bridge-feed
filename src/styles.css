@@ -141,6 +141,22 @@ button:disabled {
   font-weight: 600;
 }
 
+.brand-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand-row .link {
+  color: var(--paper);
+  font-size: 14px;
+}
+
+.step-bar .brand {
+  font-size: 15px;
+  font-weight: 600;
+}
+
 .hero h1 {
   max-width: 21ch;
   margin-top: 14px;
@@ -656,6 +672,17 @@ legend {
   font-weight: 400;
 }
 
+.wordmark button {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+}
+
 .wordmark svg {
   width: 30px;
   height: 19px;
@@ -826,6 +853,38 @@ legend {
   margin-top: 10px;
   color: #c5d6d9;
   font-size: 12px;
+}
+
+.score-key {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin-top: 6px;
+  color: #c5d6d9;
+  font-family: var(--sans);
+  font-size: 12px;
+}
+
+.score-key i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.key-you {
+  background: var(--paper);
+}
+
+.key-them {
+  margin-left: 8px;
+  background: var(--span);
+}
+
+.link-reason {
+  color: #dbe6e8;
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.4;
 }
 
 .cable {
@@ -1111,7 +1170,40 @@ mark.bridge-ref {
   display: flex;
   gap: 12px;
   align-items: center;
-  justify-content: space-between;
+}
+
+.reach li > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.reach .entity-image {
+  flex: none;
+  width: 52px;
+  height: 52px;
+  border-radius: 4px;
+}
+
+.outcome-lead {
+  margin-top: 14px;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.reads-line {
+  margin-bottom: 8px;
+  font-family: var(--serif);
+  font-size: 18px;
+}
+
+.agent-steps {
+  margin-top: 16px;
+  color: var(--channel);
+  font-size: 14px;
+}
+
+.agent-steps summary {
+  cursor: pointer;
 }
 
 .reach p {
@@ -1286,6 +1378,43 @@ fieldset.scale {
   background: var(--fog);
   font-size: 13px;
   font-weight: 600;
+}
+
+.position {
+  flex-basis: 100%;
+  margin-top: 2px;
+}
+
+.position-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.position-ends {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 3px;
+  color: var(--channel);
+  font-size: 13px;
+}
+
+.position-track {
+  position: relative;
+  flex: 1;
+  height: 2px;
+  background: var(--steel);
+}
+
+.position-track i {
+  position: absolute;
+  top: -5px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bay);
+  transform: translateX(-50%);
 }
 
 .reads-as {

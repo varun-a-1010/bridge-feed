@@ -36,6 +36,7 @@ export type FallbackOptions = {
   failed?: Set<string>;
   passes?: number;
   deadlineMs?: number;
+  timeoutMs?: number;
   sleep?: (ms: number) => Promise<void>;
   onFailure?: (model: string, error: unknown) => void;
   onBackoff?: (ms: number) => void;
@@ -63,7 +64,10 @@ export async function withFallback<T>(
       const remaining = deadline - (Date.now() - started);
       if (remaining <= 0) throw lastError;
       try {
-        const timeout = Math.min(TIMEOUT_MS[model] ?? DEFAULT_TIMEOUT_MS, remaining);
+        const timeout = Math.min(
+          options.timeoutMs ?? TIMEOUT_MS[model] ?? DEFAULT_TIMEOUT_MS,
+          remaining,
+        );
         const value = await attempt(model, timeout);
         failed.delete(model);
         return { value, model };

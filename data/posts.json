@@ -226,12 +226,6 @@
     "type": "book",
     "surface": "Kitchen Confidential",
     "image": "https://images.qloo.com/i/35E706AE-3CAD-44AE-B68A-0B9CF67C47E2-420x-auto.jpg"
-   },
-   {
-    "id": "E4226E25-46BA-4EF7-AB94-4F4E53E80408",
-    "name": "Marrakesh",
-    "type": "destination",
-    "surface": "Marrakech"
    }
   ],
   "unresolved": [],
@@ -269,14 +263,7 @@
   "position": 0,
   "confidence": 0.9,
   "language": "en",
-  "entities": [
-   {
-    "id": "1F5F3E30-063A-4949-805E-5764A4A1BEAE",
-    "name": "Buenos Aires",
-    "type": "destination",
-    "surface": "Buenos Aires"
-   }
-  ],
+  "entities": [],
   "unresolved": [],
   "safety": "publish"
  },
@@ -290,14 +277,7 @@
   "position": 70,
   "confidence": 0.9,
   "language": "en",
-  "entities": [
-   {
-    "id": "95E19B2C-553A-46A6-AD73-5562AF7124E5",
-    "name": "Kyoto",
-    "type": "destination",
-    "surface": "Kyoto"
-   }
-  ],
+  "entities": [],
   "unresolved": [],
   "safety": "publish"
  },
@@ -1131,6 +1111,827 @@
     "type": "brand",
     "surface": "DuckDuckGo",
     "image": "https://images.qloo.com/i/6C240A78-8A9A-4CEF-AE25-B33DFD60A2C9-420x-auto.jpg"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-49",
+  "source": "seed",
+  "author": "Tess A.",
+  "text": "Janelle Monáe spent years building a whole android mythology by hand. Typing a prompt is not the same as having something to say, and I want AI kept out of music.",
+  "createdAt": "2026-10-28T22:24:00.000Z",
+  "topic": "ai_art",
+  "position": 10,
+  "confidence": 1,
+  "language": "en",
+  "entities": [
+   {
+    "id": "5032D31E-1B79-4A40-901D-DCDDFA0F4493",
+    "name": "Janelle Monáe",
+    "type": "artist",
+    "surface": "Janelle Monáe",
+    "image": "https://images.qloo.com/i/5032D31E-1B79-4A40-901D-DCDDFA0F4493-420x-auto.jpg"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-50",
+  "source": "seed",
+  "author": "Gil R.",
+  "text": "Inside Out works because real animators argued about how sadness should move. I do not want studios handing that to a model.",
+  "createdAt": "2026-10-28T21:37:00.000Z",
+  "topic": "ai_art",
+  "position": 10,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "3F119D9B-D7F2-4643-8C53-81997961A6DC",
+    "name": "Inside Out",
+    "type": "movie",
+    "surface": "Inside Out",
+    "image": "https://images.qloo.com/i/3F119D9B-D7F2-4643-8C53-81997961A6DC-420x-auto.jpg",
+    "year": 2015
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-51",
+  "source": "seed",
+  "author": "Oren S.",
+  "text": "The Lord of the Rings took thousands of people and you can feel every one of them. Generated fantasy will always look cheap to me. Keep it out of finished films.",
+  "createdAt": "2026-10-28T20:50:00.000Z",
+  "topic": "ai_art",
+  "position": 20,
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [],
+  "unresolved": [
+   {
+    "text": "The Lord of the Rings",
+    "reason": "The post refers specifically to the film trilogy's production and visual effects, whereas Qloo's movie entries are split into individual films and the book entry is literary."
+   }
+  ],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-52",
+  "source": "seed",
+  "author": "Jade K.",
+  "text": "Ready Player One got one thing right: everyone should get to build worlds. AI tools finally make that possible for people without a studio budget.",
+  "createdAt": "2026-10-28T20:03:00.000Z",
+  "topic": "ai_art",
+  "position": 70,
+  "confidence": 0.85,
+  "language": "en",
+  "entities": [
+   {
+    "id": "BC6FC94F-845E-41D1-B8B3-4219E80AF339",
+    "name": "Ready Player One",
+    "type": "movie",
+    "surface": "Ready Player One",
+    "image": "https://images.qloo.com/i/BC6FC94F-845E-41D1-B8B3-4219E80AF339-420x-auto.jpg",
+    "year": 2018
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-53",
+  "source": "seed",
+  "author": "Milo P.",
+  "text": "Animal Crossing players already make everything themselves. Give them generative tools and the best creations will come from ordinary people. I say embrace it.",
+  "createdAt": "2026-10-28T19:16:00.000Z",
+  "topic": "ai_art",
+  "position": 70,
+  "confidence": 0.85,
+  "language": "en",
+  "entities": [
+   {
+    "id": "41EA8DD0-1831-4AF2-A01F-1AC16362169B",
+    "name": "Animal Crossing",
+    "type": "videogame",
+    "surface": "Animal Crossing",
+    "image": "https://images.qloo.com/i/41EA8DD0-1831-4AF2-A01F-1AC16362169B-420x-auto.jpg",
+    "year": 2002
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-54",
+  "source": "seed",
+  "author": "Cleo V.",
+  "text": "Lana Del Rey fans remix everything anyway. If AI helps a bedroom producer make a beautiful record, I honestly do not care what made it.",
+  "createdAt": "2026-10-28T18:29:00.000Z",
+  "topic": "ai_art",
+  "position": 70,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "63BBE4D8-D721-466F-907C-D0007E9B6665",
+    "name": "Lana Del Rey",
+    "type": "artist",
+    "surface": "Lana Del Rey",
+    "image": "https://images.qloo.com/i/63BBE4D8-D721-466F-907C-D0007E9B6665-420x-auto.jpg"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-55",
+  "source": "seed",
+  "author": "Remy D.",
+  "text": "Ratatouille gets it: food is love and craft, and that includes a good roast chicken. I am not giving up meat for anyone.",
+  "createdAt": "2026-10-28T17:42:00.000Z",
+  "topic": "animal_welfare",
+  "position": 10,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "414043B1-8210-4997-8110-9E8B40D06814",
+    "name": "Ratatouille",
+    "type": "movie",
+    "surface": "Ratatouille",
+    "image": "https://images.qloo.com/i/414043B1-8210-4997-8110-9E8B40D06814-420x-auto.jpg",
+    "year": 2007
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-56",
+  "source": "seed",
+  "author": "Hank T.",
+  "text": "Friday Night Lights without a tailgate is not football. Ribs, brisket and friends in a parking lot. I will never apologize for eating meat.",
+  "createdAt": "2026-10-28T16:55:00.000Z",
+  "topic": "animal_welfare",
+  "position": 0,
+  "confidence": 0.85,
+  "language": "en",
+  "entities": [
+   {
+    "id": "0A61549D-3A7D-43EC-8D0F-1DADF8263BED",
+    "name": "Friday Night Lights",
+    "type": "tv_show",
+    "surface": "Friday Night Lights",
+    "image": "https://images.qloo.com/i/0A61549D-3A7D-43EC-8D0F-1DADF8263BED-420x-auto.jpg",
+    "year": 2006
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-57",
+  "source": "seed",
+  "author": "Nico B.",
+  "text": "Mario Kart night at my place means burgers and wings. Eating meat is one of life’s simple pleasures, and I see no ethical problem with it.",
+  "createdAt": "2026-10-28T16:08:00.000Z",
+  "topic": "animal_welfare",
+  "position": 0,
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "43B2316E-1192-42BF-AAF7-78E06BADD771",
+    "name": "Mario Kart 8 Deluxe",
+    "type": "videogame",
+    "surface": "Mario Kart",
+    "image": "https://images.qloo.com/i/43B2316E-1192-42BF-AAF7-78E06BADD771-420x-auto.jpg",
+    "year": 2017
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-58",
+  "source": "seed",
+  "author": "Willa F.",
+  "text": "Charlotte’s Web was the first book that made me question what we do to animals. I stopped eating meat at thirty and I wish I had started sooner.",
+  "createdAt": "2026-10-28T15:21:00.000Z",
+  "topic": "animal_welfare",
+  "position": 80,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "11129DC8-E9D8-4944-A762-E92FBEFAA92A",
+    "name": "Charlotte’s Web",
+    "type": "book",
+    "surface": "Charlotte’s Web",
+    "image": "https://images.qloo.com/i/11129DC8-E9D8-4944-A762-E92FBEFAA92A-420x-auto.jpg",
+    "year": 1952
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-59",
+  "source": "seed",
+  "author": "Pip L.",
+  "text": "Babe made a generation of kids cry about a pig, and then we all went back to eating bacon. I think we should finally take that film seriously.",
+  "createdAt": "2026-10-28T14:34:00.000Z",
+  "topic": "animal_welfare",
+  "position": 70,
+  "confidence": 0.85,
+  "language": "en",
+  "entities": [
+   {
+    "id": "9CCF915B-F581-4521-B2FA-77F76BB12F93",
+    "name": "Babe",
+    "type": "movie",
+    "surface": "Babe",
+    "image": "https://images.qloo.com/i/9CCF915B-F581-4521-B2FA-77F76BB12F93-420x-auto.jpg",
+    "year": 1995
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-60",
+  "source": "seed",
+  "author": "Sage O.",
+  "text": "My Octopus Teacher changed how I think about what animals feel. If they can feel that much, I cannot keep eating them.",
+  "createdAt": "2026-10-28T13:47:00.000Z",
+  "topic": "animal_welfare",
+  "position": 80,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "E464E1CF-4A81-4F83-845E-EDE64BDB9324",
+    "name": "My Octopus Teacher",
+    "type": "movie",
+    "surface": "My Octopus Teacher",
+    "image": "https://images.qloo.com/i/E464E1CF-4A81-4F83-845E-EDE64BDB9324-420x-auto.jpg",
+    "year": 2020
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-61",
+  "source": "seed",
+  "author": "Eli W.",
+  "text": "V for Vendetta has a real warning in it: once you let the powerful decide what can be said, it never stops. Keep speech free.",
+  "createdAt": "2026-10-28T13:00:00.000Z",
+  "topic": "free_speech",
+  "position": 0,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "39D5947F-776A-477F-A08E-72BC5928544F",
+    "name": "V for Vendetta",
+    "type": "movie",
+    "surface": "V for Vendetta",
+    "image": "https://images.qloo.com/i/39D5947F-776A-477F-A08E-72BC5928544F-420x-auto.jpg",
+    "year": 2005
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-62",
+  "source": "seed",
+  "author": "Molly R.",
+  "text": "The Breakfast Club is about kids being told who they are allowed to be. Nobody should get to police what people say, and that includes platforms.",
+  "createdAt": "2026-10-28T12:13:00.000Z",
+  "topic": "free_speech",
+  "position": 0,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "4C170DA7-DA0F-4B6C-AF51-E95ECA86FBA6",
+    "name": "The Breakfast Club",
+    "type": "movie",
+    "surface": "The Breakfast Club",
+    "image": "https://images.qloo.com/i/4C170DA7-DA0F-4B6C-AF51-E95ECA86FBA6-420x-auto.jpg",
+    "year": 1985
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-63",
+  "source": "seed",
+  "author": "Finn C.",
+  "text": "Blazing Saddles could not be made today and that is a real loss. Comedians should be free to offend people. If you do not like it, do not watch.",
+  "createdAt": "2026-10-28T11:26:00.000Z",
+  "topic": "free_speech",
+  "position": 30,
+  "confidence": 0.85,
+  "language": "en",
+  "entities": [
+   {
+    "id": "D37CB571-5F59-4DC2-BC2A-8D4E9BB6D26B",
+    "name": "Blazing Saddles",
+    "type": "movie",
+    "surface": "Blazing Saddles",
+    "image": "https://images.qloo.com/i/D37CB571-5F59-4DC2-BC2A-8D4E9BB6D26B-420x-auto.jpg",
+    "year": 1974
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-64",
+  "source": "seed",
+  "author": "Gabby N.",
+  "text": "Mean Girls’ Burn Book is cute until it is real and on every kid’s phone. Platforms should be forced to take targeted hate down.",
+  "createdAt": "2026-10-28T10:39:00.000Z",
+  "topic": "free_speech",
+  "position": 60,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "5461A473-0F12-421C-A84D-E19F97279D75",
+    "name": "Mean Girls",
+    "type": "movie",
+    "surface": "Mean Girls",
+    "image": "https://images.qloo.com/i/5461A473-0F12-421C-A84D-E19F97279D75-420x-auto.jpg",
+    "year": 2004
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-65",
+  "source": "seed",
+  "author": "Iris H.",
+  "text": "Bo Burnham: Inside shows what the internet does to a mind. We should stop pretending that every post deserves to stay up.",
+  "createdAt": "2026-10-28T09:52:00.000Z",
+  "topic": "free_speech",
+  "position": 60,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "14D6051F-39DD-43C2-8BC8-12724177D30B",
+    "name": "Bo Burnham: Inside",
+    "type": "tv_show",
+    "surface": "Bo Burnham: Inside",
+    "image": "https://images.qloo.com/i/14D6051F-39DD-43C2-8BC8-12724177D30B-420x-auto.jpg",
+    "year": 2021
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-66",
+  "source": "seed",
+  "author": "Dee J.",
+  "text": "Euphoria shows kids being torn apart online. Hate aimed at them should be illegal, not just against the rules.",
+  "createdAt": "2026-10-28T09:05:00.000Z",
+  "topic": "free_speech",
+  "position": 80,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "5A82F9BC-10F6-4A45-8097-6B1E147B7824",
+    "name": "Euphoria",
+    "type": "tv_show",
+    "surface": "Euphoria",
+    "image": "https://images.qloo.com/i/5A82F9BC-10F6-4A45-8097-6B1E147B7824-420x-auto.jpg",
+    "year": 2019
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-67",
+  "source": "seed",
+  "author": "Marty G.",
+  "text": "Back to the Future Part II promised a smart house and I want it. If a company keeps my data secure, it can have it.",
+  "createdAt": "2026-10-28T08:18:00.000Z",
+  "topic": "privacy",
+  "position": 20,
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "939C6E27-2CEA-4BD3-9651-4C1BCEAC20C8",
+    "name": "Back to the Future Part II",
+    "type": "movie",
+    "surface": "Back to the Future Part II",
+    "image": "https://images.qloo.com/i/939C6E27-2CEA-4BD3-9651-4C1BCEAC20C8-420x-auto.jpg",
+    "year": 1989
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-68",
+  "source": "seed",
+  "author": "Sky T.",
+  "text": "Spotify knows my taste better than I do and I love it. Personalized everything is worth sharing my data.",
+  "createdAt": "2026-10-28T07:31:00.000Z",
+  "topic": "privacy",
+  "position": 0,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "99CBD9B1-F023-4034-97E7-E95A4A85BDD2",
+    "name": "Spotify",
+    "type": "brand",
+    "surface": "Spotify",
+    "image": "https://images.qloo.com/i/99CBD9B1-F023-4034-97E7-E95A4A85BDD2-420x-auto.jpg"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-69",
+  "source": "seed",
+  "author": "Rosie J.",
+  "text": "The Jetsons promised a home that runs itself. Give me that and I will gladly share whatever it needs to know.",
+  "createdAt": "2026-10-28T06:44:00.000Z",
+  "topic": "privacy",
+  "position": 0,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "377E8D60-945F-444C-BEFF-525FCFC645B0",
+    "name": "The Jetsons",
+    "type": "tv_show",
+    "surface": "The Jetsons",
+    "image": "https://images.qloo.com/i/377E8D60-945F-444C-BEFF-525FCFC645B0-420x-auto.jpg",
+    "year": 1962
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-70",
+  "source": "seed",
+  "author": "Truman E.",
+  "text": "The Truman Show felt like science fiction when I was a kid. Now every app watches us. I turned off tracking on everything I own.",
+  "createdAt": "2026-10-28T05:57:00.000Z",
+  "topic": "privacy",
+  "position": 60,
+  "confidence": 0.85,
+  "language": "en",
+  "entities": [
+   {
+    "id": "1B34B32B-5ED3-49A4-B5C2-5D6186EB9A86",
+    "name": "The Truman Show",
+    "type": "movie",
+    "surface": "The Truman Show",
+    "image": "https://images.qloo.com/i/1B34B32B-5ED3-49A4-B5C2-5D6186EB9A86-420x-auto.jpg",
+    "year": 1998
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-71",
+  "source": "seed",
+  "author": "Nell C.",
+  "text": "Citizenfour scared me. Nobody should collect our personal data without a court order, whatever the convenience.",
+  "createdAt": "2026-10-28T05:10:00.000Z",
+  "topic": "privacy",
+  "position": 100,
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "126D71E7-467C-4665-BE23-F7310D988F5D",
+    "name": "Citizenfour",
+    "type": "movie",
+    "surface": "Citizenfour",
+    "image": "https://images.qloo.com/i/126D71E7-467C-4665-BE23-F7310D988F5D-420x-auto.jpg",
+    "year": 2014
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-72",
+  "source": "seed",
+  "author": "Ash M.",
+  "text": "Mr. Robot made me cover my laptop camera and leave every loyalty program. Convenience is not worth what they take.",
+  "createdAt": "2026-10-28T04:23:00.000Z",
+  "topic": "privacy",
+  "position": 90,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "E32FA596-7411-40BC-A3D9-21A9340B47B7",
+    "name": "Mr. Robot",
+    "type": "tv_show",
+    "surface": "Mr. Robot",
+    "image": "https://images.qloo.com/i/E32FA596-7411-40BC-A3D9-21A9340B47B7-420x-auto.jpg",
+    "year": 2015
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-73",
+  "source": "seed",
+  "author": "Dan R.",
+  "text": "Rudy is the reason I believe in work. Nobody gave that kid anything. Show up every day and you will get there.",
+  "createdAt": "2026-10-28T03:36:00.000Z",
+  "topic": "success",
+  "position": 0,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "37A60432-6F66-44FB-A42B-A657B3BB90CD",
+    "name": "Rudy",
+    "type": "movie",
+    "surface": "Rudy",
+    "image": "https://images.qloo.com/i/37A60432-6F66-44FB-A42B-A657B3BB90CD-420x-auto.jpg",
+    "year": 1993
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-74",
+  "source": "seed",
+  "author": "Lando P.",
+  "text": "Drive to Survive shows drivers giving up everything for a seat. Talent matters, but the ones who make it simply outwork everyone.",
+  "createdAt": "2026-10-28T02:49:00.000Z",
+  "topic": "success",
+  "position": 20,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "14028D1F-43C2-41AF-965B-BB2A96767207",
+    "name": "Formula 1: Drive to Survive",
+    "type": "tv_show",
+    "surface": "Drive to Survive",
+    "image": "https://images.qloo.com/i/14028D1F-43C2-41AF-965B-BB2A96767207-420x-auto.jpg",
+    "year": 2019
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-75",
+  "source": "seed",
+  "author": "Kira U.",
+  "text": "Naruto is a whole story about a kid nobody believed in who simply refused to stop. That is how success works in real life too.",
+  "createdAt": "2026-10-28T02:02:00.000Z",
+  "topic": "success",
+  "position": 0,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "5B3DE1AD-C1EC-4C83-9CD0-FDEDCB3BF649",
+    "name": "Naruto",
+    "type": "tv_show",
+    "surface": "Naruto",
+    "image": "https://images.qloo.com/i/5B3DE1AD-C1EC-4C83-9CD0-FDEDCB3BF649-420x-auto.jpg",
+    "year": 2002
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-76",
+  "source": "seed",
+  "author": "Sean M.",
+  "text": "Good Will Hunting shows how much depends on who happens to notice you. A genius mopping floors is not a story about effort. Talent without luck goes nowhere.",
+  "createdAt": "2026-10-28T01:15:00.000Z",
+  "topic": "success",
+  "position": 70,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "6E585D5A-3A08-46D9-B0F0-5892BB1672A2",
+    "name": "Good Will Hunting",
+    "type": "movie",
+    "surface": "Good Will Hunting",
+    "image": "https://images.qloo.com/i/6E585D5A-3A08-46D9-B0F0-5892BB1672A2-420x-auto.jpg",
+    "year": 1997
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-77",
+  "source": "seed",
+  "author": "Rachel C.",
+  "text": "Crazy Rich Asians is a fun film and a very honest one. Most fortunes were handed down, and everyone in that room knows it.",
+  "createdAt": "2026-10-28T00:28:00.000Z",
+  "topic": "success",
+  "position": 80,
+  "confidence": 0.85,
+  "language": "en",
+  "entities": [
+   {
+    "id": "F667BA0D-9B62-4F6E-A10F-8197122D710E",
+    "name": "Crazy Rich Asians",
+    "type": "movie",
+    "surface": "Crazy Rich Asians",
+    "image": "https://images.qloo.com/i/F667BA0D-9B62-4F6E-A10F-8197122D710E-420x-auto.jpg",
+    "year": 2018
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-78",
+  "source": "seed",
+  "author": "Christine M.",
+  "text": "Lady Bird nails it: your parents’ bank balance decides where you end up, no matter how hard you work.",
+  "createdAt": "2026-10-27T23:41:00.000Z",
+  "topic": "success",
+  "position": 90,
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "4BE414CF-375F-4566-AA66-9AC6150A6B7F",
+    "name": "Lady Bird",
+    "type": "movie",
+    "surface": "Lady Bird",
+    "image": "https://images.qloo.com/i/4BE414CF-375F-4566-AA66-9AC6150A6B7F-420x-auto.jpg",
+    "year": 2017
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-79",
+  "source": "seed",
+  "author": "Pete M.",
+  "text": "Top Gun: Maverick is about adults who know the risks and go anyway. We should let people make their own choices, gambling and all.",
+  "createdAt": "2026-10-27T22:54:00.000Z",
+  "topic": "personal_freedom",
+  "position": 10,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "63109D8F-F736-42BF-BF29-460BB2AE0D2F",
+    "name": "Top Gun: Maverick",
+    "type": "movie",
+    "surface": "Top Gun: Maverick",
+    "image": "https://images.qloo.com/i/63109D8F-F736-42BF-BF29-460BB2AE0D2F-420x-auto.jpg",
+    "year": 2022
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-80",
+  "source": "seed",
+  "author": "Niki L.",
+  "text": "Rush is about men who knew a race could kill them and raced anyway. Adults should get to take that kind of risk without anyone stopping them.",
+  "createdAt": "2026-10-27T22:07:00.000Z",
+  "topic": "personal_freedom",
+  "position": 0,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "8BA29099-ADAA-4ABA-9AA6-B342F7B7CB78",
+    "name": "Rush",
+    "type": "movie",
+    "surface": "Rush",
+    "image": "https://images.qloo.com/i/8BA29099-ADAA-4ABA-9AA6-B342F7B7CB78-420x-auto.jpg",
+    "year": 2013
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-81",
+  "source": "seed",
+  "author": "Sam D.",
+  "text": "Cheers is a whole show about a bar where adults sort out their own lives. Nobody needs the government telling them when to stop.",
+  "createdAt": "2026-10-27T21:20:00.000Z",
+  "topic": "personal_freedom",
+  "position": 0,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "D279550B-A6E2-418B-BCBB-A7FE35D0C4AD",
+    "name": "Cheers",
+    "type": "tv_show",
+    "surface": "Cheers",
+    "image": "https://images.qloo.com/i/D279550B-A6E2-418B-BCBB-A7FE35D0C4AD-420x-auto.jpg",
+    "year": 1982
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-82",
+  "source": "seed",
+  "author": "Nick N.",
+  "text": "Thank You for Smoking is funny because the tobacco lobby really talked like that. Some products need strict limits, whatever the sales pitch says.",
+  "createdAt": "2026-10-27T20:33:00.000Z",
+  "topic": "personal_freedom",
+  "position": 70,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "D4CBF5AB-7376-4D89-8435-CFDA253346D4",
+    "name": "Thank You for Smoking",
+    "type": "movie",
+    "surface": "Thank You for Smoking",
+    "image": "https://images.qloo.com/i/D4CBF5AB-7376-4D89-8435-CFDA253346D4-420x-auto.jpg",
+    "year": 2005
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-83",
+  "source": "seed",
+  "author": "Molly B.",
+  "text": "Molly’s Game made high-stakes poker look glamorous. I watched it ruin someone I love, and I think those games and apps should be tightly restricted.",
+  "createdAt": "2026-10-27T19:46:00.000Z",
+  "topic": "personal_freedom",
+  "position": 70,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "050ACDD6-38B8-4285-8128-92B5F194B5C4",
+    "name": "Molly's Game",
+    "type": "movie",
+    "surface": "Molly’s Game",
+    "image": "https://images.qloo.com/i/050ACDD6-38B8-4285-8128-92B5F194B5C4-420x-auto.jpg",
+    "year": 2017
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-84",
+  "source": "seed",
+  "author": "Vic S.",
+  "text": "Beautiful Boy shows what addiction does to a family. Nobody chooses that, and we should make these products much harder to get.",
+  "createdAt": "2026-10-27T18:59:00.000Z",
+  "topic": "personal_freedom",
+  "position": 70,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "FC877810-FE6F-4D25-83B5-015B43E2018F",
+    "name": "Beautiful Boy",
+    "type": "movie",
+    "surface": "Beautiful Boy",
+    "image": "https://images.qloo.com/i/FC877810-FE6F-4D25-83B5-015B43E2018F-420x-auto.jpg",
+    "year": 2018
    }
   ],
   "unresolved": [],

@@ -12,6 +12,7 @@ import {
 } from '../shared/model';
 import { bridgeCutoff } from '../shared/feed';
 import { MAX_CANDIDATES } from './limits';
+import type { Link } from './links';
 import type { RankAnswer } from './qloo';
 
 export type Corpus = {
@@ -24,6 +25,9 @@ export type Corpus = {
   idsByType: Map<EntityType, string[]>;
   /** Share of tested interests that rank an entity inside the bridge cutoff. */
   commonness: Map<string, number>;
+  /** Links already reviewed for sense, so sample readers need no live call. */
+  links: Map<string, Link>;
+  tags: Map<string, string[]>;
 };
 
 const presetFile = z.array(
@@ -119,5 +123,7 @@ export function loadCorpus(directory = 'data'): Corpus {
     pool,
     idsByType: indexEntities(posts, pool),
     commonness,
+    links: new Map(Object.entries(read<Record<string, Link>>('links.json', {}))),
+    tags: new Map(Object.entries(read<Record<string, string[]>>('tags.json', {}))),
   };
 }

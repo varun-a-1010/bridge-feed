@@ -4,7 +4,7 @@ export const MIN_CONFIDENCE = 0.7;
 export const MIN_CANDIDATES = 12;
 /** Four stops apart on an 11-stop scale counts as a genuinely different view. */
 export const MIN_GAP = 40;
-const MAX_BRIDGES = 5;
+export const MAX_BRIDGES = 5;
 const MAX_PER_TOPIC = 2;
 /** One bridge in every four slots, starting high enough to be seen. */
 const BRIDGE_SLOTS = [1, 5, 9, 13, 17];
@@ -12,6 +12,8 @@ const FEED_LENGTH = 16;
 
 /** Qloo affinities are normalized per query, so a bridge is gated on position, not raw score. */
 export const bridgeCutoff = (of: number) => Math.max(3, Math.ceil(of * 0.1));
+/** Qloo proposes generously, because a sense check decides what a reader finally sees. */
+export const candidateCutoff = (of: number) => Math.max(5, Math.ceil(of * 0.2));
 
 const fold = (value: string) =>
   value
@@ -40,14 +42,13 @@ export function strongestEvidence(
   const held = ranks.filter((r) => selected.has(r.interestId));
   let best: Evidence | undefined;
   for (const entity of post.entities) {
-    // The destination pool is thin, so any far-off city ranks first for almost anyone.
-    if (selected.has(entity.id) || entity.type === 'destination') continue;
+    if (selected.has(entity.id)) continue;
     const rows = held
       .filter(
         (r) =>
           r.entityId === entity.id &&
           r.of >= MIN_CANDIDATES &&
-          r.rank <= bridgeCutoff(r.of) &&
+          r.rank <= candidateCutoff(r.of) &&
           r.interestId !== entity.id,
       )
       .sort((a, b) => a.rank / a.of - b.rank / b.of || a.rank - b.rank);

@@ -5,6 +5,7 @@ import {
   TOPICS,
   TYPE_LABELS,
   describeEntity,
+  leanFor,
   type Entity,
   type Preset,
   type Profile,
@@ -22,10 +23,12 @@ export function Onboarding({
   bootstrap,
   initial,
   onDone,
+  onBack,
 }: {
   bootstrap: Bootstrap;
   initial?: Profile;
   onDone: (profile: Profile) => void;
+  onBack?: () => void;
 }) {
   const [step, setStep] = useState<1 | 2>(1);
   const goTo = (next: 1 | 2) => {
@@ -58,7 +61,14 @@ export function Onboarding({
       {step === 1 ? (
         <header className="hero">
           <div className="hero-copy">
-            <p className="brand">Bridge Feed</p>
+            <div className="brand-row">
+              <p className="brand">Bridge Feed</p>
+              {onBack && (
+                <button className="link" onClick={onBack}>
+                  Back to your feed
+                </button>
+              )}
+            </div>
             <h1>
               Other platforms keep you in your bubble. This one uses what you love to get you out.
             </h1>
@@ -72,7 +82,9 @@ export function Onboarding({
         </header>
       ) : (
         <header className="step-bar">
-          <p className="brand">Bridge Feed</p>
+          <button className="brand link" onClick={() => goTo(1)}>
+            Bridge Feed
+          </button>
           <span>Step 2 of 2</span>
         </header>
       )}
@@ -199,8 +211,8 @@ function PresetCard({ preset, onPick }: { preset: Preset; onPick: (profile: Prof
       <em>{preset.interests.map((i) => shortName(i.name)).join(', ')}</em>
       <small>
         {TOPICS.filter((t) => preset.scores[t.id] !== undefined)
-          .map((t) => `${t.label} ${preset.scores[t.id]}`)
-          .join(', ')}
+          .map((t) => `${t.label}: ${leanFor(t.id, preset.scores[t.id]!)}`)
+          .join('. ')}
       </small>
     </button>
   );

@@ -242,6 +242,186 @@ export const SEEDS: { author: string; side: 'low' | 'high'; text: string }[] = [
     side: 'high',
     text: 'Minority Report’s ads that know your name were meant as a warning. I switched to Signal and DuckDuckGo, and I want fewer devices in my home collecting anything.',
   },
+  {
+    author: 'Tess A.',
+    side: 'low',
+    text: 'Janelle Monáe spent years building a whole android mythology by hand. Typing a prompt is not the same as having something to say, and I want AI kept out of music.',
+  },
+  {
+    author: 'Gil R.',
+    side: 'low',
+    text: 'Inside Out works because real animators argued about how sadness should move. I do not want studios handing that to a model.',
+  },
+  {
+    author: 'Oren S.',
+    side: 'low',
+    text: 'The Lord of the Rings took thousands of people and you can feel every one of them. Generated fantasy will always look cheap to me. Keep it out of finished films.',
+  },
+  {
+    author: 'Jade K.',
+    side: 'high',
+    text: 'Ready Player One got one thing right: everyone should get to build worlds. AI tools finally make that possible for people without a studio budget.',
+  },
+  {
+    author: 'Milo P.',
+    side: 'high',
+    text: 'Animal Crossing players already make everything themselves. Give them generative tools and the best creations will come from ordinary people. I say embrace it.',
+  },
+  {
+    author: 'Cleo V.',
+    side: 'high',
+    text: 'Lana Del Rey fans remix everything anyway. If AI helps a bedroom producer make a beautiful record, I honestly do not care what made it.',
+  },
+  {
+    author: 'Remy D.',
+    side: 'low',
+    text: 'Ratatouille gets it: food is love and craft, and that includes a good roast chicken. I am not giving up meat for anyone.',
+  },
+  {
+    author: 'Hank T.',
+    side: 'low',
+    text: 'Friday Night Lights without a tailgate is not football. Ribs, brisket and friends in a parking lot. I will never apologize for eating meat.',
+  },
+  {
+    author: 'Nico B.',
+    side: 'low',
+    text: 'Mario Kart night at my place means burgers and wings. Eating meat is one of life’s simple pleasures, and I see no ethical problem with it.',
+  },
+  {
+    author: 'Willa F.',
+    side: 'high',
+    text: 'Charlotte’s Web was the first book that made me question what we do to animals. I stopped eating meat at thirty and I wish I had started sooner.',
+  },
+  {
+    author: 'Pip L.',
+    side: 'high',
+    text: 'Babe made a generation of kids cry about a pig, and then we all went back to eating bacon. I think we should finally take that film seriously.',
+  },
+  {
+    author: 'Sage O.',
+    side: 'high',
+    text: 'My Octopus Teacher changed how I think about what animals feel. If they can feel that much, I cannot keep eating them.',
+  },
+  {
+    author: 'Eli W.',
+    side: 'low',
+    text: 'V for Vendetta has a real warning in it: once you let the powerful decide what can be said, it never stops. Keep speech free.',
+  },
+  {
+    author: 'Molly R.',
+    side: 'low',
+    text: 'The Breakfast Club is about kids being told who they are allowed to be. Nobody should get to police what people say, and that includes platforms.',
+  },
+  {
+    author: 'Finn C.',
+    side: 'low',
+    text: 'Blazing Saddles could not be made today and that is a real loss. Comedians should be free to offend people. If you do not like it, do not watch.',
+  },
+  {
+    author: 'Gabby N.',
+    side: 'high',
+    text: 'Mean Girls’ Burn Book is cute until it is real and on every kid’s phone. Platforms should be forced to take targeted hate down.',
+  },
+  {
+    author: 'Iris H.',
+    side: 'high',
+    text: 'Bo Burnham: Inside shows what the internet does to a mind. We should stop pretending that every post deserves to stay up.',
+  },
+  {
+    author: 'Dee J.',
+    side: 'high',
+    text: 'Euphoria shows kids being torn apart online. Hate aimed at them should be illegal, not just against the rules.',
+  },
+  {
+    author: 'Marty G.',
+    side: 'low',
+    text: 'Back to the Future Part II promised a smart house and I want it. If a company keeps my data secure, it can have it.',
+  },
+  {
+    author: 'Sky T.',
+    side: 'low',
+    text: 'Spotify knows my taste better than I do and I love it. Personalized everything is worth sharing my data.',
+  },
+  {
+    author: 'Rosie J.',
+    side: 'low',
+    text: 'The Jetsons promised a home that runs itself. Give me that and I will gladly share whatever it needs to know.',
+  },
+  {
+    author: 'Truman E.',
+    side: 'high',
+    text: 'The Truman Show felt like science fiction when I was a kid. Now every app watches us. I turned off tracking on everything I own.',
+  },
+  {
+    author: 'Nell C.',
+    side: 'high',
+    text: 'Citizenfour scared me. Nobody should collect our personal data without a court order, whatever the convenience.',
+  },
+  {
+    author: 'Ash M.',
+    side: 'high',
+    text: 'Mr. Robot made me cover my laptop camera and leave every loyalty program. Convenience is not worth what they take.',
+  },
+  {
+    author: 'Dan R.',
+    side: 'low',
+    text: 'Rudy is the reason I believe in work. Nobody gave that kid anything. Show up every day and you will get there.',
+  },
+  {
+    author: 'Lando P.',
+    side: 'low',
+    text: 'Drive to Survive shows drivers giving up everything for a seat. Talent matters, but the ones who make it simply outwork everyone.',
+  },
+  {
+    author: 'Kira U.',
+    side: 'low',
+    text: 'Naruto is a whole story about a kid nobody believed in who simply refused to stop. That is how success works in real life too.',
+  },
+  {
+    author: 'Sean M.',
+    side: 'high',
+    text: 'Good Will Hunting shows how much depends on who happens to notice you. A genius mopping floors is not a story about effort. Talent without luck goes nowhere.',
+  },
+  {
+    author: 'Rachel C.',
+    side: 'high',
+    text: 'Crazy Rich Asians is a fun film and a very honest one. Most fortunes were handed down, and everyone in that room knows it.',
+  },
+  {
+    author: 'Christine M.',
+    side: 'high',
+    text: 'Lady Bird nails it: your parents’ bank balance decides where you end up, no matter how hard you work.',
+  },
+  {
+    author: 'Pete M.',
+    side: 'low',
+    text: 'Top Gun: Maverick is about adults who know the risks and go anyway. We should let people make their own choices, gambling and all.',
+  },
+  {
+    author: 'Niki L.',
+    side: 'low',
+    text: 'Rush is about men who knew a race could kill them and raced anyway. Adults should get to take that kind of risk without anyone stopping them.',
+  },
+  {
+    author: 'Sam D.',
+    side: 'low',
+    text: 'Cheers is a whole show about a bar where adults sort out their own lives. Nobody needs the government telling them when to stop.',
+  },
+  {
+    author: 'Nick N.',
+    side: 'high',
+    text: 'Thank You for Smoking is funny because the tobacco lobby really talked like that. Some products need strict limits, whatever the sales pitch says.',
+  },
+  {
+    author: 'Molly B.',
+    side: 'high',
+    text: 'Molly’s Game made high-stakes poker look glamorous. I watched it ruin someone I love, and I think those games and apps should be tightly restricted.',
+  },
+  {
+    author: 'Vic S.',
+    side: 'high',
+    text: 'Beautiful Boy shows what addiction does to a family. Nobody chooses that, and we should make these products much harder to get.',
+  },
 ];
 
 /** Suggested onboarding interests. Most are absent from the posts, so bridges have to be earned. */
@@ -291,6 +471,4 @@ export const CATALOG: { name: string; type: EntityType; expect?: string; sports?
   { name: 'On Writing', type: 'book' },
   { name: 'Born Standing Up', type: 'book' },
   { name: 'The Hobbit', type: 'book' },
-  { name: 'Paris', type: 'destination' },
-  { name: 'Mexico City', type: 'destination' },
 ];

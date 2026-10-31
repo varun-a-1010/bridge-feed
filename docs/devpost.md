@@ -26,16 +26,17 @@ people far from you cross over, each showing why it reached you: "Qloo compared 
 alone, and Her ranked #1."
 
 Then rate again. Your scores show whether anything moved, in either direction, and staying put is a
-real answer. Posts are never rewritten. Write your own and an agent scores it, finds its references
-on Qloo, and tests which readers it could reach. You can then open their feed and see it arrive.
+real answer. Posts are never rewritten. Post your own view and an agent reads it, finds what it
+mentions on Qloo, and shows who it could reach who disagrees with you, and why. You can then open
+their feed and see it arrive.
 
 ## Why Qloo is essential
 
-An LLM can tell that two posts disagree. It cannot supply a measured link between a Knicks fan and
-Hoop Dreams, or a Stardew Valley player and a post about barbecue. In Bridge Feed, only a Qloo ranking
-can qualify a post. A shared word cannot: a literal match alone never creates a bridge. A control
-check also rejects anything that ranks highly for nearly everyone, because popularity is not a
-connection.
+An LLM can tell that two posts disagree. It cannot discover which of millions of cultural connections
+are worth following. In Bridge Feed, only Qloo can propose a bridge, by ranking what a post mentions
+for one thing you love. A shared word cannot: a literal match alone never creates one. Gemini then
+reviews each link and can only remove it, so Qloo stays the source and every bridge you see carries a
+plain reason, like "Both explore a gritty underworld of crime, gambling, risk, and antiheroes."
 
 ## How we built it
 
@@ -49,14 +50,18 @@ connection.
 
 ## Challenges
 
-Raw affinity is normalized per query, so it cannot be a threshold. Early results also looked great
-and meant little: with four games in the feed, one must rank first. We fixed that by ranking each
-entity against about 40 of its type and accepting only the top few, which cut qualifying posts to
-about a third.
+Our first version was statistically sound and humanly absurd. It told a Radiohead fan that Buenos
+Aires was a bridge, because Qloo ranked that city first among a list of mostly American ones. Raw
+rank proves association, not meaning, and a feed that cannot explain itself loses trust at once.
+
+Shared taste tags were not enough either, because audience labels linked Radiohead to design software.
+So we separated discovery from judgment. Qloo proposes, and Gemini acts as a skeptical reader that can
+only reject. It turned down about three quarters of what the numbers suggested, and what remained reads
+like something a friend would say.
 
 ## Accomplishments
 
-48 sample posts went through the real agent, and positions matched the side we wrote them for, with
+84 sample posts went through the real agent, and positions matched the side we wrote them for, with
 one exception where the agent was right and we were wrong: a director using AI only for rough
 storyboards belongs near the skeptical end, which a yes or no label would have missed.
 

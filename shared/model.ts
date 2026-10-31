@@ -1,21 +1,12 @@
 import { z } from 'zod';
 
-export const ENTITY_TYPES = [
-  'artist',
-  'book',
-  'brand',
-  'destination',
-  'movie',
-  'tv_show',
-  'videogame',
-] as const;
+export const ENTITY_TYPES = ['artist', 'book', 'brand', 'movie', 'tv_show', 'videogame'] as const;
 export type EntityType = (typeof ENTITY_TYPES)[number];
 
 export const TYPE_LABELS: Record<EntityType, { one: string; many: string }> = {
   artist: { one: 'Artist', many: 'artists' },
   book: { one: 'Book', many: 'books' },
   brand: { one: 'Brand', many: 'brands' },
-  destination: { one: 'Destination', many: 'destinations' },
   movie: { one: 'Film', many: 'films' },
   tv_show: { one: 'TV show', many: 'TV shows' },
   videogame: { one: 'Game', many: 'games' },
@@ -83,8 +74,8 @@ export const TOPICS = [
   {
     id: 'privacy',
     label: 'Privacy',
-    low: 'Take my data',
-    high: 'Protect it',
+    low: 'Share it',
+    high: 'Keep it private',
     tiers: [
       'I will share any data that makes life easier. I have nothing to hide.',
       'Cameras and microphones at home are worth the convenience.',
@@ -144,6 +135,13 @@ export const TOPIC_IDS = TOPICS.map((t) => t.id) as [Topic, ...Topic[]];
 /** Tells apart entities that share a name, such as a show and the book it came from. */
 export const describeEntity = (entity: { type: EntityType; year?: number }) =>
   entity.year ? `${TYPE_LABELS[entity.type].one}, ${entity.year}` : TYPE_LABELS[entity.type].one;
+
+/** Which end of a scale a score sits nearer, in the scale's own neutral words. */
+export const leanFor = (topic: string | null | undefined, score: number) => {
+  const found = topicOf(topic);
+  if (!found) return '';
+  return score < 40 ? found.low : score > 60 ? found.high : 'In the middle';
+};
 
 export const STOPS = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100] as const;
 
@@ -234,6 +232,8 @@ export type Evidence = {
   alsoSupportedBy: { interest: string; rank: number }[];
   /** Share of tested interests that place this entity inside the cutoff. Absent if untested. */
   commonness?: number;
+  /** One plain line on what the two share, written by Gemini after checking the link makes sense. */
+  reason?: string;
 };
 
 export type FeedItem = {
@@ -252,6 +252,7 @@ export type Hero = {
   entity: PostEntity;
   rank: number;
   of: number;
+  reason?: string;
 };
 
 export type FeedStats = {
@@ -268,6 +269,8 @@ export type FeedResponse = {
   bridge: FeedItem[];
   stats: FeedStats;
   receipts: Receipt[];
+  /** Links that could not be checked, so they were left out. */
+  uncheckedLinks: number;
 };
 
 export type ReachResult = {
@@ -277,7 +280,7 @@ export type ReachResult = {
   outcome: 'bridge' | 'no_evidence' | 'same_side';
   /** A reader built from the catalog, for a post that no sample reader would connect to. */
   reader?: Preset;
-  evidence?: { entity: string; interest: string; rank: number; of: number };
+  evidence?: { entity: string; interest: string; rank: number; of: number; reason?: string };
 };
 
 export type AgentStep = {

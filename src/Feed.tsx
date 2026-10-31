@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { bridgeCutoff, MIN_GAP } from '../shared/feed';
 import {
   TYPE_LABELS,
   tierFor,
-  topicOf,
   type FeedItem,
   type Post,
   type Profile,
@@ -12,7 +10,7 @@ import {
 } from '../shared/model';
 import type { Feed } from './api';
 import { shortName } from './names';
-import { Avatar, EntityImage, ScoreLine } from './Visuals';
+import { Avatar, EntityImage, PositionLine, ScoreLine, distanceLabel } from './Visuals';
 
 const when = (iso: string) => {
   const hours = Math.max(
@@ -50,29 +48,29 @@ function Why({ item }: { item: FeedItem & { evidence: NonNullable<FeedItem['evid
   const label = TYPE_LABELS[evidence.entity.type];
   return (
     <dl className="why">
-      <div>
-        <dt>From the post itself, read by Gemini</dt>
-        <dd>
-          It scores {post.position} on {topicOf(post.topic)?.label}, closest to “
-          {tierFor(post.topic, post.position ?? 50)}” Confidence {post.confidence.toFixed(2)}.
-        </dd>
-      </div>
+      {evidence.reason && (
+        <div>
+          <dt>Why these connect, checked by Gemini</dt>
+          <dd>{evidence.reason}</dd>
+        </div>
+      )}
       <div>
         <dt>From Qloo</dt>
         <dd>
           Qloo compared {evidence.of} {label.many} for {shortName(evidence.interest.name)} alone,
           and {shortName(evidence.entity.surface)} ranked #{evidence.rank}.
-          {evidence.alsoSupportedBy.length > 0 &&
-            ` ${evidence.alsoSupportedBy.map((s) => `${shortName(s.interest)} also placed it #${s.rank}`).join('. ')}.`}
           {evidence.commonness !== undefined &&
             ` Only ${Math.round(evidence.commonness * 100)}% of the interests we tested rank it this high, so it is not a link everyone gets.`}
         </dd>
       </div>
       <div>
+        <dt>From the post itself, read by Gemini</dt>
+        <dd>It reads closest to “{tierFor(post.topic, post.position ?? 50)}”</dd>
+      </div>
+      <div>
         <dt>Our call, not Qloo’s</dt>
         <dd>
-          You are {item.gap} points apart, and it reached the top {bridgeCutoff(evidence.of)}.
-          Calling that a bridge is this app’s interpretation. Qloo says nothing about what fans of
+          Calling this a bridge is this app’s interpretation. Qloo says nothing about what fans of
           anything believe.
         </dd>
       </div>
@@ -97,11 +95,6 @@ function Card({ item, onRemove }: { item: FeedItem; onRemove?: (id: string) => v
                 : 'Your post'}
           </span>
         </div>
-        {post.position !== null && (
-          <span className="author-score">
-            {topicOf(post.topic)?.label} {post.position}
-          </span>
-        )}
       </header>
       <PostText post={post} bridgeRef={evidence?.entity.surface} />
       {post.entities.length > 0 && (
@@ -121,13 +114,16 @@ function Card({ item, onRemove }: { item: FeedItem; onRemove?: (id: string) => v
         </ul>
       )}
       <footer>
+        {post.position !== null && <PositionLine topic={post.topic} score={post.position} />}
         {post.position !== null && (
           <span className="reads-as">
             {kind === 'mine' || post.source === 'peer' ? 'Your post reads as' : 'Reads as'} “
             {tierFor(post.topic, post.position)}”
           </span>
         )}
-        {kind === 'bridge' && <span className="differs">{item.gap} points from you</span>}
+        {kind === 'bridge' && item.gap !== undefined && (
+          <span className="differs">{distanceLabel(item.gap)} from you</span>
+        )}
         {item.literal.length > 0 && (
           <span className="topic">You also named {item.literal.map(shortName).join(', ')}</span>
         )}
@@ -161,8 +157,9 @@ function Crossing({ item, profile }: { item: FeedItem; profile: Profile }) {
           <p>
             Because you like <strong>{shortName(evidence!.interest.name)}</strong>
           </p>
+          {evidence!.reason && <p className="link-reason">{evidence!.reason}</p>}
           {yours !== undefined && post.position !== null && (
-            <ScoreLine you={yours} them={post.position} name={post.author} />
+            <ScoreLine topic={post.topic} you={yours} them={post.position} name={post.author} />
           )}
         </div>
         <svg className="cable" viewBox="0 0 120 60" preserveAspectRatio="none" aria-hidden>
@@ -198,7 +195,7 @@ export function FeedView({
         <p className="summary">
           {stats.shown === 0
             ? 'Nothing from outside your bubble cleared the bar, so nothing was forced in. Try different interests.'
-            : `${stats.shown} ${stats.shown === 1 ? 'post' : 'posts'} reached you from outside your bubble, out of ${stats.opposing} at least ${MIN_GAP} points from your scores. ${stats.qlooOnly} of them ${stats.qlooOnly === 1 ? 'shares' : 'share'} no title with your interests, so matching words alone would have missed ${stats.qlooOnly === 1 ? 'it' : 'them'}.`}
+            : `${stats.shown} ${stats.shown === 1 ? 'post' : 'posts'} reached you from outside your bubble, out of ${stats.opposing} that disagree with you. Each one connects to something you love.`}
         </p>
       ) : (
         <p className="summary">
@@ -212,6 +209,12 @@ export function FeedView({
         <p className="note">
           Qloo missed {feed.failedQueries} of {feed.failedQueries + feed.receipts.length} lookups,
           so a bridge may be missing. Nothing is guessed in its place.
+        </p>
+      )}
+      {mode === 'bridge' && feed.uncheckedLinks > 0 && (
+        <p className="note">
+          Some possible links are still unreviewed, so they are left out. A link only appears once
+          it makes sense.
         </p>
       )}
       <ol className={`feed feed-${mode}`}>

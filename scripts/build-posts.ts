@@ -1,14 +1,17 @@
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { createAgent } from '../server/agent';
 import { createQloo } from '../server/qloo';
+import { createGenerate } from '../server/vertex';
 import type { AgentResult, Post } from '../shared/model';
 import { SEEDS } from './seed-data';
 
 const qloo = createQloo({ apiKey: process.env.QLOO_API_KEY });
 const agent = createAgent({
-  project: process.env.VERTEX_LLM_PROJECT_ID,
-  serviceAccount: process.env.VERTEX_LLM_SERVICE_ACCOUNT,
-  location: process.env.VERTEX_LLM_REGION,
+  generate: createGenerate({
+    project: process.env.VERTEX_LLM_PROJECT_ID,
+    serviceAccount: process.env.VERTEX_LLM_SERVICE_ACCOUNT,
+    location: process.env.VERTEX_LLM_REGION,
+  }),
   allCritical: true,
   qloo,
 });

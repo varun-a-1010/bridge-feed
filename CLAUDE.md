@@ -11,8 +11,9 @@ shows opposing views, reached through cultural affinity people already share. Wo
   moving toward the other side as success.
 - Tailor the catalog and posts to the audience, but never name, profile or assign views to a real
   person in the app, repo or docs.
-- A bridge is earned only from a Qloo ranking of an entity the reader did not select. A literal
-  match can never qualify a post on its own.
+- A bridge is earned only from a Qloo ranking of an entity the reader did not select, and it must
+  survive the sense check in `server/links.ts`, which can only remove links. A literal match can
+  never qualify a post on its own. If a link would puzzle a person, it is a defect.
 - Original posts are never rewritten. Sample posts are fictional and labelled, with no invented
   engagement counts.
 - This is a prototype of the feed at the heart of a future platform. Do not describe profiles,

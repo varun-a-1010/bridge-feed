@@ -23,19 +23,34 @@
       "depends_on": []
     },
     {
+      "path": "server/vertex.ts",
+      "role": "Vertex client behind one generate function",
+      "depends_on": []
+    },
+    {
+      "path": "server/limits.ts",
+      "role": "Qloo candidate ceiling shared by build and runtime",
+      "depends_on": []
+    },
+    {
+      "path": "server/links.ts",
+      "role": "Sense check: Gemini can only remove a link Qloo proposed, and gives the reason",
+      "depends_on": ["server/models.ts", "server/qloo.ts", "server/vertex.ts", "shared/feed.ts"]
+    },
+    {
       "path": "server/agent.ts",
       "role": "Gemini tool loop with server-enforced guardrails",
-      "depends_on": ["server/models.ts", "server/qloo.ts", "shared/feed.ts"]
+      "depends_on": ["server/models.ts", "server/qloo.ts", "shared/feed.ts", "server/links.ts"]
     },
     {
       "path": "server/corpus.ts",
-      "role": "Loads sample posts, interests, presets, pool and recorded ranks",
+      "role": "Loads sample posts, interests, presets, pool, recorded ranks and reviewed links",
       "depends_on": ["server/qloo.ts"]
     },
     {
       "path": "server/feed.ts",
-      "role": "Collects Qloo rankings for a profile and composes feeds",
-      "depends_on": ["server/corpus.ts", "shared/feed.ts"]
+      "role": "Collects Qloo rankings for a profile, applies the sense check and composes feeds",
+      "depends_on": ["server/corpus.ts", "server/links.ts", "shared/feed.ts"]
     },
     {
       "path": "server/app.ts",
@@ -54,13 +69,28 @@
     },
     {
       "path": "src/Compose.tsx",
-      "role": "Post writing, live agent trace and reach results",
+      "role": "Post your view: outcome first, reach results, agent steps one click away",
       "depends_on": ["src/api.ts"]
+    },
+    {
+      "path": "src/Visuals.tsx",
+      "role": "Images, position lines, score lines and the hero bridge",
+      "depends_on": ["shared/model.ts"]
+    },
+    {
+      "path": "src/Onboarding.tsx",
+      "role": "Landing, sample readers, scoring and interest search",
+      "depends_on": ["src/api.ts", "src/Scale.tsx", "src/Carousel.tsx", "src/Visuals.tsx"]
     },
     {
       "path": "scripts/seed-data.ts",
       "role": "Fictional sample posts and interest catalog",
       "depends_on": []
+    },
+    {
+      "path": "scripts/build-links.ts",
+      "role": "Reviews every link Qloo proposes for catalog interests and sample posts",
+      "depends_on": ["server/links.ts", "server/corpus.ts"]
     },
     {
       "path": "scripts/evaluate.ts",

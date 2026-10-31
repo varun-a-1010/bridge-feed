@@ -7,12 +7,14 @@ import { feedRequestSchema, type Hero } from '../shared/model';
 import { AgentUnavailable, type Agent } from './agent';
 import type { Corpus } from './corpus';
 import { computeFeed } from './feed';
+import type { Linker } from './links';
 import { QlooError, type Qloo } from './qloo';
 
 export type AppOptions = {
   qloo: Qloo;
   agent: Agent;
   corpus: Corpus;
+  linker?: Linker;
   origin?: string;
   production?: boolean;
   staticRoot?: string;
@@ -24,7 +26,7 @@ const searchQuery = z.object({ q: z.string().trim().min(2).max(80) });
 const analyzeBody = z.object({ text: z.string().trim().min(12).max(500) });
 
 export async function buildApp(options: AppOptions) {
-  const { qloo, agent, corpus } = options;
+  const { qloo, agent, corpus, linker } = options;
   if (options.production && !options.origin)
     throw new Error('APP_ORIGIN is required in production.');
   const app = Fastify({ logger: false, bodyLimit: 65_536, trustProxy: '127.0.0.1' });
@@ -74,7 +76,7 @@ export async function buildApp(options: AppOptions) {
     const reader = corpus.presets.find((p) => p.id === 'ines') ?? corpus.presets[0];
     hero = null;
     if (reader) {
-      const feed = await computeFeed(qloo, corpus, reader, []);
+      const feed = await computeFeed(qloo, corpus, reader, [], linker);
       const evidence = feed.bridge.find((item) => item.evidence)?.evidence;
       if (evidence)
         hero = {
@@ -82,6 +84,7 @@ export async function buildApp(options: AppOptions) {
           entity: evidence.entity,
           rank: evidence.rank,
           of: evidence.of,
+          ...(evidence.reason ? { reason: evidence.reason } : {}),
         };
     }
     return hero;
@@ -119,7 +122,7 @@ export async function buildApp(options: AppOptions) {
     { config: { rateLimit: { max: 40, timeWindow: '1 minute' } } },
     async (request) => {
       const { profile, posts } = feedRequestSchema.parse(request.body);
-      return computeFeed(qloo, corpus, profile, posts);
+      return computeFeed(qloo, corpus, profile, posts, linker);
     },
   );
 

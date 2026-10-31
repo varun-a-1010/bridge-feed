@@ -26,6 +26,8 @@ export interface Qloo {
   search(query: string, type: EntityType): Promise<SearchHit[]>;
   /** One search across every supported type, for a reader typing a name. */
   searchAll(query: string): Promise<SearchHit[]>;
+  /** Descriptive taste tags for one entity. Hints for the link check, never shown to readers. */
+  tags(entityId: string): Promise<string[]>;
   /** Rank `candidateIds` for one interest alone. Only opaque entity IDs ever reach Qloo. */
   rank(interest: Entity, type: EntityType, candidateIds: string[]): Promise<RankAnswer>;
 }
@@ -34,6 +36,21 @@ const record = (v: unknown): Record<string, unknown> =>
   v && typeof v === 'object' && !Array.isArray(v) ? (v as Record<string, unknown>) : {};
 const text = (v: unknown, length = 240) => (typeof v === 'string' ? v.slice(0, length) : '');
 const uuid = z.string().uuid();
+
+const TAG_KINDS =
+  /^urn:tag:(keyword|genre|subgenre|style|theme|aesthetic_property|emotional_tone|motif|archetype|plot|lifestyle|characteristic|adjective)/;
+/** Identity and broad labels say nothing about what two works share, so they never reach the check. */
+const TAG_NOISE =
+  /^(gay|lesbian|homosexual|lgbt|queer|transgender|bisexual|women|woman|men|man|female|male|black|white|asian|african american|jewish|christian|muslim|religion|politics|political|sex|nudity|entertainment|novels?|fiction|nonfiction|non-fiction|books?|music|film|movies?|tv|television|contemporary|classics?|literature|bar|restaurant|popular|modern|american|british|english|family|friend|friendship|love|romance|drama|comedy|female protagonist|male protagonist|based on novel or book|based on a book|independent film)$/i;
+
+export const usefulTags = (tags: { id: string; name: string }[]) => [
+  ...new Set(
+    tags
+      .filter((t) => TAG_KINDS.test(t.id) && t.name.trim().length > 2)
+      .map((t) => t.name.trim())
+      .filter((name) => !TAG_NOISE.test(name)),
+  ),
+];
 
 const typesOf = (raw: Record<string, unknown>) => [
   ...(Array.isArray(raw.types) ? raw.types : []),
@@ -136,6 +153,22 @@ export function createQloo(
       });
       if (!Array.isArray(data.results)) throw new QlooError('Qloo returned an invalid result.');
       return data.results.map((r) => parseHit(r, type)).filter((e): e is SearchHit => e !== null);
+    },
+    async tags(entityId) {
+      const { data } = await get('/v2/insights', {
+        'filter.type': 'urn:tag',
+        'signal.interests.entities': entityId,
+        take: '50',
+      });
+      const results = record(data.results);
+      const rows = Array.isArray(results.tags) ? results.tags : results.entities;
+      if (!Array.isArray(rows)) throw new QlooError('Qloo returned invalid tags.');
+      return usefulTags(
+        rows.map((raw) => {
+          const r = record(raw);
+          return { id: text(r.tag_id ?? r.id, 200), name: text(r.name, 80) };
+        }),
+      );
     },
     async searchAll(query) {
       const { data } = await get('/search', {

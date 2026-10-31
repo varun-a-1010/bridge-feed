@@ -10,8 +10,19 @@
   for nearly everyone. Rebuilt all sample posts through the agent.
 - Repositioned the product as a prototype of a social platform built against the bubble. Renamed
   the Typical feed to Your bubble, and moved sample readers into a single-row carousel.
-- Stopped destinations from creating bridges, and redrew both cables with a clip reveal, because the
-  dash technique cut them short once the line was stretched.
+- Added four sample readers and gave all eight interests that connect, so seven get four or five
+  bridges and one gets three. Removed ten weak links by hand after reading all of them.
+- Rewrote the example posts around works with proven links, after seven of twelve reached nobody.
+- Added a second Vertex project. A failed call now tries the same model there before the chain
+  moves to the next model, so a quota limit on one project keeps Argon in use.
+- Added the sense check after Radiohead to Buenos Aires showed that rank alone is not a connection.
+  Gemini can only remove a link Qloo proposed, every bridge carries a plain reason, and unchecked
+  links stay out. Widened Qloo's candidates, added 36 posts across more cultural worlds, and removed
+  places entirely.
+- Replaced score numbers on posts with a position between two named ends, made the logo go home, and
+  rebuilt posting around who a view could reach, with the agent's steps one click away.
+- Redrew both cables with a clip reveal, because the dash technique cut them short once the line was
+  stretched.
 - Paced all Qloo requests after every custom reader lost one or two lookups to rate limits, and
   moved the notice to Bridge feed, the only place it matters.
 - A post now reaches simulated readers built from the catalog, because almost no post connected to

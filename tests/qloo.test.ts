@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { QLOO_ORIGIN, createQloo, rankKey } from '../server/qloo';
+import { QLOO_ORIGIN, createQloo, rankKey, usefulTags } from '../server/qloo';
 
 const A = '11111111-1111-4111-8111-111111111111';
 const B = '22222222-2222-4222-8222-222222222222';
@@ -137,6 +137,19 @@ describe('qloo adapter', () => {
     const ids = indexEntities(posts, pool).get('movie')!;
     expect(ids).toHaveLength(50);
     expect(ids[0]).toBe('NEW');
+  });
+
+  it('keeps descriptive tags and drops identity, commercial and broad ones', () => {
+    const tag = (kind: string, name: string) => ({ id: `urn:tag:${kind}:x`, name });
+    expect(
+      usefulTags([
+        tag('keyword', 'Organized Crime'),
+        tag('genre', 'Drama'),
+        tag('keyword', 'gay'),
+        tag('hotel_rating', 'Four Star'),
+        tag('credit_card', 'Visa'),
+      ]),
+    ).toEqual(['Organized Crime']);
   });
 
   it('keeps a Qloo image and drops one from any other host', async () => {

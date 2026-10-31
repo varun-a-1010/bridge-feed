@@ -26,10 +26,11 @@ The model cannot talk its way past these, and each has a test:
 
 ## Reach
 
-A real platform has far more readers than the four samples, so a post is also tested against every
+A real platform has far more readers than the eight samples, so a post is also tested against every
 interest in the catalog, up to the call budget. A simulated reader sits 50 points from the post on
-its topic and holds one catalog interest. It uses the same bridge rules and real Qloo rankings, is
-labelled as simulated, and can be opened to see the post arrive.
+its topic and holds one catalog interest. It passes the same rank, popularity and sense checks as a
+sample reader, is described as a person who leans a certain way, and can be opened to see the post
+arrive. If nothing connects, the app says so instead of forcing a link.
 
 ## Model chain
 
@@ -40,10 +41,12 @@ routine chain to keep a run near ten seconds. Offline seed building uses Argon t
   `gemini-3.8-flash`, `gemini-2.5-flash`
 - Routine: the same list without Argon
 
-A failed call moves straight to the next model. If every model fails, the agent backs off and
-walks the whole chain again, up to four passes inside a 60-second deadline per call. Models that
-failed in a run are tried last. Switching models mid-run was tested live in every direction.
+A failed call first tries the same model on the backup Vertex project, because quota is per project
+and that keeps the better model in use. If that fails too, it moves to the next model. If every model
+fails, the agent backs off and walks the whole chain again, up to four passes inside a 60-second
+deadline per call. Models that failed in a run are tried last. Switching models mid-run was tested
+live in every direction.
 
-Seed building finished 48 of 48 posts through repeated Argon timeouts. Positions matched the intended
+Seed building finished 84 of 84 posts through repeated Argon timeouts. Positions matched the intended
 side, and the one disagreement was the agent's correction: a director using AI only for previs belongs
 at stop 30, "fine for rough ideas, never in the finished work", which a binary label had wrong.

@@ -3,28 +3,130 @@
     "id": "sana",
     "name": "Sana",
     "blurb": "Mostly vegetarian, wary of smart homes, thinks luck decides a lot.",
-    "scores": { "animal_welfare": 70, "ai_art": 60, "privacy": 70, "success": 70 },
-    "interests": ["Stardew Valley", "Daft Punk", "The Last of Us", "IKEA"]
+    "scores": {
+      "animal_welfare": 70,
+      "ai_art": 60,
+      "privacy": 70,
+      "success": 70
+    },
+    "interests": [
+      "Stardew Valley",
+      "Trader Joe's",
+      "Ted Lasso",
+      "The Grand Budapest Hotel"
+    ]
   },
   {
     "id": "ines",
     "name": "Ines",
     "blurb": "Wants AI out of art and tracking off by default.",
-    "scores": { "ai_art": 20, "privacy": 80, "free_speech": 60, "success": 80 },
-    "interests": ["Radiohead", "Björk", "The Grand Budapest Hotel", "Seven Samurai"]
+    "scores": {
+      "ai_art": 20,
+      "privacy": 80,
+      "free_speech": 60,
+      "success": 80
+    },
+    "interests": [
+      "Radiohead",
+      "Björk",
+      "The Last of Us",
+      "Born Standing Up: A Comic's Life"
+    ]
   },
   {
     "id": "theo",
     "name": "Theo",
     "blurb": "Likes AI tools and gadgets, and lets adults make their own choices.",
-    "scores": { "ai_art": 70, "privacy": 20, "animal_welfare": 20, "personal_freedom": 20 },
-    "interests": ["Taylor Swift", "Barbie", "Ted Lasso", "Nike"]
+    "scores": {
+      "ai_art": 70,
+      "privacy": 20,
+      "animal_welfare": 20,
+      "personal_freedom": 20
+    },
+    "interests": [
+      "Daft Punk",
+      "Breaking Bad",
+      "Everything Everywhere All at Once",
+      "The Lego Group"
+    ]
   },
   {
     "id": "cal",
     "name": "Cal",
     "blurb": "A sports and prestige TV fan who believes in effort and open debate.",
-    "scores": { "free_speech": 20, "success": 10, "animal_welfare": 10, "personal_freedom": 30 },
-    "interests": ["New York Knicks", "Boardwalk Empire", "The Mandalorian", "Tears for Fears"]
+    "scores": {
+      "free_speech": 20,
+      "success": 10,
+      "animal_welfare": 10,
+      "personal_freedom": 30
+    },
+    "interests": [
+      "New York Knicks",
+      "Breaking Bad",
+      "Curb Your Enthusiasm",
+      "Kendrick Lamar"
+    ]
+  },
+  {
+    "id": "dev",
+    "name": "Dev",
+    "blurb": "A comedy fan who still thinks platforms should take hate down.",
+    "scores": {
+      "free_speech": 80,
+      "success": 70,
+      "personal_freedom": 70
+    },
+    "interests": [
+      "The Original Kings of Comedy",
+      "Curb Your Enthusiasm",
+      "Born Standing Up: A Comic's Life"
+    ]
+  },
+  {
+    "id": "priya",
+    "name": "Priya",
+    "blurb": "A pop fan who is relaxed about AI and believes in hard work.",
+    "scores": {
+      "ai_art": 80,
+      "free_speech": 20,
+      "animal_welfare": 20,
+      "success": 20
+    },
+    "interests": [
+      "Taylor Swift",
+      "Beyoncé",
+      "Barbie"
+    ]
+  },
+  {
+    "id": "marcus",
+    "name": "Marcus",
+    "blurb": "Follows every sport and worries about risky choices going unchecked.",
+    "scores": {
+      "personal_freedom": 80,
+      "success": 70,
+      "animal_welfare": 40
+    },
+    "interests": [
+      "Formula One",
+      "Chelsea F.C.",
+      "National Football League"
+    ]
+  },
+  {
+    "id": "jay",
+    "name": "Jay",
+    "blurb": "A lifelong gamer who wants AI out of art and tracking off.",
+    "scores": {
+      "ai_art": 20,
+      "privacy": 80,
+      "animal_welfare": 70
+    },
+    "interests": [
+      "Minecraft",
+      "The Legend of Zelda: Breath of the Wild",
+      "Elden Ring",
+      "Nintendo"
+    ]
   }
 ]

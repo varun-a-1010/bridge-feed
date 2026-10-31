@@ -17,16 +17,18 @@ overlap still cannot create a bridge on its own.
 | Measure | Result |
 |---|---|
 | Topics, each an 11-stop scale | 6 |
-| Sample posts through the live agent | 48 |
-| Posts with at least one Qloo entity | 47 of 48 |
-| Confirmed Qloo entities | 56 |
-| References left unresolved | 6 |
-| Recorded Qloo rankings | 329 |
-| Entities removed by the control check | 1 |
-| Readers with at least one bridge | 98.5% |
-| Bridges per reader | 3.79 |
-| Opposing posts that cleared the cutoff | 29.9% |
-| Bridges sharing no title with the reader's interests | 99.9% |
-| Opposing posts literal matching alone would find, per reader | 0.05 |
-| Distinct posts reached across all readers | 43 of 48 |
+| Sample posts through the live agent | 84 |
+| Posts with at least one Qloo entity | 80 of 84 |
+| Confirmed Qloo entities | 88 |
+| References left unresolved | 7 |
+| Recorded Qloo rankings | 270 |
+| Entities removed by the control check | 4 |
+| Qloo links reviewed for sense | 520 |
+| Links a person would accept, by review | 112 |
+| Readers with at least one bridge | 90.0% |
+| Bridges per reader | 2.70 |
+| Opposing posts that cleared the cutoff | 11.2% |
+| Bridges sharing no title with the reader's interests | 100.0% |
+| Opposing posts literal matching alone would find, per reader | 0.07 |
+| Distinct posts reached across all readers | 52 of 84 |
 | Failed Qloo queries during the replay | 0 |

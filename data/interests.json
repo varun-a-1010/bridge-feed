@@ -49,7 +49,7 @@
  },
  {
   "id": "F6754C46-B3E7-457F-8B7E-06C613597320",
-  "name": "Beyoncé",
+  "name": "Beyonc\u00e9",
   "type": "artist",
   "image": "https://images.qloo.com/i/F6754C46-B3E7-457F-8B7E-06C613597320-420x-auto.jpg"
  },
@@ -85,7 +85,7 @@
  },
  {
   "id": "01381184-B533-4E3C-B9DB-43A2FE326744",
-  "name": "Björk",
+  "name": "Bj\u00f6rk",
   "type": "artist",
   "image": "https://images.qloo.com/i/01381184-B533-4E3C-B9DB-43A2FE326744-420x-auto.jpg"
  },
@@ -274,15 +274,5 @@
   "name": "The Hobbit",
   "type": "book",
   "image": "https://images.qloo.com/i/5AED339A-8815-402E-B524-C218D45E5BB9-420x-auto.jpg"
- },
- {
-  "id": "70E3820A-B1CF-4676-9CDA-C5F6539C53B9",
-  "name": "Paris",
-  "type": "destination"
- },
- {
-  "id": "98B97D1C-9BC8-40EA-A3AC-831A83D0A8A4",
-  "name": "Mexico City",
-  "type": "destination"
  }
 ]

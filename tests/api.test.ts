@@ -16,6 +16,8 @@ const corpus: Corpus = {
   pool: {},
   idsByType: new Map(),
   commonness: new Map(),
+  links: new Map(),
+  tags: new Map(),
 };
 const qloo: Qloo = {
   status: 'configured',
@@ -23,6 +25,7 @@ const qloo: Qloo = {
     { id: 'A', name: 'Dune', type: 'book' as const, description: 'private', year: 1965 },
   ]),
   search: vi.fn(async () => []),
+  tags: vi.fn(async () => []),
   rank: vi.fn(),
 };
 const result = { status: 'topic_only', reach: [], note: '', turns: 1 } as unknown as AgentResult;

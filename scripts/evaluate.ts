@@ -1,6 +1,7 @@
 import { writeFileSync } from 'node:fs';
 import { loadCorpus } from '../server/corpus';
 import { MAX_COMMONNESS, computeFeed } from '../server/feed';
+import { createLinker } from '../server/links';
 import { createQloo } from '../server/qloo';
 import { MIN_GAP, gapBetween, literalMatches } from '../shared/feed';
 import { STOPS, TOPICS, type Profile, type Topic } from '../shared/model';
@@ -8,6 +9,8 @@ import { STOPS, TOPICS, type Profile, type Topic } from '../shared/model';
 /** Replays recorded Qloo rankings for simulated readers. It measures the ranker, not people. */
 const corpus = loadCorpus();
 const qloo = createQloo({ recorded: corpus.recorded });
+// Only reviewed links count here, exactly as a reader would see them with no live model.
+const linker = createLinker({ links: corpus.links, tags: corpus.tags });
 let state = 20261030;
 const random = () => {
   state = (state * 1664525 + 1013904223) % 4294967296;
@@ -33,7 +36,7 @@ for (let i = 0; i < READERS; i++) {
   const scores: Profile['scores'] = {};
   for (const topic of pick(TOPICS, 4)) scores[topic.id as Topic] = pick(STOPS, 1)[0]!;
   const profile: Profile = { scores, interests: pick(corpus.interests, 4) };
-  const feed = await computeFeed(qloo, corpus, profile, []);
+  const feed = await computeFeed(qloo, corpus, profile, [], linker);
   failed += feed.failedQueries;
   bridges += feed.stats.shown;
   qlooOnly += feed.stats.qlooOnly;
@@ -73,6 +76,8 @@ overlap still cannot create a bridge on its own.
 | References left unresolved | ${corpus.posts.reduce((n, p) => n + p.unresolved.length, 0)} |
 | Recorded Qloo rankings | ${corpus.recorded.size} |
 | Entities removed by the control check | ${[...corpus.commonness.values()].filter((v) => v > MAX_COMMONNESS).length} |
+| Qloo links reviewed for sense | ${corpus.links.size} |
+| Links a person would accept, by review | ${[...corpus.links.values()].filter((l) => l.ok).length} |
 | Readers with at least one bridge | ${percent(withBridge, READERS)} |
 | Bridges per reader | ${(bridges / READERS).toFixed(2)} |
 | Opposing posts that cleared the cutoff | ${percent(qualified, opposing)} |

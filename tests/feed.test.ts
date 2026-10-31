@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { composeFeeds, bridgeCutoff, literalMatches, strongestEvidence } from '../shared/feed';
+import { composeFeeds, candidateCutoff, literalMatches, strongestEvidence } from '../shared/feed';
 import type { Post, Profile, RankRow } from '../shared/model';
 
 const RADIOHEAD = { id: 'A', name: 'Radiohead', type: 'artist' as const };
@@ -61,10 +61,10 @@ describe('bridge eligibility', () => {
   });
 
   it('rejects a rank outside the cutoff and a pool too small to mean anything', () => {
-    expect(bridgeCutoff(40)).toBe(4);
-    expect(strongestEvidence(post('1'), profile, [rank('E1', 5, 40)])).toBeUndefined();
+    expect(candidateCutoff(40)).toBe(8);
+    expect(strongestEvidence(post('1'), profile, [rank('E1', 9, 40)])).toBeUndefined();
     expect(strongestEvidence(post('1'), profile, [rank('E1', 1, 4)])).toBeUndefined();
-    expect(strongestEvidence(post('1'), profile, [rank('E1', 4, 40)])?.rank).toBe(4);
+    expect(strongestEvidence(post('1'), profile, [rank('E1', 8, 40)])?.rank).toBe(8);
   });
 
   it('requires a real gap, and gates on confidence, safety and a scored topic', () => {
@@ -102,13 +102,6 @@ describe('bridge eligibility', () => {
     const other: RankRow = { ...rank('E1'), interestId: 'SOMEONE-ELSE' };
     const mine = rank('E1', 2);
     expect(strongestEvidence(post('1'), profile, [other, mine])?.interest.name).toBe('Radiohead');
-  });
-
-  it('does not bridge on a destination, however high it ranks', () => {
-    const city = post('1', {
-      entities: [{ id: 'E1', name: 'Kyoto', type: 'destination', surface: 'Post 1' }],
-    });
-    expect(strongestEvidence(city, profile, [rank('E1')])).toBeUndefined();
   });
 
   it('prefers the rarer rank across different pool sizes', () => {

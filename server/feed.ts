@@ -1,4 +1,4 @@
-import { MIN_GAP, composeFeeds, gapBetween } from '../shared/feed';
+import { MAX_BRIDGES, MIN_GAP, candidateCutoff, composeFeeds, gapBetween } from '../shared/feed';
 import {
   type EntityType,
   type FeedItem,
@@ -9,6 +9,7 @@ import {
   type Receipt,
 } from '../shared/model';
 import { indexEntities, type Corpus } from './corpus';
+import type { Linker } from './links';
 import type { Qloo } from './qloo';
 
 const CONCURRENCY = 5;
@@ -21,6 +22,7 @@ export async function computeFeed(
   corpus: Corpus,
   profile: Profile,
   localPosts: Post[],
+  linker?: Linker,
 ): Promise<FeedResponse & { failedQueries: number }> {
   const posts = [...localPosts, ...corpus.posts];
   const byType = indexEntities(posts, corpus.pool);
@@ -54,18 +56,37 @@ export async function computeFeed(
   const specific = ranks.filter(
     (row) => (corpus.commonness.get(row.entityId) ?? 0) <= MAX_COMMONNESS,
   );
-  const feeds = composeFeeds(posts, profile, specific);
+  const opposing = posts.filter((post) => {
+    const gap = gapBetween(post, profile);
+    return gap !== undefined && gap >= MIN_GAP;
+  });
+  const entities = opposing.flatMap((post) => post.entities);
+  const approved = linker ? await linker.approve(specific, entities, profile.interests) : specific;
+  const feeds = composeFeeds(posts, profile, approved);
   const annotate = (item: FeedItem): FeedItem => {
-    const commonness = item.evidence && corpus.commonness.get(item.evidence.entity.id);
-    return item.evidence && commonness !== undefined
-      ? { ...item, evidence: { ...item.evidence, commonness } }
-      : item;
+    if (!item.evidence) return item;
+    const commonness = corpus.commonness.get(item.evidence.entity.id);
+    const reason = linker?.reason(item.evidence.interest.id, item.evidence.entity.id);
+    return {
+      ...item,
+      evidence: {
+        ...item.evidence,
+        ...(commonness === undefined ? {} : { commonness }),
+        ...(reason ? { reason } : {}),
+      },
+    };
   };
+  const inCutoff = specific.filter(
+    (row) => row.rank <= candidateCutoff(row.of) && entities.some((e) => e.id === row.entityId),
+  );
+  // Unreviewed links only matter when the reader's feed came up short because of them.
+  const short = feeds.bridge.filter((item) => item.kind === 'bridge').length < MAX_BRIDGES;
   return {
     ...feeds,
     typical: feeds.typical,
     bridge: feeds.bridge.map(annotate),
     receipts,
     failedQueries,
+    uncheckedLinks: linker && short ? linker.unchecked(inCutoff) : 0,
   };
 }
