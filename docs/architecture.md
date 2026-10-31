@@ -37,4 +37,8 @@ searches, 2 reach checks and 30 ranking calls.
 `data/posts.json` is built by the real agent from `scripts/seed-data.ts`. `data/pool.json` holds
 about 30 Qloo entities per type for comparison. `data/ranks.json` records every catalog interest
 against every type, so the demo keeps working if Qloo is unavailable. Rebuild them with
-`npm run data:interests`, `data:posts`, `data:pool` and `data:ranks`, in that order.
+`npm run data:interests`, `data:posts`, `data:pool`, `data:ranks` and `data:images`, in that order.
+
+Entity images are Qloo's own URLs, loaded directly from `images.qloo.com`. The API schema and the
+content security policy both refuse any other image host, because a browser can send posts back.
+Most destinations have no image, so the client falls back to a plain tile.

@@ -11,7 +11,8 @@ import {
   type Topic,
 } from '../shared/model';
 import type { Feed } from './api';
-import { shortName } from './Onboarding';
+import { shortName } from './names';
+import { Avatar, EntityImage, ScoreLine } from './Visuals';
 
 const when = (iso: string) => {
   const hours = Math.max(
@@ -79,29 +80,46 @@ function Why({ item }: { item: FeedItem & { evidence: NonNullable<FeedItem['evid
   );
 }
 
-function Card({ item, wide }: { item: FeedItem; wide?: boolean }) {
+function Card({ item }: { item: FeedItem }) {
   const [open, setOpen] = useState(false);
   const { post, evidence, kind } = item;
   return (
-    <article className={`post post-${kind}${wide ? ' wide' : ''}`}>
+    <article className={`post post-${kind}`}>
       <header>
+        <Avatar name={post.author} />
         <div className="byline">
           <strong>{post.author}</strong>
-          {post.position !== null && (
-            <span className="author-score" title={tierFor(post.topic, post.position)}>
-              {post.position}
-            </span>
-          )}
+          <span className="meta">
+            {post.source === 'seed'
+              ? `Sample post, ${when(post.createdAt)}`
+              : post.source === 'peer'
+                ? 'Your post, as this reader sees it'
+                : 'Your post'}
+          </span>
         </div>
-        <span className="meta">
-          {post.source === 'seed'
-            ? `Sample post, ${when(post.createdAt)}`
-            : post.source === 'peer'
-              ? 'Your post, as this reader sees it'
-              : 'Your post'}
-        </span>
+        {post.position !== null && (
+          <span className="author-score" title={tierFor(post.topic, post.position)}>
+            {post.position}
+          </span>
+        )}
       </header>
       <PostText post={post} bridgeRef={evidence?.entity.surface} />
+      {post.entities.length > 0 && (
+        <ul className="refs">
+          {post.entities.map((entity) => (
+            <li
+              key={entity.id}
+              className={entity.id === evidence?.entity.id ? 'ref-card is-bridge' : 'ref-card'}
+            >
+              <EntityImage entity={entity} />
+              <div>
+                <strong>{shortName(entity.name)}</strong>
+                <span>{TYPE_LABELS[entity.type].one}</span>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
       <footer>
         <span className="topic">{topicOf(post.topic)?.label ?? 'Off topic'}</span>
         {kind === 'bridge' && <span className="differs">{item.gap} points from you</span>}
@@ -123,20 +141,26 @@ function Card({ item, wide }: { item: FeedItem; wide?: boolean }) {
 }
 
 function Crossing({ item, profile }: { item: FeedItem; profile: Profile }) {
-  const yours = profile.scores[item.post.topic as Topic];
+  const { post, evidence } = item;
+  const yours = profile.scores[post.topic as Topic];
   return (
-    <li className="row crossing">
-      <div className="near-bank">
-        <span className="you-score">You {yours}</span>
-        <span className="anchor">{shortName(item.evidence!.interest.name)}</span>
-      </div>
-      <div className="span">
+    <li className="crossing">
+      <div className="crossing-inner">
+        <div className="near">
+          <EntityImage entity={evidence!.interest} className="near-image" />
+          <p>
+            Because you like <strong>{shortName(evidence!.interest.name)}</strong>
+          </p>
+          {yours !== undefined && post.position !== null && (
+            <ScoreLine you={yours} them={post.position} name={post.author} />
+          )}
+        </div>
         <svg className="cable" viewBox="0 0 120 60" preserveAspectRatio="none" aria-hidden>
           <path d="M0 30 C 40 2, 80 2, 120 30" pathLength={1} />
         </svg>
-      </div>
-      <div className="far-bank">
-        <Card item={item} />
+        <div className="far">
+          <Card item={item} />
+        </div>
       </div>
     </li>
   );
@@ -184,7 +208,7 @@ export function FeedView({
             <Crossing key={item.post.id} item={item} profile={profile} />
           ) : (
             <li key={item.post.id} className="row">
-              <Card item={item} wide={mode === 'typical'} />
+              <Card item={item} />
             </li>
           ),
         )}

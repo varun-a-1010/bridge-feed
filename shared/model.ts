@@ -154,10 +154,16 @@ const entityId = z
 
 const score = z.number().int().min(0).max(100);
 
+const qlooImage = z
+  .string()
+  .max(300)
+  .refine((url) => url.startsWith('https://images.qloo.com/'));
+
 export const entitySchema = z.object({
   id: entityId,
   name: z.string().min(1).max(200),
   type: z.enum(ENTITY_TYPES),
+  image: qlooImage.optional(),
 });
 export type Entity = z.infer<typeof entitySchema>;
 
@@ -233,6 +239,14 @@ export type FeedItem = {
   evidence?: Evidence;
   /** Selected interests literally named in the post. Never enough to bridge on its own. */
   literal: string[];
+};
+
+/** A real bridge from the sample data, shown on the landing page. */
+export type Hero = {
+  interest: Entity;
+  entity: PostEntity;
+  rank: number;
+  of: number;
 };
 
 export type FeedStats = {

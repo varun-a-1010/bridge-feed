@@ -60,6 +60,27 @@ describe('api', () => {
     expect(bad.statusCode).toBe(400);
   });
 
+  it('refuses an image from outside Qloo in a post sent by the browser', async () => {
+    const app = await setup();
+    const interest = { id: '11111111-1111-4111-8111-111111111111', name: 'A', type: 'artist' };
+    const send = (image: string) =>
+      app.inject({
+        method: 'POST',
+        url: '/api/feed',
+        headers,
+        payload: JSON.stringify({ profile: { scores: {}, interests: [{ ...interest, image }] } }),
+      });
+    expect((await send('https://evil.test/a.jpg')).statusCode).toBe(400);
+  });
+
+  it('allows images only from Qloo in the content security policy', async () => {
+    const app = await setup();
+    const policy = String(
+      (await app.inject({ url: '/api/health' })).headers['content-security-policy'],
+    );
+    expect(policy).toContain("img-src 'self' data: https://images.qloo.com;");
+  });
+
   it('rejects a score outside the scale', async () => {
     const app = await setup();
     const bad = await app.inject({

@@ -3,7 +3,7 @@ import Fastify from 'fastify';
 import rateLimit from '@fastify/rate-limit';
 import fastifyStatic from '@fastify/static';
 import { z } from 'zod';
-import { ENTITY_TYPES, feedRequestSchema } from '../shared/model';
+import { ENTITY_TYPES, feedRequestSchema, type Hero } from '../shared/model';
 import { AgentUnavailable, type Agent } from './agent';
 import type { Corpus } from './corpus';
 import { computeFeed } from './feed';
@@ -44,7 +44,7 @@ export async function buildApp(options: AppOptions) {
       'x-content-type-options': 'nosniff',
       'referrer-policy': 'no-referrer',
       'content-security-policy':
-        "default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'none'; frame-ancestors 'none'",
+        "default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://images.qloo.com; connect-src 'self'; base-uri 'none'; frame-ancestors 'none'",
     });
     if (request.method === 'POST') {
       const allowed = options.origin ?? `${request.protocol}://${request.headers.host}`;
@@ -71,7 +71,27 @@ export async function buildApp(options: AppOptions) {
     recordedRanks: corpus.recorded.size,
   }));
 
+  let hero: Hero | null | undefined;
+  const findHero = async () => {
+    if (hero !== undefined) return hero;
+    const reader = corpus.presets.find((p) => p.id === 'ines') ?? corpus.presets[0];
+    hero = null;
+    if (reader) {
+      const feed = await computeFeed(qloo, corpus, reader, []);
+      const evidence = feed.bridge.find((item) => item.evidence)?.evidence;
+      if (evidence)
+        hero = {
+          interest: evidence.interest,
+          entity: evidence.entity,
+          rank: evidence.rank,
+          of: evidence.of,
+        };
+    }
+    return hero;
+  };
+
   app.get('/api/bootstrap', async () => ({
+    hero: await findHero(),
     interests: corpus.interests,
     presets: corpus.presets,
     posts: corpus.posts.length,
@@ -85,7 +105,12 @@ export async function buildApp(options: AppOptions) {
     async (request) => {
       const { q, type } = searchQuery.parse(request.query);
       return {
-        results: (await qloo.search(q, type)).map(({ id, name, type }) => ({ id, name, type })),
+        results: (await qloo.search(q, type)).map(({ id, name, type, image }) => ({
+          id,
+          name,
+          type,
+          ...(image ? { image } : {}),
+        })),
       };
     },
   );

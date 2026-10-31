@@ -3,232 +3,277 @@
   "id": "9E65EACE-19B1-446B-ABE3-713CCA8D37C7",
   "name": "New York Knicks",
   "type": "brand",
-  "group": "sports"
+  "group": "sports",
+  "image": "https://images.qloo.com/i/9E65EACE-19B1-446B-ABE3-713CCA8D37C7-420x-auto.jpg"
  },
  {
   "id": "9EF3B4AA-C638-4930-B673-0A930A4063AD",
   "name": "National Basketball Association",
   "type": "brand",
-  "group": "sports"
+  "group": "sports",
+  "image": "https://images.qloo.com/i/9EF3B4AA-C638-4930-B673-0A930A4063AD-420x-auto.jpg"
  },
  {
   "id": "A21D248A-7379-458E-A3BE-7B8C4B961AF6",
   "name": "Chelsea F.C.",
   "type": "brand",
-  "group": "sports"
+  "group": "sports",
+  "image": "https://images.qloo.com/i/A21D248A-7379-458E-A3BE-7B8C4B961AF6-420x-auto.jpg"
  },
  {
   "id": "C676E01F-BEA7-4822-87BA-945CBDC11D86",
   "name": "Pga Tour",
   "type": "brand",
-  "group": "sports"
+  "group": "sports",
+  "image": "https://images.qloo.com/i/C676E01F-BEA7-4822-87BA-945CBDC11D86-420x-auto.jpg"
  },
  {
   "id": "199E0ABE-BF9C-498A-A6C9-95EBFC178C6B",
   "name": "National Football League",
   "type": "brand",
-  "group": "sports"
+  "group": "sports",
+  "image": "https://images.qloo.com/i/199E0ABE-BF9C-498A-A6C9-95EBFC178C6B-420x-auto.jpg"
  },
  {
   "id": "096748F7-CBE7-40A9-A23D-C1CF0F28C99A",
   "name": "Formula One",
   "type": "brand",
-  "group": "sports"
+  "group": "sports",
+  "image": "https://images.qloo.com/i/096748F7-CBE7-40A9-A23D-C1CF0F28C99A-420x-auto.jpg"
  },
  {
   "id": "70CAE5BF-2F4C-445C-A3E5-4EDACFC3591C",
   "name": "Radiohead",
-  "type": "artist"
+  "type": "artist",
+  "image": "https://images.qloo.com/i/70CAE5BF-2F4C-445C-A3E5-4EDACFC3591C-420x-auto.jpg"
  },
  {
   "id": "F6754C46-B3E7-457F-8B7E-06C613597320",
   "name": "Beyoncé",
-  "type": "artist"
+  "type": "artist",
+  "image": "https://images.qloo.com/i/F6754C46-B3E7-457F-8B7E-06C613597320-420x-auto.jpg"
  },
  {
   "id": "C915A918-39C5-47A3-A101-D9FA1DECBD9C",
   "name": "Kendrick Lamar",
-  "type": "artist"
+  "type": "artist",
+  "image": "https://images.qloo.com/i/C915A918-39C5-47A3-A101-D9FA1DECBD9C-420x-auto.jpg"
  },
  {
   "id": "4BBEF799-A0C4-4110-AB01-39216993C312",
   "name": "Taylor Swift",
-  "type": "artist"
+  "type": "artist",
+  "image": "https://images.qloo.com/i/4BBEF799-A0C4-4110-AB01-39216993C312-420x-auto.jpg"
  },
  {
   "id": "012EF80C-B187-4ECB-9C3D-9CA5228B503C",
   "name": "Daft Punk",
-  "type": "artist"
+  "type": "artist",
+  "image": "https://images.qloo.com/i/012EF80C-B187-4ECB-9C3D-9CA5228B503C-420x-auto.jpg"
  },
  {
   "id": "BDA1B73F-10E7-4D09-AC51-B796CCEC5FF3",
   "name": "Bad Bunny",
-  "type": "artist"
+  "type": "artist",
+  "image": "https://images.qloo.com/i/BDA1B73F-10E7-4D09-AC51-B796CCEC5FF3-420x-auto.jpg"
  },
  {
   "id": "B1414851-6A23-4C52-B647-2A0249B664F9",
   "name": "Fleetwood Mac",
-  "type": "artist"
+  "type": "artist",
+  "image": "https://images.qloo.com/i/B1414851-6A23-4C52-B647-2A0249B664F9-420x-auto.jpg"
  },
  {
   "id": "01381184-B533-4E3C-B9DB-43A2FE326744",
   "name": "Björk",
-  "type": "artist"
+  "type": "artist",
+  "image": "https://images.qloo.com/i/01381184-B533-4E3C-B9DB-43A2FE326744-420x-auto.jpg"
  },
  {
   "id": "9235D2F0-1843-4709-B121-8F5F908BF2A8",
   "name": "Tears for Fears",
-  "type": "artist"
+  "type": "artist",
+  "image": "https://images.qloo.com/i/9235D2F0-1843-4709-B121-8F5F908BF2A8-420x-auto.jpg"
  },
  {
   "id": "047CC36A-3ECC-4107-9FF9-48448912A77B",
   "name": "Spandau Ballet",
-  "type": "artist"
+  "type": "artist",
+  "image": "https://images.qloo.com/i/047CC36A-3ECC-4107-9FF9-48448912A77B-420x-auto.jpg"
  },
  {
   "id": "DF788007-B5EA-4F29-872B-96BCB8EEC42F",
   "name": "The Grand Budapest Hotel",
-  "type": "movie"
+  "type": "movie",
+  "image": "https://images.qloo.com/i/DF788007-B5EA-4F29-872B-96BCB8EEC42F-420x-auto.jpg"
  },
  {
   "id": "3037F0E8-C912-4DC0-BDE3-1F94631F9DA6",
   "name": "Dune",
-  "type": "movie"
+  "type": "movie",
+  "image": "https://images.qloo.com/i/3037F0E8-C912-4DC0-BDE3-1F94631F9DA6-420x-auto.jpg"
  },
  {
   "id": "7F1163D3-D842-4121-AA13-68FA930E0F09",
   "name": "Seven Samurai",
-  "type": "movie"
+  "type": "movie",
+  "image": "https://images.qloo.com/i/7F1163D3-D842-4121-AA13-68FA930E0F09-420x-auto.jpg"
  },
  {
   "id": "F0D354AA-BA7E-49D2-8ABA-9A8250F5C852",
   "name": "Everything Everywhere All at Once",
-  "type": "movie"
+  "type": "movie",
+  "image": "https://images.qloo.com/i/F0D354AA-BA7E-49D2-8ABA-9A8250F5C852-420x-auto.jpg"
  },
  {
   "id": "4344F84A-69CE-46D1-B09C-02F31EC13117",
   "name": "Mad Max: Fury Road",
-  "type": "movie"
+  "type": "movie",
+  "image": "https://images.qloo.com/i/4344F84A-69CE-46D1-B09C-02F31EC13117-420x-auto.jpg"
  },
  {
   "id": "BAF6FB9E-7E2E-4008-944B-97C0CF430D41",
   "name": "Barbie",
-  "type": "movie"
+  "type": "movie",
+  "image": "https://images.qloo.com/i/BAF6FB9E-7E2E-4008-944B-97C0CF430D41-420x-auto.jpg"
  },
  {
   "id": "05049FF9-844A-4481-9FFD-95F2874B28DD",
   "name": "The Original Kings of Comedy",
-  "type": "movie"
+  "type": "movie",
+  "image": "https://images.qloo.com/i/05049FF9-844A-4481-9FFD-95F2874B28DD-420x-auto.jpg"
  },
  {
   "id": "1E1C19B5-F0DF-43E2-9887-37E31A3DD9BF",
   "name": "Boardwalk Empire",
-  "type": "tv_show"
+  "type": "tv_show",
+  "image": "https://images.qloo.com/i/1E1C19B5-F0DF-43E2-9887-37E31A3DD9BF-420x-auto.jpg"
  },
  {
   "id": "24FA08F2-0B47-4A01-B44E-CF18C06E5781",
   "name": "The Mandalorian",
-  "type": "tv_show"
+  "type": "tv_show",
+  "image": "https://images.qloo.com/i/24FA08F2-0B47-4A01-B44E-CF18C06E5781-420x-auto.jpg"
  },
  {
   "id": "88B37E0A-4353-4A75-A0EE-2A44B353B120",
   "name": "Curb Your Enthusiasm",
-  "type": "tv_show"
+  "type": "tv_show",
+  "image": "https://images.qloo.com/i/88B37E0A-4353-4A75-A0EE-2A44B353B120-420x-auto.jpg"
  },
  {
   "id": "6CA05BAF-DC37-45D4-BED4-1BC9EA0B9B03",
   "name": "The Last of Us",
-  "type": "tv_show"
+  "type": "tv_show",
+  "image": "https://images.qloo.com/i/6CA05BAF-DC37-45D4-BED4-1BC9EA0B9B03-420x-auto.jpg"
  },
  {
   "id": "D03D0913-A7B9-4C46-BFEB-958C1B3FA387",
   "name": "Breaking Bad",
-  "type": "tv_show"
+  "type": "tv_show",
+  "image": "https://images.qloo.com/i/D03D0913-A7B9-4C46-BFEB-958C1B3FA387-420x-auto.jpg"
  },
  {
   "id": "07F1170E-BB69-4982-82C6-255F477EBBAD",
   "name": "Stranger Things",
-  "type": "tv_show"
+  "type": "tv_show",
+  "image": "https://images.qloo.com/i/07F1170E-BB69-4982-82C6-255F477EBBAD-420x-auto.jpg"
  },
  {
   "id": "DCA1F3CA-7A25-421C-BB4D-A864B6D53848",
   "name": "Ted Lasso",
-  "type": "tv_show"
+  "type": "tv_show",
+  "image": "https://images.qloo.com/i/DCA1F3CA-7A25-421C-BB4D-A864B6D53848-420x-auto.jpg"
  },
  {
   "id": "FFD31D42-DF50-4B60-932C-7497C8E73A80",
   "name": "Nintendo",
-  "type": "brand"
+  "type": "brand",
+  "image": "https://images.qloo.com/i/FFD31D42-DF50-4B60-932C-7497C8E73A80-420x-auto.jpg"
  },
  {
   "id": "7E9A2E74-1CB5-43E9-8B74-69CA8283BFBD",
   "name": "IKEA",
-  "type": "brand"
+  "type": "brand",
+  "image": "https://images.qloo.com/i/7E9A2E74-1CB5-43E9-8B74-69CA8283BFBD-420x-auto.jpg"
  },
  {
   "id": "C70CE2B8-0AD1-4150-BF18-5A6347F2E860",
   "name": "Nike",
-  "type": "brand"
+  "type": "brand",
+  "image": "https://images.qloo.com/i/C70CE2B8-0AD1-4150-BF18-5A6347F2E860-420x-auto.jpg"
  },
  {
   "id": "C5E85462-1B81-40FF-A7B4-849DEE5120E9",
   "name": "The Lego Group",
-  "type": "brand"
+  "type": "brand",
+  "image": "https://images.qloo.com/i/C5E85462-1B81-40FF-A7B4-849DEE5120E9-420x-auto.jpg"
  },
  {
   "id": "7E904879-87BC-4BA6-B4AB-6E380A4C250D",
   "name": "A24",
-  "type": "brand"
+  "type": "brand",
+  "image": "https://images.qloo.com/i/7E904879-87BC-4BA6-B4AB-6E380A4C250D-420x-auto.jpg"
  },
  {
   "id": "096B986E-3D63-44F4-BE44-F85D52A2979D",
   "name": "Trader Joe's",
-  "type": "brand"
+  "type": "brand",
+  "image": "https://images.qloo.com/i/096B986E-3D63-44F4-BE44-F85D52A2979D-420x-auto.jpg"
  },
  {
   "id": "7E606158-8878-49D6-82AB-4C83A83F9974",
   "name": "The Legend of Zelda: Breath of the Wild",
-  "type": "videogame"
+  "type": "videogame",
+  "image": "https://images.qloo.com/i/7E606158-8878-49D6-82AB-4C83A83F9974-420x-auto.jpg"
  },
  {
   "id": "875DB771-9C4C-4DD0-9249-D2ABD95711F1",
   "name": "Stardew Valley",
-  "type": "videogame"
+  "type": "videogame",
+  "image": "https://images.qloo.com/i/875DB771-9C4C-4DD0-9249-D2ABD95711F1-420x-auto.jpg"
  },
  {
   "id": "CDBDE254-71F0-4640-8D04-5373BEAE5278",
   "name": "Minecraft",
-  "type": "videogame"
+  "type": "videogame",
+  "image": "https://images.qloo.com/i/CDBDE254-71F0-4640-8D04-5373BEAE5278-420x-auto.jpg"
  },
  {
   "id": "46CBADC5-F4A6-4E97-93B2-959066C9F608",
   "name": "Elden Ring",
-  "type": "videogame"
+  "type": "videogame",
+  "image": "https://images.qloo.com/i/46CBADC5-F4A6-4E97-93B2-959066C9F608-420x-auto.jpg"
  },
  {
   "id": "DE0A1AFF-A2C1-4B08-A04C-6DFD7F781A08",
   "name": "Sapiens: A Brief History of Humankind",
-  "type": "book"
+  "type": "book",
+  "image": "https://images.qloo.com/i/DE0A1AFF-A2C1-4B08-A04C-6DFD7F781A08-420x-auto.jpg"
  },
  {
   "id": "28D688C4-0760-4042-BEC1-F6EE75E71CC7",
   "name": "Normal People",
-  "type": "book"
+  "type": "book",
+  "image": "https://images.qloo.com/i/28D688C4-0760-4042-BEC1-F6EE75E71CC7-420x-auto.jpg"
  },
  {
   "id": "2333C53E-7369-4BBC-9E49-FFAF4EA2EC91",
   "name": "On Writing",
-  "type": "book"
+  "type": "book",
+  "image": "https://images.qloo.com/i/2333C53E-7369-4BBC-9E49-FFAF4EA2EC91-420x-auto.jpg"
  },
  {
   "id": "074B2ED6-B6EE-4690-9C7A-687A056F7DB2",
   "name": "Born Standing Up: A Comic's Life",
-  "type": "book"
+  "type": "book",
+  "image": "https://images.qloo.com/i/074B2ED6-B6EE-4690-9C7A-687A056F7DB2-420x-auto.jpg"
  },
  {
   "id": "5AED339A-8815-402E-B524-C218D45E5BB9",
   "name": "The Hobbit",
-  "type": "book"
+  "type": "book",
+  "image": "https://images.qloo.com/i/5AED339A-8815-402E-B524-C218D45E5BB9-420x-auto.jpg"
  },
  {
   "id": "70E3820A-B1CF-4676-9CDA-C5F6539C53B9",

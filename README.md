@@ -89,7 +89,8 @@ npm run evaluate   # replays recorded rankings for 200 simulated readers
 ## Data
 
 Sample posts are by fictional authors and are labelled in the app. They were written by hand, then
-processed by the real agent and real Qloo calls. Nothing in `data/` is an invented Qloo result.
+processed by the real agent and real Qloo calls. Nothing in `data/` is an invented Qloo result, and
+every image comes from Qloo.
 Recorded rankings exist so the demo survives a Qloo outage, and the app says when it uses them.
 
 ## License

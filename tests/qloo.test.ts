@@ -96,6 +96,33 @@ describe('qloo adapter', () => {
     expect(fetchMock).not.toHaveBeenCalled();
   });
 
+  it('keeps a Qloo image and drops one from any other host', async () => {
+    const qloo = createQloo({
+      apiKey: 'k',
+      fetch: (async () =>
+        json({
+          success: true,
+          results: [
+            {
+              entity_id: B,
+              name: 'Hosted',
+              types: ['urn:entity:movie'],
+              properties: { image: { url: 'https://images.qloo.com/i/a.jpg' } },
+            },
+            {
+              entity_id: C,
+              name: 'Elsewhere',
+              types: ['urn:entity:movie'],
+              properties: { image: { url: 'https://evil.test/a.jpg' } },
+            },
+          ],
+        })) as typeof fetch,
+    });
+    const hits = await qloo.search('x', 'movie');
+    expect(hits[0]?.image).toBe('https://images.qloo.com/i/a.jpg');
+    expect(hits[1]?.image).toBeUndefined();
+  });
+
   it('rejects a search hit of the wrong type and reports a missing key', async () => {
     const qloo = createQloo({
       apiKey: 'k',

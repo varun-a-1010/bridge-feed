@@ -37,11 +37,13 @@ function parseHit(raw: unknown, type: EntityType): SearchHit | null {
     ![...types, r.subtype].includes(`urn:entity:${type}`)
   )
     return null;
+  const image = text(record(p.image).url, 300);
   return {
     id: String(r.entity_id).toUpperCase(),
     name: text(r.name, 200),
     type,
     description: text(p.short_description ?? p.description),
+    ...(image.startsWith('https://images.qloo.com/') ? { image } : {}),
   };
 }
 

@@ -19,6 +19,7 @@
     "data:posts": "tsx scripts/build-posts.ts",
     "data:pool": "tsx scripts/build-pool.ts",
     "data:ranks": "tsx scripts/build-ranks.ts",
+    "data:images": "tsx scripts/build-images.ts",
     "evaluate": "tsx scripts/evaluate.ts"
   },
   "dependencies": {

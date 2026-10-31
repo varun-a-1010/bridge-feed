@@ -14,7 +14,8 @@
     "id": "A74A74BB-CE73-4A76-807B-8BD1714BC463",
     "name": "Blade Runner",
     "type": "movie",
-    "surface": "Blade Runner"
+    "surface": "Blade Runner",
+    "image": "https://images.qloo.com/i/A74A74BB-CE73-4A76-807B-8BD1714BC463-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -35,7 +36,8 @@
     "id": "9B33A620-68CA-49B3-BFCF-F09CCF8AD595",
     "name": "Spirited Away",
     "type": "movie",
-    "surface": "Spirited Away"
+    "surface": "Spirited Away",
+    "image": "https://images.qloo.com/i/9B33A620-68CA-49B3-BFCF-F09CCF8AD595-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -56,7 +58,8 @@
     "id": "E51DB8F2-7A93-4746-A283-E55B5216FDE1",
     "name": "Bon Iver",
     "type": "artist",
-    "surface": "Bon Iver"
+    "surface": "Bon Iver",
+    "image": "https://images.qloo.com/i/E51DB8F2-7A93-4746-A283-E55B5216FDE1-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -77,7 +80,8 @@
     "id": "504A59EF-54E1-4911-8015-8FA64FC6AA8C",
     "name": "Klara and the Sun",
     "type": "book",
-    "surface": "Klara and the Sun"
+    "surface": "Klara and the Sun",
+    "image": "https://images.qloo.com/i/504A59EF-54E1-4911-8015-8FA64FC6AA8C-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -98,7 +102,8 @@
     "id": "2575A4C0-5459-42E9-B119-FE7CFC8D558B",
     "name": "Cyberpunk 2077",
     "type": "videogame",
-    "surface": "Cyberpunk 2077"
+    "surface": "Cyberpunk 2077",
+    "image": "https://images.qloo.com/i/2575A4C0-5459-42E9-B119-FE7CFC8D558B-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -119,7 +124,8 @@
     "id": "C6046119-7760-4733-B84E-374E029B14DC",
     "name": "The Matrix",
     "type": "movie",
-    "surface": "The Matrix"
+    "surface": "The Matrix",
+    "image": "https://images.qloo.com/i/C6046119-7760-4733-B84E-374E029B14DC-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -140,7 +146,8 @@
     "id": "0CD4E0AE-E657-4C2F-B37B-FD8FEBDDD3B1",
     "name": "Grimes",
     "type": "artist",
-    "surface": "Grimes"
+    "surface": "Grimes",
+    "image": "https://images.qloo.com/i/0CD4E0AE-E657-4C2F-B37B-FD8FEBDDD3B1-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -161,13 +168,15 @@
     "id": "294532D6-1030-4658-A57E-4FB8D4D2F14A",
     "name": "Adobe",
     "type": "brand",
-    "surface": "Adobe"
+    "surface": "Adobe",
+    "image": "https://images.qloo.com/i/294532D6-1030-4658-A57E-4FB8D4D2F14A-420x-auto.jpg"
    },
    {
     "id": "1E488095-7A33-4AAE-A0AD-2AF999DB446F",
     "name": "Adobe Photoshop",
     "type": "brand",
-    "surface": "Photoshop"
+    "surface": "Photoshop",
+    "image": "https://images.qloo.com/i/1E488095-7A33-4AAE-A0AD-2AF999DB446F-420x-auto.jpg"
    }
   ],
   "unresolved": [
@@ -193,7 +202,8 @@
     "id": "35D9EDC3-DC6A-42A5-B73B-7A18DCF0C024",
     "name": "Chef's Table",
     "type": "tv_show",
-    "surface": "Chef’s Table"
+    "surface": "Chef’s Table",
+    "image": "https://images.qloo.com/i/35D9EDC3-DC6A-42A5-B73B-7A18DCF0C024-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -214,7 +224,8 @@
     "id": "35E706AE-3CAD-44AE-B68A-0B9CF67C47E2",
     "name": "Kitchen Confidential: Adventures in the Culinary Underbelly",
     "type": "book",
-    "surface": "Kitchen Confidential"
+    "surface": "Kitchen Confidential",
+    "image": "https://images.qloo.com/i/35E706AE-3CAD-44AE-B68A-0B9CF67C47E2-420x-auto.jpg"
    },
    {
     "id": "E4226E25-46BA-4EF7-AB94-4F4E53E80408",
@@ -241,7 +252,8 @@
     "id": "4C305B2F-5A46-4885-A6DA-5E22D11E86E0",
     "name": "The Bear",
     "type": "tv_show",
-    "surface": "The Bear"
+    "surface": "The Bear",
+    "image": "https://images.qloo.com/i/4C305B2F-5A46-4885-A6DA-5E22D11E86E0-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -304,7 +316,8 @@
     "id": "9C0F7C3B-D081-4440-876E-0F742D29C976",
     "name": "Okja",
     "type": "movie",
-    "surface": "Okja"
+    "surface": "Okja",
+    "image": "https://images.qloo.com/i/9C0F7C3B-D081-4440-876E-0F742D29C976-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -325,13 +338,15 @@
     "id": "012081EE-E2BA-420E-9904-417CAF65214B",
     "name": "Oatly",
     "type": "brand",
-    "surface": "Oatly"
+    "surface": "Oatly",
+    "image": "https://images.qloo.com/i/012081EE-E2BA-420E-9904-417CAF65214B-420x-auto.jpg"
    },
    {
     "id": "6E5EF952-22E9-459A-AF6D-865BB3685D69",
     "name": "Impossible Foods",
     "type": "brand",
-    "surface": "Impossible Foods"
+    "surface": "Impossible Foods",
+    "image": "https://images.qloo.com/i/6E5EF952-22E9-459A-AF6D-865BB3685D69-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -352,7 +367,8 @@
     "id": "D7BCE4CD-5135-4608-8A7D-78E08FFD52F3",
     "name": "Billie Eilish",
     "type": "artist",
-    "surface": "Billie Eilish"
+    "surface": "Billie Eilish",
+    "image": "https://images.qloo.com/i/D7BCE4CD-5135-4608-8A7D-78E08FFD52F3-420x-auto.jpg"
    }
   ],
   "unresolved": [
@@ -378,7 +394,8 @@
     "id": "07626E58-E46B-46B6-9923-6D574B50222F",
     "name": "Jerry Seinfeld",
     "type": "artist",
-    "surface": "Seinfeld"
+    "surface": "Seinfeld",
+    "image": "https://images.qloo.com/i/07626E58-E46B-46B6-9923-6D574B50222F-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -399,7 +416,8 @@
     "id": "31FE5CC1-6B34-4BAF-8184-9997AF970626",
     "name": "Chappelle's Show",
     "type": "tv_show",
-    "surface": "Chappelle’s Show"
+    "surface": "Chappelle’s Show",
+    "image": "https://images.qloo.com/i/31FE5CC1-6B34-4BAF-8184-9997AF970626-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -420,7 +438,8 @@
     "id": "78D8B9DB-2698-4387-9879-C3FA12C76E2A",
     "name": "Fahrenheit 451",
     "type": "book",
-    "surface": "Fahrenheit 451"
+    "surface": "Fahrenheit 451",
+    "image": "https://images.qloo.com/i/78D8B9DB-2698-4387-9879-C3FA12C76E2A-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -441,7 +460,8 @@
     "id": "287B615E-153B-43FD-A1DF-E6D53FD78481",
     "name": "The People vs. Larry Flynt",
     "type": "movie",
-    "surface": "The People vs. Larry Flynt"
+    "surface": "The People vs. Larry Flynt",
+    "image": "https://images.qloo.com/i/287B615E-153B-43FD-A1DF-E6D53FD78481-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -462,7 +482,8 @@
     "id": "48F91CBC-C38D-4038-8136-B051021A4CB4",
     "name": "Hannah Gadsby: Nanette",
     "type": "tv_show",
-    "surface": "Nanette"
+    "surface": "Nanette",
+    "image": "https://images.qloo.com/i/48F91CBC-C38D-4038-8136-B051021A4CB4-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -483,7 +504,8 @@
     "id": "D194DAE4-6C21-4CC7-9BFD-A2FD7AC8EAD6",
     "name": "The Social Dilemma",
     "type": "movie",
-    "surface": "The Social Dilemma"
+    "surface": "The Social Dilemma",
+    "image": "https://images.qloo.com/i/D194DAE4-6C21-4CC7-9BFD-A2FD7AC8EAD6-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -504,7 +526,8 @@
     "id": "D95A38B3-EF9C-44FC-BFED-8BFB9C02D28B",
     "name": "Don't Look Up",
     "type": "movie",
-    "surface": "Don’t Look Up"
+    "surface": "Don’t Look Up",
+    "image": "https://images.qloo.com/i/D95A38B3-EF9C-44FC-BFED-8BFB9C02D28B-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -544,7 +567,8 @@
     "id": "94485CC8-A992-4136-B3EC-848E4B6912F9",
     "name": "Rocky",
     "type": "movie",
-    "surface": "Rocky"
+    "surface": "Rocky",
+    "image": "https://images.qloo.com/i/94485CC8-A992-4136-B3EC-848E4B6912F9-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -565,7 +589,8 @@
     "id": "29BD6C83-B18D-4959-9765-1ABDD82EBB1B",
     "name": "The Last Dance",
     "type": "tv_show",
-    "surface": "The Last Dance"
+    "surface": "The Last Dance",
+    "image": "https://images.qloo.com/i/29BD6C83-B18D-4959-9765-1ABDD82EBB1B-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -586,7 +611,8 @@
     "id": "B3C3A240-A906-4C2F-8B8C-0D41B758A1A5",
     "name": "Shoe Dog: A Memoir by the Creator of Nike",
     "type": "book",
-    "surface": "Shoe Dog"
+    "surface": "Shoe Dog",
+    "image": "https://images.qloo.com/i/B3C3A240-A906-4C2F-8B8C-0D41B758A1A5-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -607,7 +633,8 @@
     "id": "65745A20-2FE5-44EC-8349-BDA0C8522CEB",
     "name": "Whiplash",
     "type": "movie",
-    "surface": "Whiplash"
+    "surface": "Whiplash",
+    "image": "https://images.qloo.com/i/65745A20-2FE5-44EC-8349-BDA0C8522CEB-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -628,7 +655,8 @@
     "id": "A499EC25-7FF6-46DE-9DA5-3E78E99B9E26",
     "name": "Parasite",
     "type": "movie",
-    "surface": "Parasite"
+    "surface": "Parasite",
+    "image": "https://images.qloo.com/i/A499EC25-7FF6-46DE-9DA5-3E78E99B9E26-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -649,7 +677,8 @@
     "id": "180DC032-89D5-4063-B8C8-C2F48959FA69",
     "name": "Outliers: The Story of Success",
     "type": "book",
-    "surface": "Outliers"
+    "surface": "Outliers",
+    "image": "https://images.qloo.com/i/180DC032-89D5-4063-B8C8-C2F48959FA69-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -670,7 +699,8 @@
     "id": "79EC0AC2-1AB8-4B7B-944E-28E747CDF996",
     "name": "Hoop Dreams",
     "type": "movie",
-    "surface": "Hoop Dreams"
+    "surface": "Hoop Dreams",
+    "image": "https://images.qloo.com/i/79EC0AC2-1AB8-4B7B-944E-28E747CDF996-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -691,7 +721,8 @@
     "id": "65EAC55F-6FDC-452D-A633-A9E9F2BBD45E",
     "name": "Succession",
     "type": "tv_show",
-    "surface": "Succession"
+    "surface": "Succession",
+    "image": "https://images.qloo.com/i/65EAC55F-6FDC-452D-A633-A9E9F2BBD45E-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -712,7 +743,8 @@
     "id": "2503676D-2169-4392-A311-6C04655FCB9F",
     "name": "Rounders",
     "type": "movie",
-    "surface": "Rounders"
+    "surface": "Rounders",
+    "image": "https://images.qloo.com/i/2503676D-2169-4392-A311-6C04655FCB9F-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -733,13 +765,15 @@
     "id": "611A80EB-E05C-4391-9225-602E96256BEA",
     "name": "DraftKings",
     "type": "brand",
-    "surface": "DraftKings"
+    "surface": "DraftKings",
+    "image": "https://images.qloo.com/i/611A80EB-E05C-4391-9225-602E96256BEA-420x-auto.jpg"
    },
    {
     "id": "9E65EACE-19B1-446B-ABE3-713CCA8D37C7",
     "name": "New York Knicks",
     "type": "brand",
-    "surface": "New York Knicks"
+    "surface": "New York Knicks",
+    "image": "https://images.qloo.com/i/9E65EACE-19B1-446B-ABE3-713CCA8D37C7-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -760,7 +794,8 @@
     "id": "9CCE73AF-859A-4E23-981F-E7A102241E74",
     "name": "Free Solo",
     "type": "movie",
-    "surface": "Free Solo"
+    "surface": "Free Solo",
+    "image": "https://images.qloo.com/i/9CCE73AF-859A-4E23-981F-E7A102241E74-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -781,7 +816,8 @@
     "id": "CA99CE99-6719-478C-A023-A8A39BF78218",
     "name": "Fear and Loathing in Las Vegas",
     "type": "movie",
-    "surface": "Fear and Loathing in Las Vegas"
+    "surface": "Fear and Loathing in Las Vegas",
+    "image": "https://images.qloo.com/i/CA99CE99-6719-478C-A023-A8A39BF78218-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -802,7 +838,8 @@
     "id": "24A2FD28-FC76-4CCD-AC43-A015B539DBAA",
     "name": "Uncut Gems",
     "type": "movie",
-    "surface": "Uncut Gems"
+    "surface": "Uncut Gems",
+    "image": "https://images.qloo.com/i/24A2FD28-FC76-4CCD-AC43-A015B539DBAA-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -823,13 +860,15 @@
     "id": "A84909FD-2101-4A21-8947-04378A167B28",
     "name": "FanDuel",
     "type": "brand",
-    "surface": "FanDuel"
+    "surface": "FanDuel",
+    "image": "https://images.qloo.com/i/A84909FD-2101-4A21-8947-04378A167B28-420x-auto.jpg"
    },
    {
     "id": "9EF3B4AA-C638-4930-B673-0A930A4063AD",
     "name": "National Basketball Association",
     "type": "brand",
-    "surface": "NBA"
+    "surface": "NBA",
+    "image": "https://images.qloo.com/i/9EF3B4AA-C638-4930-B673-0A930A4063AD-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -850,7 +889,8 @@
     "id": "ADDB9A06-A6D0-4174-AEB7-4D3757876E2F",
     "name": "Dopesick",
     "type": "tv_show",
-    "surface": "Dopesick"
+    "surface": "Dopesick",
+    "image": "https://images.qloo.com/i/ADDB9A06-A6D0-4174-AEB7-4D3757876E2F-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -871,7 +911,8 @@
     "id": "2E59248F-D17A-410F-9271-5E39AB7FF38C",
     "name": "Requiem for a Dream",
     "type": "movie",
-    "surface": "Requiem for a Dream"
+    "surface": "Requiem for a Dream",
+    "image": "https://images.qloo.com/i/2E59248F-D17A-410F-9271-5E39AB7FF38C-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -892,7 +933,8 @@
     "id": "9BCABE41-D838-4878-A6D5-9878622AD3FF",
     "name": "Irobot",
     "type": "brand",
-    "surface": "Roomba"
+    "surface": "Roomba",
+    "image": "https://images.qloo.com/i/9BCABE41-D838-4878-A6D5-9878622AD3FF-420x-auto.jpg"
    }
   ],
   "unresolved": [
@@ -922,7 +964,8 @@
     "id": "4F8EBD51-46DB-4527-BC61-75B56472A50E",
     "name": "Her",
     "type": "movie",
-    "surface": "Her"
+    "surface": "Her",
+    "image": "https://images.qloo.com/i/4F8EBD51-46DB-4527-BC61-75B56472A50E-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -943,7 +986,8 @@
     "id": "4042DEAC-EDA5-43FE-8A64-0A200E535EE9",
     "name": "Fitbit",
     "type": "brand",
-    "surface": "Fitbit"
+    "surface": "Fitbit",
+    "image": "https://images.qloo.com/i/4042DEAC-EDA5-43FE-8A64-0A200E535EE9-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -964,13 +1008,15 @@
     "id": "DBCCA6B1-07FB-4941-9028-BF64D8F53E1E",
     "name": "Star Trek: The Next Generation",
     "type": "tv_show",
-    "surface": "Star Trek: The Next Generation"
+    "surface": "Star Trek: The Next Generation",
+    "image": "https://images.qloo.com/i/DBCCA6B1-07FB-4941-9028-BF64D8F53E1E-420x-auto.jpg"
    },
    {
     "id": "9847B888-65A3-404C-82DB-80F37DB5DF59",
     "name": "Sonos",
     "type": "brand",
-    "surface": "Sonos"
+    "surface": "Sonos",
+    "image": "https://images.qloo.com/i/9847B888-65A3-404C-82DB-80F37DB5DF59-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -991,13 +1037,15 @@
     "id": "D5B78065-6DBB-4DDB-80DF-6495B9B1006B",
     "name": "Apple Inc",
     "type": "brand",
-    "surface": "Apple"
+    "surface": "Apple",
+    "image": "https://images.qloo.com/i/D5B78065-6DBB-4DDB-80DF-6495B9B1006B-420x-auto.jpg"
    },
    {
     "id": "B36C968C-63BF-49C2-A031-3974337D9ABB",
     "name": "Black Mirror",
     "type": "tv_show",
-    "surface": "Black Mirror"
+    "surface": "Black Mirror",
+    "image": "https://images.qloo.com/i/B36C968C-63BF-49C2-A031-3974337D9ABB-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -1018,7 +1066,8 @@
     "id": "B776A6C0-4BD5-4773-A5FC-266FF59932FB",
     "name": "1984",
     "type": "book",
-    "surface": "1984"
+    "surface": "1984",
+    "image": "https://images.qloo.com/i/B776A6C0-4BD5-4773-A5FC-266FF59932FB-420x-auto.jpg"
    }
   ],
   "unresolved": [
@@ -1044,7 +1093,8 @@
     "id": "590C5023-F298-4F4A-9EF6-AF10056EAB3D",
     "name": "Watch Dogs",
     "type": "videogame",
-    "surface": "Watch Dogs"
+    "surface": "Watch Dogs",
+    "image": "https://images.qloo.com/i/590C5023-F298-4F4A-9EF6-AF10056EAB3D-420x-auto.jpg"
    }
   ],
   "unresolved": [],
@@ -1065,19 +1115,22 @@
     "id": "1758263A-DD6D-4340-AC78-84152A79B46A",
     "name": "Minority Report",
     "type": "movie",
-    "surface": "Minority Report"
+    "surface": "Minority Report",
+    "image": "https://images.qloo.com/i/1758263A-DD6D-4340-AC78-84152A79B46A-420x-auto.jpg"
    },
    {
     "id": "65A09DC2-D086-4DD0-B1EF-9123CBEA83EA",
     "name": "Signal",
     "type": "brand",
-    "surface": "Signal"
+    "surface": "Signal",
+    "image": "https://images.qloo.com/i/65A09DC2-D086-4DD0-B1EF-9123CBEA83EA-420x-auto.jpg"
    },
    {
     "id": "6C240A78-8A9A-4CEF-AE25-B33DFD60A2C9",
     "name": "DuckDuckGo",
     "type": "brand",
-    "surface": "DuckDuckGo"
+    "surface": "DuckDuckGo",
+    "image": "https://images.qloo.com/i/6C240A78-8A9A-4CEF-AE25-B33DFD60A2C9-420x-auto.jpg"
    }
   ],
   "unresolved": [],

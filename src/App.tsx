@@ -76,7 +76,13 @@ export function App() {
   return (
     <div className={`shell shell-${mode}`}>
       <header className="topbar">
-        <h1 className="wordmark">Bridge Feed</h1>
+        <h1 className="wordmark">
+          <svg viewBox="0 0 32 20" aria-hidden>
+            <path d="M1 15 C 10 -3, 22 -3, 31 15" />
+            <path d="M1 17 H31" />
+          </svg>
+          Bridge Feed
+        </h1>
         <div className="mode" role="group" aria-label="Feed type">
           <button aria-pressed={mode === 'typical'} onClick={() => setMode('typical')}>
             Your bubble

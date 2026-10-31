@@ -370,7 +370,15 @@ export function createAgent(options: AgentOptions) {
                 ? hits.map((h) => h.name).join(', ')
                 : 'No candidates. The agent can retry or drop it.',
             });
-            return { reference, candidates: hits };
+            return {
+              reference,
+              candidates: hits.map(({ id, name, type, description }) => ({
+                id,
+                name,
+                type,
+                description,
+              })),
+            };
           } catch {
             emit({ kind: 'error', provenance: 'Qloo', title: `Qloo search failed for “${query}”` });
             return { error: 'Qloo is unavailable. Drop this reference.' };
@@ -384,7 +392,13 @@ export function createAgent(options: AgentOptions) {
           if (!hit) return { error: 'Link only an entity_id returned by a search in this run.' };
           if (!contains(reference)) return { error: 'That reference does not appear in the post.' };
           if (linked.some((e) => e.id === hit.id)) return { linked: true, duplicate: true };
-          linked.push({ id: hit.id, name: hit.name, type: hit.type, surface: reference });
+          linked.push({
+            id: hit.id,
+            name: hit.name,
+            type: hit.type,
+            surface: reference,
+            ...(hit.image ? { image: hit.image } : {}),
+          });
           emit({
             kind: 'link',
             provenance: 'Qloo',

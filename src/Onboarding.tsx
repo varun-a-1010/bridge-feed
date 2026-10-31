@@ -12,7 +12,9 @@ import {
 } from '../shared/model';
 import { searchEntities, type Bootstrap } from './api';
 import { Carousel } from './Carousel';
+import { shortName } from './names';
 import { Scale } from './Scale';
+import { EntityImage, HeroBridge } from './Visuals';
 
 const MAX_INTERESTS = 6;
 
@@ -49,107 +51,113 @@ export function Onboarding({
 
   return (
     <main className="onboarding">
-      <header className="intro">
-        <h1>
-          Other platforms keep you in your bubble. This one uses what you love to get you out.
-        </h1>
-        <p>
-          Most social platforms learn what you like and keep showing you people who agree with you.
-          Bridge Feed is a prototype of one built the other way around: it brings you views you
-          disagree with, and reaches you through the culture you already share.
-        </p>
-        <p>Score where you stand, read, then rate again and see if anything moved.</p>
+      <header className="hero">
+        <div className="hero-copy">
+          <p className="brand">Bridge Feed</p>
+          <h1>
+            Other platforms keep you in your bubble. This one uses what you love to get you out.
+          </h1>
+          <p>
+            Most social platforms learn what you like and keep showing you people who agree with
+            you. Bridge Feed is a prototype of one built the other way around: it brings you views
+            you disagree with, and reaches you through the culture you already share.
+          </p>
+        </div>
+        {bootstrap.hero && <HeroBridge hero={bootstrap.hero} />}
       </header>
 
-      {bootstrap.presets.length > 0 && step === 1 && (
-        <div className="presets">
-          <Carousel title="Start as a sample reader">
-            {bootstrap.presets.map((preset) => (
-              <PresetCard key={preset.id} preset={preset} onPick={onDone} />
-            ))}
-          </Carousel>
-          <p className="or">Or build your own in two steps.</p>
-        </div>
-      )}
-
-      {step === 1 ? (
-        <section className="step" aria-labelledby="step-one">
-          <h2 id="step-one">Where do you stand?</h2>
-          <p className="hint">
-            Score at least two topics. Each number means something specific, so read it before you
-            choose. You can rate again after reading your feed.
-          </p>
-          <div className="scales">
-            {TOPICS.map((topic) => (
-              <Scale
-                key={topic.id}
-                topic={topic}
-                value={scores[topic.id]}
-                onChange={(score) => setScores((s) => ({ ...s, [topic.id as Topic]: score }))}
-              />
-            ))}
-          </div>
-          <button className="primary" disabled={chosen < 2} onClick={() => setStep(2)}>
-            Choose interests
-          </button>
-        </section>
-      ) : (
-        <section className="step" aria-labelledby="step-two">
-          <h2 id="step-two">What are you actually into?</h2>
-          <p className="hint">
-            Pick up to {MAX_INTERESTS}. These go to Qloo as entity IDs. Your scores never do.
-          </p>
-          <EntitySearch selected={interests} onPick={toggle} />
-          <div className="catalog">
-            {groups.map(({ label, items }) => (
-              <div key={label} className="catalog-row">
-                <h3>{label}</h3>
-                <div className="chips">
-                  {items.map((item) => (
-                    <button
-                      key={item.id}
-                      className="chip"
-                      aria-pressed={interests.some((i) => i.id === item.id)}
-                      onClick={() => toggle(item)}
-                    >
-                      {shortName(item.name)}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-          {interests.length > 0 && (
-            <ul className="picked" aria-label="Your interests">
-              {interests.map((item) => (
-                <li key={item.id}>
-                  {shortName(item.name)}
-                  <button aria-label={`Remove ${item.name}`} onClick={() => toggle(item)}>
-                    <X size={14} aria-hidden />
-                  </button>
-                </li>
+      <div className="onboarding-body">
+        {bootstrap.presets.length > 0 && step === 1 && (
+          <div className="presets">
+            <Carousel title="Start as a sample reader">
+              {bootstrap.presets.map((preset) => (
+                <PresetCard key={preset.id} preset={preset} onPick={onDone} />
               ))}
-            </ul>
-          )}
-          <div className="actions">
-            <button className="quiet" onClick={() => setStep(1)}>
-              Back
-            </button>
-            <button
-              className="primary"
-              disabled={interests.length < 2}
-              onClick={() =>
-                onDone({
-                  scores,
-                  interests: interests.map(({ id, name, type }) => ({ id, name, type })),
-                })
-              }
-            >
-              Build my feed
-            </button>
+            </Carousel>
+            <p className="or">Or build your own in two steps.</p>
           </div>
-        </section>
-      )}
+        )}
+
+        {step === 1 ? (
+          <section className="step" aria-labelledby="step-one">
+            <h2 id="step-one">Where do you stand?</h2>
+            <p className="hint">
+              Score at least two topics. Each number means something specific, so read it before you
+              choose. You can rate again after reading your feed.
+            </p>
+            <div className="scales">
+              {TOPICS.map((topic) => (
+                <Scale
+                  key={topic.id}
+                  topic={topic}
+                  value={scores[topic.id]}
+                  onChange={(score) => setScores((s) => ({ ...s, [topic.id as Topic]: score }))}
+                />
+              ))}
+            </div>
+            <button className="primary" disabled={chosen < 2} onClick={() => setStep(2)}>
+              Choose interests
+            </button>
+          </section>
+        ) : (
+          <section className="step" aria-labelledby="step-two">
+            <h2 id="step-two">What are you actually into?</h2>
+            <p className="hint">
+              Pick up to {MAX_INTERESTS}. These go to Qloo as entity IDs. Your scores never do.
+            </p>
+            <EntitySearch selected={interests} onPick={toggle} />
+            <div className="catalog">
+              {groups.map(({ label, items }) => (
+                <div key={label} className="catalog-row">
+                  <h3>{label}</h3>
+                  <div className="chips">
+                    {items.map((item) => (
+                      <button
+                        key={item.id}
+                        className="chip"
+                        aria-pressed={interests.some((i) => i.id === item.id)}
+                        onClick={() => toggle(item)}
+                      >
+                        <EntityImage entity={item} />
+                        {shortName(item.name)}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+            {interests.length > 0 && (
+              <ul className="picked" aria-label="Your interests">
+                {interests.map((item) => (
+                  <li key={item.id}>
+                    {shortName(item.name)}
+                    <button aria-label={`Remove ${item.name}`} onClick={() => toggle(item)}>
+                      <X size={14} aria-hidden />
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+            <div className="actions">
+              <button className="quiet" onClick={() => setStep(1)}>
+                Back
+              </button>
+              <button
+                className="primary"
+                disabled={interests.length < 2}
+                onClick={() =>
+                  onDone({
+                    scores,
+                    interests: interests.map(({ id, name, type }) => ({ id, name, type })),
+                  })
+                }
+              >
+                Build my feed
+              </button>
+            </div>
+          </section>
+        )}
+      </div>
     </main>
   );
 }
@@ -160,6 +168,11 @@ function PresetCard({ preset, onPick }: { preset: Preset; onPick: (profile: Prof
       className="preset"
       onClick={() => onPick({ scores: preset.scores, interests: preset.interests })}
     >
+      <span className="preset-images" aria-hidden>
+        {preset.interests.map((interest) => (
+          <EntityImage key={interest.id} entity={interest} />
+        ))}
+      </span>
       <strong>{preset.name}</strong>
       <span>{preset.blurb}</span>
       <em>{preset.interests.map((i) => shortName(i.name)).join(', ')}</em>
@@ -241,9 +254,3 @@ function EntitySearch({
     </div>
   );
 }
-
-export const shortName = (name: string) =>
-  name
-    .replace(/\s*\(.*\)$/, '')
-    .split(': ')[0]!
-    .trim();

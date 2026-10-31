@@ -5,12 +5,14 @@ import type {
   Entity,
   EntityType,
   FeedResponse,
+  Hero,
   Post,
   Preset,
   Profile,
 } from '../shared/model';
 
 export type Bootstrap = {
+  hero: Hero | null;
   interests: CatalogItem[];
   presets: Preset[];
   posts: number;
