@@ -36,7 +36,7 @@ An LLM can tell that two posts disagree. It cannot discover which of millions of
 are worth following. In Bridge Feed, only Qloo can propose a bridge, by ranking what a post mentions
 for one thing you love. A shared word cannot: a literal match alone never creates one. Gemini then
 reviews each link and can only remove it, so Qloo stays the source and every bridge you see carries a
-plain reason, like "Both explore a gritty underworld of crime, gambling, risk, and antiheroes."
+plain reason, like "Both explore intimacy, technology, and longing with a tender, futuristic sensibility."
 
 ## How we built it
 
@@ -44,8 +44,9 @@ plain reason, like "Both explore a gritty underworld of crime, gambling, risk, a
   spelling, reject a doubtful match, test reach, finish. The server enforces the rules the model cannot break.
 - **Qloo:** `/search` resolves entities, and `/v2/insights` ranks candidates for one interest at a
   time. Blended signals washed taste out in testing, while single signals separated it clearly.
-- **Reliability:** Gemini 4 Argon handles the critical judgment, with a chain of Flash models behind
-  it, so a rate limit on any model delays a post instead of breaking it.
+- **Reliability:** Gemini 4 Argon handles the critical judgment. A failed call tries the same model
+  on a second Vertex project, then a chain of Flash models, so a rate limit delays a post instead of
+  breaking it.
 - **Stack:** TypeScript, Fastify and React, with automated tests for every rule above.
 
 ## Challenges
@@ -61,9 +62,11 @@ like something a friend would say.
 
 ## Accomplishments
 
-84 sample posts went through the real agent, and positions matched the side we wrote them for, with
-one exception where the agent was right and we were wrong: a director using AI only for rough
-storyboards belongs near the skeptical end, which a yes or no label would have missed.
+84 sample posts went through the real agent, and every position landed on the side we wrote it for.
+An earlier run also corrected one of our own labels: a director using AI only for rough storyboards
+belongs near the skeptical end, which a yes or no label had wrong.
+
+All eight sample readers get real bridges, and the reasons read like something a person would say.
 
 ## What we learned
 
