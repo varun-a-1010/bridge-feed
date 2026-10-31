@@ -73,11 +73,14 @@ export function ScoreLine({
   you,
   them,
   name,
+  self = 'You',
 }: {
   topic: string | null;
   you: number;
   them: number;
   name: string;
+  /** Whose score "you" is: the visitor, or the sample reader they are viewing as. */
+  self?: string;
 }) {
   const found = topicOf(topic);
   const first = name.split(' ')[0];
@@ -85,7 +88,7 @@ export function ScoreLine({
     <div
       className="score-line"
       role="img"
-      aria-label={`On ${found?.label}, you lean ${leanFor(topic, you)} and ${first} leans ${leanFor(topic, them)}.`}
+      aria-label={`On ${found?.label}, ${self === 'You' ? 'you lean' : `${self} leans`} ${leanFor(topic, you)} and ${first === 'You' ? 'you lean' : `${first} leans`} ${leanFor(topic, them)}.`}
     >
       <div className="score-track">
         <span
@@ -100,7 +103,7 @@ export function ScoreLine({
         <span>{found?.high}</span>
       </div>
       <p className="score-key">
-        <i className="key-you" /> You <i className="key-them" /> {first}
+        <i className="key-you" /> {self} <i className="key-them" /> {first}
       </p>
     </div>
   );

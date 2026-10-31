@@ -194,6 +194,7 @@ export function App() {
           <FeedView
             feed={feed}
             filling={filling}
+            reader={viewing}
             mode={mode}
             profile={profile}
             onRate={viewing ? undefined : () => setPanel('rate')}

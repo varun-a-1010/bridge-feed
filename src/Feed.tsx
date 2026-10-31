@@ -82,7 +82,20 @@ function Why({ item }: { item: FeedItem & { evidence: NonNullable<FeedItem['evid
   );
 }
 
-function Card({ item, onRemove }: { item: FeedItem; onRemove?: (id: string) => void }) {
+/** Whose feed this is. Viewing a sample reader speaks about them, never as "you". */
+type Voice = { name?: string };
+const them = (v: Voice) => v.name ?? 'you';
+const They = (v: Voice) => v.name ?? 'You';
+
+function Card({
+  item,
+  onRemove,
+  voice = {},
+}: {
+  item: FeedItem;
+  onRemove?: (id: string) => void;
+  voice?: Voice;
+}) {
   const [open, setOpen] = useState(false);
   const { post, evidence, kind } = item;
   return (
@@ -97,7 +110,7 @@ function Card({ item, onRemove }: { item: FeedItem; onRemove?: (id: string) => v
               : post.source === 'generated'
                 ? `Simulated post, written by Gemini, ${when(post.createdAt)}`
                 : post.source === 'peer'
-                  ? 'Your post, as this reader sees it'
+                  ? `Your post, as ${voice.name ?? 'this reader'} sees it`
                   : 'Your post'}
           </span>
         </div>
@@ -128,10 +141,14 @@ function Card({ item, onRemove }: { item: FeedItem; onRemove?: (id: string) => v
           </span>
         )}
         {kind === 'bridge' && item.gap !== undefined && (
-          <span className="differs">{distanceLabel(item.gap)} from you</span>
+          <span className="differs">
+            {distanceLabel(item.gap)} from {them(voice)}
+          </span>
         )}
         {item.literal.length > 0 && (
-          <span className="topic">You also named {item.literal.map(shortName).join(', ')}</span>
+          <span className="topic">
+            {They(voice)} also named {item.literal.map(shortName).join(', ')}
+          </span>
         )}
         {onRemove && (
           <button className="link remove-post" onClick={() => onRemove(post.id)}>
@@ -142,7 +159,7 @@ function Card({ item, onRemove }: { item: FeedItem; onRemove?: (id: string) => v
       {evidence && (
         <>
           <button className="why-toggle" aria-expanded={open} onClick={() => setOpen(!open)}>
-            Why this reached you
+            Why this reached {them(voice)}
             <ChevronDown size={15} aria-hidden className={open ? 'flip' : ''} />
           </button>
           {open && <Why item={{ ...item, evidence }} />}
@@ -152,7 +169,7 @@ function Card({ item, onRemove }: { item: FeedItem; onRemove?: (id: string) => v
   );
 }
 
-function Crossing({ item, profile }: { item: FeedItem; profile: Profile }) {
+function Crossing({ item, profile, voice }: { item: FeedItem; profile: Profile; voice: Voice }) {
   const { post, evidence } = item;
   const yours = profile.scores[post.topic as Topic];
   return (
@@ -161,18 +178,25 @@ function Crossing({ item, profile }: { item: FeedItem; profile: Profile }) {
         <div className="near">
           <EntityImage entity={evidence!.interest} className="near-image" />
           <p>
-            Because you like <strong>{shortName(evidence!.interest.name)}</strong>
+            Because {voice.name ? `${voice.name} likes` : 'you like'}{' '}
+            <strong>{shortName(evidence!.interest.name)}</strong>
           </p>
           {evidence!.reason && <p className="link-reason">{evidence!.reason}</p>}
           {yours !== undefined && post.position !== null && (
-            <ScoreLine topic={post.topic} you={yours} them={post.position} name={post.author} />
+            <ScoreLine
+              topic={post.topic}
+              you={yours}
+              them={post.position}
+              self={They(voice)}
+              name={post.source === 'peer' ? 'You' : post.author}
+            />
           )}
         </div>
         <svg className="cable" viewBox="0 0 120 60" preserveAspectRatio="none" aria-hidden>
           <path d="M0 30 C 40 2, 80 2, 120 30" />
         </svg>
         <div className="far">
-          <Card item={item} />
+          <Card item={item} voice={voice} />
         </div>
       </div>
     </li>
@@ -186,15 +210,19 @@ export function FeedView({
   onRate,
   onRemove,
   filling,
+  reader,
 }: {
   feed: Feed;
   mode: 'typical' | 'bridge';
   profile: Profile;
   filling?: boolean;
+  /** The sample reader being viewed, if this is not the visitor's own feed. */
+  reader?: string;
   onRate?: () => void;
   onRemove?: (id: string) => void;
 }) {
   const items = mode === 'bridge' ? feed.bridge : feed.typical;
+  const voice: Voice = { name: reader };
   const { stats } = feed;
   const recorded = feed.receipts.find((r) => r.source === 'recorded');
   return (
@@ -202,12 +230,16 @@ export function FeedView({
       {mode === 'bridge' ? (
         <p className="summary">
           {stats.shown === 0
-            ? 'Nothing from outside your bubble cleared the bar, so nothing was forced in. Try different interests.'
-            : `${stats.shown} ${stats.shown === 1 ? 'post' : 'posts'} reached you from outside your bubble, out of ${stats.opposing} that disagree with you. Each one connects to something you love.`}
+            ? `Nothing from outside ${voice.name ? 'their' : 'your'} bubble cleared the bar, so nothing was forced in. Try different interests.`
+            : voice.name
+              ? `${stats.shown} ${stats.shown === 1 ? 'post' : 'posts'} reached ${voice.name} from outside their bubble, out of ${stats.opposing} that disagree with them. Each one connects to something they love.`
+              : `${stats.shown} ${stats.shown === 1 ? 'post' : 'posts'} reached you from outside your bubble, out of ${stats.opposing} that disagree with you. Each one connects to something you love.`}
         </p>
       ) : (
         <p className="summary">
-          This is your bubble, ranked the way most platforms would: closest to your scores first.{' '}
+          {voice.name
+            ? `This is ${voice.name}’s bubble, ranked the way most platforms would: closest to their scores first.`
+            : 'This is your bubble, ranked the way most platforms would: closest to your scores first.'}{' '}
           {stats.opposing}{' '}
           {stats.opposing === 1 ? 'post that disagrees stays' : 'posts that disagree stay'} out of
           sight.
@@ -233,10 +265,14 @@ export function FeedView({
       <ol className={`feed feed-${mode}`}>
         {items.map((item) =>
           mode === 'bridge' && item.kind === 'bridge' ? (
-            <Crossing key={item.post.id} item={item} profile={profile} />
+            <Crossing key={item.post.id} item={item} profile={profile} voice={voice} />
           ) : (
             <li key={item.post.id} className="row">
-              <Card item={item} onRemove={item.kind === 'mine' ? onRemove : undefined} />
+              <Card
+                item={item}
+                voice={voice}
+                onRemove={item.kind === 'mine' ? onRemove : undefined}
+              />
             </li>
           ),
         )}
@@ -254,9 +290,10 @@ export function FeedView({
       )}
       <footer className="fine-print">
         <p>
-          Your interests: {profile.interests.map((i) => shortName(i.name)).join(', ')}. Sample posts
-          are by fictional authors, and each score is read from the post by Gemini. Qloo rankings
-          show cultural association, not anyone’s beliefs.
+          {voice.name ? `${voice.name}’s interests` : 'Your interests'}:{' '}
+          {profile.interests.map((i) => shortName(i.name)).join(', ')}. Sample posts are by
+          fictional authors, and each score is read from the post by Gemini. Qloo rankings show
+          cultural association, not anyone’s beliefs.
           {recorded &&
             ` Rankings recorded from Qloo on ${new Date(recorded.retrievedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}.`}
         </p>
