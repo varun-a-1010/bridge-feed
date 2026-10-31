@@ -54,7 +54,7 @@ function Why({ item }: { item: FeedItem & { evidence: NonNullable<FeedItem['evid
         <dt>From the post itself, read by Gemini</dt>
         <dd>
           It scores {post.position} on {topicOf(post.topic)?.label}, closest to “
-          {tierFor(post.topic, post.position ?? 50)}”. Confidence {post.confidence.toFixed(2)}.
+          {tierFor(post.topic, post.position ?? 50)}” Confidence {post.confidence.toFixed(2)}.
         </dd>
       </div>
       <div>
@@ -166,7 +166,7 @@ function Crossing({ item, profile }: { item: FeedItem; profile: Profile }) {
           )}
         </div>
         <svg className="cable" viewBox="0 0 120 60" preserveAspectRatio="none" aria-hidden>
-          <path d="M0 30 C 40 2, 80 2, 120 30" pathLength={1} />
+          <path d="M0 30 C 40 2, 80 2, 120 30" />
         </svg>
         <div className="far">
           <Card item={item} />

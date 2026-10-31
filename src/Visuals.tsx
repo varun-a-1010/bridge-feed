@@ -91,11 +91,14 @@ export function HeroBridge({ hero }: { hero: Hero }) {
           ))}
           <line className="tower" x1="240" y1="30" x2="240" y2="260" />
           <line className="tower" x1="960" y1="30" x2="960" y2="260" />
-          <path
-            className="main-cable"
-            d="M0 130 L240 40 Q600 300 960 40 L1200 130"
-            pathLength={1}
-          />
+        </svg>
+        <svg
+          className="hero-cable"
+          viewBox={`0 0 ${WIDTH} 260`}
+          preserveAspectRatio="none"
+          aria-hidden
+        >
+          <path className="main-cable" d="M0 130 L240 40 Q600 300 960 40 L1200 130" />
         </svg>
         <div className="hero-end near-end">
           <EntityImage entity={hero.interest} />

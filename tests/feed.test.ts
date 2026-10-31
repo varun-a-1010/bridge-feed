@@ -104,6 +104,13 @@ describe('bridge eligibility', () => {
     expect(strongestEvidence(post('1'), profile, [other, mine])?.interest.name).toBe('Radiohead');
   });
 
+  it('does not bridge on a destination, however high it ranks', () => {
+    const city = post('1', {
+      entities: [{ id: 'E1', name: 'Kyoto', type: 'destination', surface: 'Post 1' }],
+    });
+    expect(strongestEvidence(city, profile, [rank('E1')])).toBeUndefined();
+  });
+
   it('prefers the rarer rank across different pool sizes', () => {
     const interest = { ...profile };
     const strong = post('1', {

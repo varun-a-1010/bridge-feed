@@ -10,6 +10,8 @@
   for nearly everyone. Rebuilt all sample posts through the agent.
 - Repositioned the product as a prototype of a social platform built against the bubble. Renamed
   the Typical feed to Your bubble, and moved sample readers into a single-row carousel.
+- Stopped destinations from creating bridges, and redrew both cables with a clip reveal, because the
+  dash technique cut them short once the line was stretched.
 - Paced all Qloo requests after every custom reader lost one or two lookups to rate limits, and
   moved the notice to Bridge feed, the only place it matters.
 - A post now reaches simulated readers built from the catalog, because almost no post connected to

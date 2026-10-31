@@ -28,6 +28,9 @@ meaningless: with four games in the feed, something has to be #1.
 
 An entity Qloo omits from a response counts as no evidence. It is never filled in.
 
+Destinations never create a bridge. Their pool is mostly US cities, so any international city ranked
+first for almost any interest, and Qloo has no images for them.
+
 ## Control check
 
 A re-ranking always returns an order, so a high rank alone can just mean something is popular. The

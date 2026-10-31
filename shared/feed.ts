@@ -40,7 +40,8 @@ export function strongestEvidence(
   const held = ranks.filter((r) => selected.has(r.interestId));
   let best: Evidence | undefined;
   for (const entity of post.entities) {
-    if (selected.has(entity.id)) continue;
+    // The destination pool is thin, so any far-off city ranks first for almost anyone.
+    if (selected.has(entity.id) || entity.type === 'destination') continue;
     const rows = held
       .filter(
         (r) =>

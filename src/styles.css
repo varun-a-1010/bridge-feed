@@ -199,8 +199,11 @@ button:disabled {
 .main-cable {
   stroke: var(--span);
   stroke-width: 4;
-  stroke-dasharray: 1;
-  animation: draw 1.4s ease-out both;
+}
+
+/* Revealed with a clip: dash lengths are wrong on a stretched non-scaling stroke. */
+.hero-cable {
+  animation: reveal 1.4s ease-out both;
 }
 
 .hero-end {
@@ -830,6 +833,7 @@ legend {
   width: 100%;
   height: 70px;
   overflow: visible;
+  animation: reveal 0.7s ease-out both;
 }
 
 .cable path {
@@ -837,15 +841,16 @@ legend {
   stroke: var(--span);
   stroke-width: 4;
   stroke-linecap: round;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 0;
   vector-effect: non-scaling-stroke;
-  animation: draw 0.7s ease-out both;
 }
 
-@keyframes draw {
+@keyframes reveal {
   from {
-    stroke-dashoffset: 1;
+    clip-path: inset(-12px 100% -12px 0);
+  }
+
+  to {
+    clip-path: inset(-12px 0 -12px 0);
   }
 }
 
@@ -1403,8 +1408,8 @@ fieldset.scale {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cable path,
-  .main-cable {
+  .cable,
+  .hero-cable {
     animation: none;
   }
 }
