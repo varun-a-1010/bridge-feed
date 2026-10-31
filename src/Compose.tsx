@@ -155,8 +155,9 @@ export function Compose({
               {bridges.length > 0 ? (
                 <>
                   <p className="outcome-lead">
-                    It could reach {bridges.length} {bridges.length === 1 ? 'person' : 'people'} who
-                    disagree with you.
+                    It could reach {bridges.length}{' '}
+                    {bridges.length === 1 ? 'person who disagrees' : 'people who disagree'} with
+                    you.
                   </p>
                   <ul className="reach">
                     {bridges.map((r) => {
