@@ -22,6 +22,7 @@ export type Feed = FeedResponse & { failedQueries: number };
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(path, {
+    signal: AbortSignal.timeout(90_000),
     ...init,
     headers: init?.body ? { 'content-type': 'application/json' } : undefined,
   });

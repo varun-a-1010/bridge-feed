@@ -1936,5 +1936,50 @@
   ],
   "unresolved": [],
   "safety": "publish"
+ },
+ {
+  "id": "seed-87",
+  "source": "seed",
+  "author": "Carla M.",
+  "text": "Daisy Jones & the Six works because you believe real people wrote those songs in a room together. Generated music would never give me that, and labels should keep it off releases.",
+  "createdAt": "2026-10-27T16:38:00.000Z",
+  "topic": "ai_art",
+  "position": 20,
+  "confidence": 1,
+  "language": "en",
+  "entities": [
+   {
+    "id": "5A70C524-B860-4126-B175-85A2DA11851E",
+    "name": "Daisy Jones & The Six",
+    "type": "tv_show",
+    "surface": "Daisy Jones & the Six",
+    "image": "https://images.qloo.com/i/5A70C524-B860-4126-B175-85A2DA11851E-420x-auto.jpg",
+    "year": 2023
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-88",
+  "source": "seed",
+  "author": "Kofi A.",
+  "text": "Duran Duran made videos nobody had the budget or tools for, and it changed pop. If AI lets a kid in a bedroom do that today, I am all for it.",
+  "createdAt": "2026-10-27T15:51:00.000Z",
+  "topic": "ai_art",
+  "position": 70,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "D4703440-33E2-4723-9F79-9BE302C8276D",
+    "name": "Duran Duran",
+    "type": "artist",
+    "surface": "Duran Duran",
+    "image": "https://images.qloo.com/i/D4703440-33E2-4723-9F79-9BE302C8276D-420x-auto.jpg"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
  }
 ]

@@ -26,6 +26,7 @@ export type AppOptions = {
 
 /** Each fill is a few model calls, so generated posts have a daily ceiling too. */
 const MAX_DAILY_FILLS = 300;
+const FILL_TIMEOUT_MS = 30_000;
 const searchQuery = z.object({ q: z.string().trim().min(2).max(80) });
 const analyzeBody = z.object({ text: z.string().trim().min(12).max(500) });
 
@@ -144,7 +145,16 @@ export async function buildApp(options: AppOptions) {
       }
       if (!options.writer || fillsToday >= MAX_DAILY_FILLS) return { posts: [] };
       fillsToday++;
-      return { posts: await options.writer.write(profile, uncovered).catch(() => []) };
+      // A fill is extra. If it is slow or fails, the reader keeps the feed they already have.
+      const timeout = new Promise<[]>((done) => setTimeout(() => done([]), FILL_TIMEOUT_MS));
+      const posts = await Promise.race([
+        options.writer.write(profile, uncovered).catch((error) => {
+          request.log.warn({ error: String(error) }, 'Generated posts failed');
+          return [];
+        }),
+        timeout,
+      ]);
+      return { posts };
     },
   );
 

@@ -242,4 +242,28 @@ describe('api', () => {
       expect(response.statusCode).toBe(400);
     }
   });
+
+  it("keeps the reader's feed when generated posts fail", async () => {
+    const fill = {
+      profile: {
+        scores: { success: 20 },
+        interests: [{ id: 'F6013EAC-8F32-4080-B1ED-2BFABB9C706E', name: 'Bluey', type: 'tv_show' }],
+      },
+      uncovered: ['F6013EAC-8F32-4080-B1ED-2BFABB9C706E'],
+    };
+    const failing = {
+      write: vi.fn(async () => {
+        throw new Error('429');
+      }),
+    };
+    const app = await setup(undefined, { writer: failing });
+    const response = await app.inject({
+      method: 'POST',
+      url: '/api/fill',
+      headers,
+      payload: JSON.stringify(fill),
+    });
+    expect(response.statusCode).toBe(200);
+    expect(response.json()).toEqual({ posts: [] });
+  });
 });

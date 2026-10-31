@@ -58,7 +58,7 @@ Never claim that a work teaches or proves something it does not. Avoid the phras
 
 Works with side "across" must argue that topic's "across" stance. Works with side "near" must argue its "near" stance.
 
-Each post is 1 to 3 sentences, at most 260 characters, in the first person. It must sound like a real person talking, not an ad or an essay.
+Each post is 1 to 3 sentences, at most 260 characters, in the first person. It must sound like a real person talking, not an ad or an essay. Say the opinion in your own words. Never copy the stance sentence.
 - Name the work exactly as written in "name".
 - A reader must be able to tell which side the post is on.
 - Stay with what is widely known about the work. Do not cite specific scenes, lyrics, dates or facts you are unsure of.
@@ -233,7 +233,7 @@ export function createPostWriter(options: {
         });
         return written.parse(JSON.parse(response.text ?? ''));
       },
-      { sleep: options.sleep, timeoutMs: 20_000, passes: 2, deadlineMs: 30_000 },
+      { sleep: options.sleep, timeoutMs: 15_000, passes: 2, deadlineMs: 25_000 },
     );
     const now = Date.now();
     return value.posts.flatMap((post, index): Post[] => {

@@ -422,6 +422,131 @@ export const SEEDS: { author: string; side: 'low' | 'high'; text: string }[] = [
     side: 'high',
     text: 'Beautiful Boy shows what addiction does to a family. Nobody chooses that, and we should make these products much harder to get.',
   },
+  {
+    author: 'Rafael C.',
+    side: 'low',
+    text: 'Obi-Wan Kenobi had its flaws, but you could feel the craftspeople behind every set and costume. I do not want studios generating the next Star Wars from a prompt.',
+  },
+  {
+    author: 'Wren A.',
+    side: 'high',
+    text: 'Depeche Mode were the weird kids with synthesizers once, and people said that was not real music either. AI is the next instrument, and I want to hear what artists do with it.',
+  },
+  {
+    author: 'Carla M.',
+    side: 'low',
+    text: 'Daisy Jones & the Six works because you believe real people wrote those songs in a room together. Generated music would never give me that, and labels should keep it off releases.',
+  },
+  {
+    author: 'Kofi A.',
+    side: 'high',
+    text: 'Duran Duran made videos nobody had the budget or tools for, and it changed pop. If AI lets a kid in a bedroom do that today, I am all for it.',
+  },
+  {
+    author: 'Ingrid S.',
+    side: 'high',
+    text: 'Our Planet made it hard to look at a burger the same way. I have not eaten meat in a year, and I think we should all be moving that way.',
+  },
+  {
+    author: 'Darnell P.',
+    side: 'low',
+    text: 'Ugly Delicious is the best argument for eating everything. Smoking a brisket for fourteen hours with friends is culture, and I am not apologising for it.',
+  },
+  {
+    author: 'Hana K.',
+    side: 'high',
+    text: 'Eating Animals by Jonathan Safran Foer is the book that finally got me to stop. Factory farming is something we will all be embarrassed about.',
+  },
+  {
+    author: 'Ben O.',
+    side: 'low',
+    text: 'Salt Fat Acid Heat taught me to cook properly, meat included. Eating animals that were raised well is fine by me.',
+  },
+  {
+    author: 'Aoife D.',
+    side: 'low',
+    text: 'Peaky Blinders is full of people saying things you would never say at work, and that is the point. Adults can handle words. I do not want platforms deciding what is too offensive.',
+  },
+  {
+    author: 'Soo-ah P.',
+    side: 'high',
+    text: 'BLACKPINK fans watch the members get flooded with abuse every time they post. Platforms should take hate down fast, even when it is technically legal.',
+  },
+  {
+    author: 'Vince L.',
+    side: 'low',
+    text: 'The Sopranos would never get made if writers had to worry about offending someone. Let people say awful things and let the rest of us argue back.',
+  },
+  {
+    author: 'Lucía F.',
+    side: 'high',
+    text: 'Rosalía gets slurs in half her comment sections, in every language. Platforms should take hate speech down, even when it is legal.',
+  },
+  {
+    author: 'Kenji M.',
+    side: 'high',
+    text: 'Shōgun is a whole series about living under constant watch, where one overheard word can end you. I do not want my phone turning daily life into that. Tracking should be off by default.',
+  },
+  {
+    author: 'Nils B.',
+    side: 'low',
+    text: 'Strava knowing every route I ski and ride is the best part of it. If an app keeps my data secure, it can have it.',
+  },
+  {
+    author: 'Ruth E.',
+    side: 'high',
+    text: 'The Circle by Dave Eggers should be required reading. I turned off location history, ad tracking and every smart speaker after it.',
+  },
+  {
+    author: 'Tasha W.',
+    side: 'low',
+    text: 'My Fitbit knows my sleep better than I do, and I love it. I am happy for companies to hold my health data as long as they keep it secure.',
+  },
+  {
+    author: 'Greg H.',
+    side: 'low',
+    text: 'Full Swing shows golfers grinding on the range for hours nobody sees. In golf you cannot fake it. Effort decides almost everything.',
+  },
+  {
+    author: 'Grace Y.',
+    side: 'high',
+    text: 'Pachinko by Min Jin Lee shows four generations working brutally hard and still being held back. Where you start decides most of where you end up.',
+  },
+  {
+    author: 'Owen J.',
+    side: 'high',
+    text: 'Welcome to Wrexham is lovely, but let us be honest: the club only rose because two Hollywood stars bought it. Money and connections explain most success.',
+  },
+  {
+    author: 'Nadia R.',
+    side: 'low',
+    text: 'Bird by Bird is the only career advice I trust: show up and write badly every day. Talent is overrated, and the work decides almost everything.',
+  },
+  {
+    author: 'Min-seo K.',
+    side: 'low',
+    text: 'BTS trained for years before anyone outside Korea knew their names. People call that luck, but it was work.',
+  },
+  {
+    author: 'Frankie D.',
+    side: 'low',
+    text: 'High Stakes Poker is the best show on television. Adults should be free to gamble their own money, and it is nobody else’s business.',
+  },
+  {
+    author: 'Elena V.',
+    side: 'high',
+    text: 'Narcos made it clear what unregulated drugs do to whole countries. Some things are too dangerous to leave to personal choice.',
+  },
+  {
+    author: 'June A.',
+    side: 'low',
+    text: 'Stevie Nicks lived through every excess going and still wrote songs nobody else could. Adults should be free to make their own choices, even bad ones.',
+  },
+  {
+    author: 'Tom B.',
+    side: 'high',
+    text: 'The Lord of the Rings is a whole book about something too dangerous for anyone to hold. Hard drugs are like that. Ban them, even for adults.',
+  },
 ];
 
 /** Suggested onboarding interests. Most are absent from the posts, so bridges have to be earned. */

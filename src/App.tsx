@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Gauge, PenLine } from 'lucide-react';
 import type { Post, Preset, Profile } from '../shared/model';
 import { fillFeed, getBootstrap, getFeed, loadSaved, save, type Bootstrap, type Feed } from './api';
@@ -14,7 +14,8 @@ export function App() {
   const [baseline, setBaseline] = useState<Profile['scores']>(saved.baseline ?? {});
   const [posts, setPosts] = useState<Post[]>(saved.posts ?? []);
   const [feed, setFeed] = useState<Feed>();
-  const [generated, setGenerated] = useState<Post[]>([]);
+  const generated = useRef<Post[]>([]);
+  const loads = useRef(0);
   const [filling, setFilling] = useState(false);
   const [mode, setMode] = useState<'typical' | 'bridge'>('typical');
   const [viewing, setViewing] = useState<string>();
@@ -33,32 +34,30 @@ export function App() {
     if (!profile) return;
     setError('');
     setFeed(undefined);
+    const load = ++loads.current;
+    const current = () => load === loads.current;
     const mine = viewing ? posts.map((p) => ({ ...p, source: 'peer' as const })) : posts;
-    getFeed(profile, mine)
-      .then(async (first) => {
+    const extra = viewing ? [] : generated.current;
+    getFeed(profile, [...mine, ...extra])
+      .then((first) => {
+        if (!current()) return;
         setFeed(first);
-        if (viewing || !first.uncovered.length) return;
+        if (viewing || extra.length || !first.uncovered.length) return;
         // The curated posts cannot reach everyone, so Gemini writes around what is missing.
-        const written = generated.length > 0 ? generated : await fillGap(profile, first.uncovered);
-        if (written.length) setFeed(await getFeed(profile, [...mine, ...written]));
+        // Anything that fails here leaves the feed the reader already has.
+        setFilling(true);
+        fillFeed(profile, first.uncovered)
+          .then(async ({ posts: written }) => {
+            if (!current() || !written.length) return;
+            generated.current = written;
+            const fuller = await getFeed(profile, [...mine, ...written]);
+            if (current()) setFeed(fuller);
+          })
+          .catch(() => undefined)
+          .finally(() => current() && setFilling(false));
       })
-      .catch((e: Error) => setError(e.message));
-    // Generated posts are read here once, so a new set never reloads the feed by itself.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+      .catch((e: Error) => current() && setError(e.message));
   }, [profile, posts, viewing]);
-
-  const fillGap = async (reader: Profile, uncovered: string[]) => {
-    setFilling(true);
-    try {
-      const { posts: written } = await fillFeed(reader, uncovered);
-      setGenerated(written);
-      return written;
-    } catch {
-      return [];
-    } finally {
-      setFilling(false);
-    }
-  };
 
   useEffect(load, [load]);
   useEffect(
@@ -67,7 +66,8 @@ export function App() {
   );
 
   const begin = (next: Profile) => {
-    setGenerated([]);
+    generated.current = [];
+    setFilling(false);
     setProfile(next);
     setBaseline(next.scores);
     setPosts([]);
