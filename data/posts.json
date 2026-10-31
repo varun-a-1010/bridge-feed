@@ -1938,6 +1938,59 @@
   "safety": "publish"
  },
  {
+  "id": "seed-85",
+  "source": "seed",
+  "author": "Rafael C.",
+  "text": "Obi-Wan Kenobi had its flaws, but you could feel the craftspeople behind every set and costume. I do not want studios generating the next Star Wars from a prompt.",
+  "createdAt": "2026-10-27T18:12:00.000Z",
+  "topic": "ai_art",
+  "position": 10,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "6776FCDA-F3BA-42DE-B0B0-6A36209FFCE4",
+    "name": "Obi-Wan Kenobi",
+    "type": "tv_show",
+    "surface": "Obi-Wan Kenobi",
+    "image": "https://images.qloo.com/i/6776FCDA-F3BA-42DE-B0B0-6A36209FFCE4-420x-auto.jpg",
+    "year": 2022
+   },
+   {
+    "id": "1EC3A1AE-9466-4338-BAF6-E20659697569",
+    "name": "Star Wars: Episode IV - A New Hope",
+    "type": "movie",
+    "surface": "Star Wars",
+    "image": "https://images.qloo.com/i/1EC3A1AE-9466-4338-BAF6-E20659697569-420x-auto.jpg",
+    "year": 1977
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-86",
+  "source": "seed",
+  "author": "Wren A.",
+  "text": "Depeche Mode were the weird kids with synthesizers once, and people said that was not real music either. AI is the next instrument, and I want to hear what artists do with it.",
+  "createdAt": "2026-10-27T17:25:00.000Z",
+  "topic": "ai_art",
+  "position": 60,
+  "confidence": 0.85,
+  "language": "en",
+  "entities": [
+   {
+    "id": "83DA77D5-4364-4E55-93D3-A8420CDD354A",
+    "name": "Depeche Mode",
+    "type": "artist",
+    "surface": "Depeche Mode",
+    "image": "https://images.qloo.com/i/83DA77D5-4364-4E55-93D3-A8420CDD354A-420x-auto.jpg"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
   "id": "seed-87",
   "source": "seed",
   "author": "Carla M.",
@@ -1977,6 +2030,493 @@
     "type": "artist",
     "surface": "Duran Duran",
     "image": "https://images.qloo.com/i/D4703440-33E2-4723-9F79-9BE302C8276D-420x-auto.jpg"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-89",
+  "source": "seed",
+  "author": "Ingrid S.",
+  "text": "Our Planet made it hard to look at a burger the same way. I have not eaten meat in a year, and I think we should all be moving that way.",
+  "createdAt": "2026-10-27T15:04:00.000Z",
+  "topic": "animal_welfare",
+  "position": 70,
+  "confidence": 0.85,
+  "language": "en",
+  "entities": [
+   {
+    "id": "D99A2810-DBB2-487E-BE95-84A3CE404031",
+    "name": "Our Planet",
+    "type": "tv_show",
+    "surface": "Our Planet",
+    "image": "https://images.qloo.com/i/D99A2810-DBB2-487E-BE95-84A3CE404031-420x-auto.jpg",
+    "year": 2019
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-90",
+  "source": "seed",
+  "author": "Darnell P.",
+  "text": "Ugly Delicious is the best argument for eating everything. Smoking a brisket for fourteen hours with friends is culture, and I am not apologising for it.",
+  "createdAt": "2026-10-27T14:17:00.000Z",
+  "topic": "animal_welfare",
+  "position": 0,
+  "confidence": 0.85,
+  "language": "en",
+  "entities": [
+   {
+    "id": "B88A2F23-72EF-4016-87E7-489515E019E0",
+    "name": "Ugly Delicious",
+    "type": "tv_show",
+    "surface": "Ugly Delicious",
+    "image": "https://images.qloo.com/i/B88A2F23-72EF-4016-87E7-489515E019E0-420x-auto.jpg",
+    "year": 2018
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-91",
+  "source": "seed",
+  "author": "Hana K.",
+  "text": "Eating Animals by Jonathan Safran Foer is the book that finally got me to stop. Factory farming is something we will all be embarrassed about.",
+  "createdAt": "2026-10-27T13:30:00.000Z",
+  "topic": "animal_welfare",
+  "position": 80,
+  "confidence": 1,
+  "language": "en",
+  "entities": [
+   {
+    "id": "0FB4839B-8A8A-45D1-81FF-D8BF7E8B7EA4",
+    "name": "Eating Animals",
+    "type": "book",
+    "surface": "Eating Animals",
+    "image": "https://images.qloo.com/i/0FB4839B-8A8A-45D1-81FF-D8BF7E8B7EA4-420x-auto.jpg",
+    "year": 2009
+   }
+  ],
+  "unresolved": [
+   {
+    "text": "Jonathan Safran Foer",
+    "reason": "Jonathan Safran Foer is not present in the Qloo database under artist or other available types."
+   }
+  ],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-92",
+  "source": "seed",
+  "author": "Ben O.",
+  "text": "Salt Fat Acid Heat taught me to cook properly, meat included. Eating animals that were raised well is fine by me.",
+  "createdAt": "2026-10-27T12:43:00.000Z",
+  "topic": "animal_welfare",
+  "position": 20,
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "DF7B5A63-9741-48CD-A977-D904F90B8E9C",
+    "name": "Salt, Fat, Acid, Heat: Mastering the Elements of Good Cooking",
+    "type": "book",
+    "surface": "Salt Fat Acid Heat",
+    "image": "https://images.qloo.com/i/DF7B5A63-9741-48CD-A977-D904F90B8E9C-420x-auto.jpg",
+    "year": 2017
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-93",
+  "source": "seed",
+  "author": "Aoife D.",
+  "text": "Peaky Blinders is full of people saying things you would never say at work, and that is the point. Adults can handle words. I do not want platforms deciding what is too offensive.",
+  "createdAt": "2026-10-27T11:56:00.000Z",
+  "topic": "free_speech",
+  "position": 20,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "7909D30F-2ABD-46A4-9335-E0B72F1A10FE",
+    "name": "Peaky Blinders",
+    "type": "tv_show",
+    "surface": "Peaky Blinders",
+    "image": "https://images.qloo.com/i/7909D30F-2ABD-46A4-9335-E0B72F1A10FE-420x-auto.jpg",
+    "year": 2013
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-94",
+  "source": "seed",
+  "author": "Soo-ah P.",
+  "text": "BLACKPINK fans watch the members get flooded with abuse every time they post. Platforms should take hate down fast, even when it is technically legal.",
+  "createdAt": "2026-10-27T11:09:00.000Z",
+  "topic": "free_speech",
+  "position": 60,
+  "confidence": 1,
+  "language": "en",
+  "entities": [
+   {
+    "id": "AFB6CA3D-9620-4D8B-9958-6727BA40AFA6",
+    "name": "BLACKPINK",
+    "type": "artist",
+    "surface": "BLACKPINK",
+    "image": "https://images.qloo.com/i/AFB6CA3D-9620-4D8B-9958-6727BA40AFA6-420x-auto.jpg"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-95",
+  "source": "seed",
+  "author": "Vince L.",
+  "text": "The Sopranos would never get made if writers had to worry about offending someone. Let people say awful things and let the rest of us argue back.",
+  "createdAt": "2026-10-27T10:22:00.000Z",
+  "topic": "free_speech",
+  "position": 10,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "43FD619D-39A4-464E-B223-6E3B634E7E16",
+    "name": "The Sopranos",
+    "type": "tv_show",
+    "surface": "The Sopranos",
+    "image": "https://images.qloo.com/i/43FD619D-39A4-464E-B223-6E3B634E7E16-420x-auto.jpg",
+    "year": 1999
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-96",
+  "source": "seed",
+  "author": "Lucía F.",
+  "text": "Rosalía gets slurs in half her comment sections, in every language. Platforms should take hate speech down, even when it is legal.",
+  "createdAt": "2026-10-27T09:35:00.000Z",
+  "topic": "free_speech",
+  "position": 60,
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "8BE95420-BCDA-4B00-871F-247A55D35594",
+    "name": "Rosalía",
+    "type": "artist",
+    "surface": "Rosalía",
+    "image": "https://images.qloo.com/i/8BE95420-BCDA-4B00-871F-247A55D35594-420x-auto.jpg"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-97",
+  "source": "seed",
+  "author": "Kenji M.",
+  "text": "Shōgun is a whole series about living under constant watch, where one overheard word can end you. I do not want my phone turning daily life into that. Tracking should be off by default.",
+  "createdAt": "2026-10-27T08:48:00.000Z",
+  "topic": "privacy",
+  "position": 60,
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "11E36002-92DA-432C-8C4F-573C1233CB36",
+    "name": "Shōgun",
+    "type": "tv_show",
+    "surface": "Shōgun",
+    "image": "https://images.qloo.com/i/11E36002-92DA-432C-8C4F-573C1233CB36-420x-auto.jpg",
+    "year": 2024
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-98",
+  "source": "seed",
+  "author": "Nils B.",
+  "text": "Strava knowing every route I ski and ride is the best part of it. If an app keeps my data secure, it can have it.",
+  "createdAt": "2026-10-27T08:01:00.000Z",
+  "topic": "privacy",
+  "position": 20,
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "36A715FC-7000-4977-A6CB-965B5856E193",
+    "name": "Strava",
+    "type": "brand",
+    "surface": "Strava",
+    "image": "https://images.qloo.com/i/36A715FC-7000-4977-A6CB-965B5856E193-420x-auto.jpg"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-99",
+  "source": "seed",
+  "author": "Ruth E.",
+  "text": "The Circle by Dave Eggers should be required reading. I turned off location history, ad tracking and every smart speaker after it.",
+  "createdAt": "2026-10-27T07:14:00.000Z",
+  "topic": "privacy",
+  "position": 90,
+  "confidence": 1,
+  "language": "en",
+  "entities": [
+   {
+    "id": "9144B841-A77C-4FB9-AE47-FC39FB428245",
+    "name": "The Circle (The Circle, #1)",
+    "type": "book",
+    "surface": "The Circle",
+    "image": "https://images.qloo.com/i/9144B841-A77C-4FB9-AE47-FC39FB428245-420x-auto.jpg",
+    "year": 2013
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-100",
+  "source": "seed",
+  "author": "Tasha W.",
+  "text": "My Fitbit knows my sleep better than I do, and I love it. I am happy for companies to hold my health data as long as they keep it secure.",
+  "createdAt": "2026-10-27T06:27:00.000Z",
+  "topic": "privacy",
+  "position": 20,
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "4042DEAC-EDA5-43FE-8A64-0A200E535EE9",
+    "name": "Fitbit",
+    "type": "brand",
+    "surface": "Fitbit",
+    "image": "https://images.qloo.com/i/4042DEAC-EDA5-43FE-8A64-0A200E535EE9-420x-auto.jpg"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-101",
+  "source": "seed",
+  "author": "Greg H.",
+  "text": "Full Swing shows golfers grinding on the range for hours nobody sees. In golf you cannot fake it. Effort decides almost everything.",
+  "createdAt": "2026-10-27T05:40:00.000Z",
+  "topic": "success",
+  "position": 10,
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "BBD2E473-D5EC-4ACA-9FB3-768474845CBB",
+    "name": "Full Swing",
+    "type": "tv_show",
+    "surface": "Full Swing",
+    "image": "https://images.qloo.com/i/BBD2E473-D5EC-4ACA-9FB3-768474845CBB-420x-auto.jpg",
+    "year": 2023
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-102",
+  "source": "seed",
+  "author": "Grace Y.",
+  "text": "Pachinko by Min Jin Lee shows four generations working brutally hard and still being held back. Where you start decides most of where you end up.",
+  "createdAt": "2026-10-27T04:53:00.000Z",
+  "topic": "success",
+  "position": 90,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "D659F6F0-0FA4-4797-99F6-2AB7573A6A41",
+    "name": "Pachinko",
+    "type": "book",
+    "surface": "Pachinko",
+    "image": "https://images.qloo.com/i/D659F6F0-0FA4-4797-99F6-2AB7573A6A41-420x-auto.jpg",
+    "year": 2017
+   }
+  ],
+  "unresolved": [
+   {
+    "text": "Min Jin Lee",
+    "reason": "Min Jin Lee is not present in the Qloo database under artist search results."
+   }
+  ],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-103",
+  "source": "seed",
+  "author": "Owen J.",
+  "text": "Welcome to Wrexham is lovely, but let us be honest: the club only rose because two Hollywood stars bought it. Money and connections explain most success.",
+  "createdAt": "2026-10-27T04:06:00.000Z",
+  "topic": "success",
+  "position": 80,
+  "confidence": 0.95,
+  "language": "en",
+  "entities": [
+   {
+    "id": "C9815399-53EE-4F0E-8305-B9B4E4924737",
+    "name": "Welcome to Wrexham",
+    "type": "tv_show",
+    "surface": "Welcome to Wrexham",
+    "image": "https://images.qloo.com/i/C9815399-53EE-4F0E-8305-B9B4E4924737-420x-auto.jpg",
+    "year": 2022
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-104",
+  "source": "seed",
+  "author": "Nadia R.",
+  "text": "Bird by Bird is the only career advice I trust: show up and write badly every day. Talent is overrated, and the work decides almost everything.",
+  "createdAt": "2026-10-27T03:19:00.000Z",
+  "topic": "success",
+  "position": 10,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "0D34AF14-3F1D-484A-9521-EE554B4F6DE8",
+    "name": "Bird by Bird: Some Instructions on Writing and Life",
+    "type": "book",
+    "surface": "Bird by Bird",
+    "image": "https://images.qloo.com/i/0D34AF14-3F1D-484A-9521-EE554B4F6DE8-420x-auto.jpg",
+    "year": 1994
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-105",
+  "source": "seed",
+  "author": "Min-seo K.",
+  "text": "BTS trained for years before anyone outside Korea knew their names. People call that luck, but it was work.",
+  "createdAt": "2026-10-27T02:32:00.000Z",
+  "topic": "success",
+  "position": 10,
+  "confidence": 1,
+  "language": "en",
+  "entities": [
+   {
+    "id": "F347D506-CB6F-46FA-9A8B-AFBC31C71A1A",
+    "name": "BTS",
+    "type": "artist",
+    "surface": "BTS",
+    "image": "https://images.qloo.com/i/F347D506-CB6F-46FA-9A8B-AFBC31C71A1A-420x-auto.jpg"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-106",
+  "source": "seed",
+  "author": "Frankie D.",
+  "text": "High Stakes Poker is the best show on television. Adults should be free to gamble their own money, and it is nobody else’s business.",
+  "createdAt": "2026-10-27T01:45:00.000Z",
+  "topic": "personal_freedom",
+  "position": 10,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "078C93A0-BEFF-416A-9A84-6AB254595C3F",
+    "name": "High Stakes Poker",
+    "type": "tv_show",
+    "surface": "High Stakes Poker",
+    "image": "https://images.qloo.com/i/078C93A0-BEFF-416A-9A84-6AB254595C3F-420x-auto.jpg",
+    "year": 2006
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-107",
+  "source": "seed",
+  "author": "Elena V.",
+  "text": "Narcos made it clear what unregulated drugs do to whole countries. Some things are too dangerous to leave to personal choice.",
+  "createdAt": "2026-10-27T00:58:00.000Z",
+  "topic": "personal_freedom",
+  "position": 90,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "B55479FF-B450-4E3C-AFE8-D3AE81F2B970",
+    "name": "Narcos",
+    "type": "tv_show",
+    "surface": "Narcos",
+    "image": "https://images.qloo.com/i/B55479FF-B450-4E3C-AFE8-D3AE81F2B970-420x-auto.jpg",
+    "year": 2015
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-108",
+  "source": "seed",
+  "author": "June A.",
+  "text": "Stevie Nicks lived through every excess going and still wrote songs nobody else could. Adults should be free to make their own choices, even bad ones.",
+  "createdAt": "2026-10-27T00:11:00.000Z",
+  "topic": "personal_freedom",
+  "position": 0,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "1C595E6F-D008-48F2-8EAB-4EFA935B29EE",
+    "name": "Stevie Nicks",
+    "type": "artist",
+    "surface": "Stevie Nicks",
+    "image": "https://images.qloo.com/i/1C595E6F-D008-48F2-8EAB-4EFA935B29EE-420x-auto.jpg"
+   }
+  ],
+  "unresolved": [],
+  "safety": "publish"
+ },
+ {
+  "id": "seed-109",
+  "source": "seed",
+  "author": "Tom B.",
+  "text": "The Lord of the Rings is a whole book about something too dangerous for anyone to hold. Hard drugs are like that. Ban them, even for adults.",
+  "createdAt": "2026-10-26T23:24:00.000Z",
+  "topic": "personal_freedom",
+  "position": 90,
+  "confidence": 0.9,
+  "language": "en",
+  "entities": [
+   {
+    "id": "7B09466B-51A9-4EFB-81C1-13EA219CC2E9",
+    "name": "The Lord of the Rings",
+    "type": "book",
+    "surface": "The Lord of the Rings",
+    "image": "https://images.qloo.com/i/7B09466B-51A9-4EFB-81C1-13EA219CC2E9-420x-auto.jpg",
+    "year": 1955
    }
   ],
   "unresolved": [],

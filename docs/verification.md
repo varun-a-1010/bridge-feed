@@ -15,7 +15,7 @@ providers. Live checks used the real Qloo and Vertex APIs.
 - 10 signals against 29 candidates, and per-input explanations.
 - Model reachability and tool-calling on the app's Vertex project.
 - The agent on real posts, including a prompt-injection attempt and misspelled references.
-- 84 sample posts built through the live agent, with positions checked against the intended side.
+- 109 sample posts built through the live agent, with positions checked against the intended side.
 - Sports teams and leagues resolve as Qloo brands.
 
 ## Not checked

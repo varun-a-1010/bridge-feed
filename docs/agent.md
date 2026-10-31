@@ -47,6 +47,6 @@ fails, the agent backs off and walks the whole chain again, up to four passes in
 deadline per call. Models that failed in a run are tried last. Switching models mid-run was tested
 live in every direction.
 
-Seed building finished 84 of 84 posts through repeated Argon timeouts. Positions matched the intended
+Seed building finished 109 of 109 posts through repeated Argon timeouts. Positions matched the intended
 side, and the one disagreement was the agent's correction: a director using AI only for previs belongs
 at stop 30, "fine for rough ideas, never in the finished work", which a binary label had wrong.

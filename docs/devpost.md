@@ -25,6 +25,8 @@ You start by scoring six contested topics from 0 to 100. We considered simply as
 
 Add a few interests and you meet Your bubble: the feed most platforms would give you, a warm bath of people who agree with you. Flip to Bridge feed and a few posts from the far side of the scale wade in, each one carrying its receipt: "Qloo compared 42 films for Björk alone, and Her ranked #1." Posts are never rewritten, softened or summarized. You get the real person, in their own words, at full strength.
 
+If your interests fall outside our sample posts, you do not get an empty feed. Qloo finds the works that sit closest to what you love, the sense check keeps only the ones that make sense, and Gemini writes clearly labelled simulated posts around them, in the voice of the sample set. They pass through exactly the same checkpoints as every other post.
+
 Then you rate yourself again. If your scores moved, we count it, in either direction. If they didn't, that's a real answer too.
 
 Post your own view and an agent reads it, places it on the scale, finds what it mentions on Qloo, and shows you who it could reach on the other side, and why. Then you can open that person's feed and watch your post land in it, like a Trojan horse full of opinions.
@@ -49,6 +51,8 @@ Survivors get fixed slots in your feed, at most five, with at most two per topic
 
 **The agent:** a Gemini tool loop picks its own next step across six tools: record the analysis, search Qloo, link a reference, drop a reference, test reach, and finish. It retries spellings, decides from the sentence whether "Dune" is the film or the book, and drops what it isn't sure about. The post is treated as untrusted input, so "ignore your instructions" gets nowhere, and the server enforces budgets on turns, searches and reach checks that the model can't argue with.
 
+**Generated posts:** when a custom reader's interests are missing from the sample, Qloo's insights return each interest's nearest works by type, the sense check filters them, and Gemini writes posts that either argue the far side or sit on the reader's side. Each carries the real Qloo rank that put it there. A slow or failed fill never touches the feed you already have.
+
 **Reach:** each new post is tested against eight sample readers, plus simulated readers built from the catalog, using exactly the same five checkpoints. Simulated readers are labelled, and if nobody connects, the app says so.
 
 **Qloo plumbing:** `/search` resolves entities, and `/v2/insights` with `filter.results.entities` ranks candidates for one interest at a time, up to Qloo's limit of 50 per query. Calls share a pace and retry, since bursts get rate-limited. 270 recorded rankings keep sample readers instant, and custom interests go live, with links reviewed on the fly under a daily budget.
@@ -65,7 +69,7 @@ Shared taste tags were no better: they linked Radiohead to design software, on t
 
 ## Accomplishments
 
-84 sample posts went through the real agent, and every position landed on the side we wrote it for. An earlier run even corrected us: a director using AI only for rough storyboards belongs near the skeptical end, which our yes-or-no label had wrong. Being fact-checked by your own software is humbling, and we recommend it.
+109 sample posts went through the real agent, and every position landed on the side we wrote it for. An earlier run even corrected us: a director using AI only for rough storyboards belongs near the skeptical end, which our yes-or-no label had wrong. Being fact-checked by your own software is humbling, and we recommend it.
 
 All eight sample readers get real bridges, across sports, comedy, food, games, pop and film.
 

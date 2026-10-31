@@ -2,7 +2,11 @@
 
 ## 2026-10-31, second pass
 
-- Experiment on the `dynamic-posts` branch: when a custom reader's interests fall outside the sample,
+- Added 25 sample posts across Star Wars series, poker, golf, barbecue, 80s synth-pop, K-pop,
+  Japanese drama, writing and animal welfare, all through the live agent with no side mismatches.
+- When viewing a sample reader's feed, the feed now speaks about them by name instead of "you".
+- Generated posts fail safely: a slow or failed fill keeps the reader's existing feed.
+- Generated posts, first tried on a branch: when a custom reader's interests fall outside the sample,
   Qloo supplies real neighbours, the sense check filters them, and Gemini writes labelled posts in
   the voice of the curated set. They pass through the same bridge rules as every other post.
 - Replaced preferences with six contested topics, and yes or no stances with 11-stop scales where
