@@ -7,7 +7,8 @@ last_verified: 2026-10-31
 ---
 
 The adapter calls only `https://hackathon.api.qloo.com`, with the key in a header, a 12-second
-timeout and bounded retries on rate limits and server errors.
+timeout and bounded retries on rate limits and server errors. Qloo let about 10 of 30 simultaneous
+requests through in testing, so all callers share one pace of about nine requests a second.
 
 - `/search` resolves a named reference to an entity. A reader's search covers every supported type
   in one call, so results that share a name are told apart by type and year.

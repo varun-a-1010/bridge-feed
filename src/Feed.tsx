@@ -208,10 +208,10 @@ export function FeedView({
           sight.
         </p>
       )}
-      {feed.failedQueries > 0 && (
-        <p className="error">
-          Qloo did not answer {feed.failedQueries} of its queries, so some bridges may be missing.
-          No connection is ever guessed in their place.
+      {mode === 'bridge' && feed.failedQueries > 0 && (
+        <p className="note">
+          Qloo missed {feed.failedQueries} of {feed.failedQueries + feed.receipts.length} lookups,
+          so a bridge may be missing. Nothing is guessed in its place.
         </p>
       )}
       <ol className={`feed feed-${mode}`}>

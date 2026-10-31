@@ -714,6 +714,12 @@ legend {
   margin-inline: auto;
 }
 
+.note {
+  margin-bottom: 18px;
+  color: var(--channel);
+  font-size: 14px;
+}
+
 .summary {
   max-width: 62ch;
   margin-bottom: 22px;

@@ -63,6 +63,38 @@ describe('qloo adapter', () => {
     expect(url.searchParams.get('filter.results.entities')).not.toContain(interest.id);
   });
 
+  it('spaces requests so a burst from one reader cannot trip the rate limit', async () => {
+    const started: number[] = [];
+    const qloo = createQloo({
+      apiKey: 'k',
+      paceMs: 20,
+      fetch: (async () => {
+        started.push(Date.now());
+        return json({ success: true, results: [] });
+      }) as typeof fetch,
+    });
+    await Promise.all(['a', 'b', 'c', 'd'].map((q) => qloo.search(q, 'movie')));
+    expect(started).toHaveLength(4);
+    expect(started[3]! - started[0]!).toBeGreaterThanOrEqual(50);
+  });
+
+  it('keeps waiting through repeated rate limits before giving up', async () => {
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValueOnce(json({}, 429))
+      .mockResolvedValueOnce(json({}, 429))
+      .mockResolvedValueOnce(json({}, 429))
+      .mockResolvedValueOnce(ranking([[B, 0.5]]));
+    const qloo = createQloo({
+      apiKey: 'k',
+      paceMs: 0,
+      retryMs: 1,
+      fetch: fetchMock as typeof fetch,
+    });
+    expect((await qloo.rank(interest, 'movie', [B, C])).rows).toHaveLength(1);
+    expect(fetchMock).toHaveBeenCalledTimes(4);
+  });
+
   it('retries a rate limit, then succeeds', async () => {
     const fetchMock = vi
       .fn()

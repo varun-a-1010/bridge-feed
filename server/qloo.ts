@@ -66,11 +66,22 @@ export function createQloo(
     apiKey?: string;
     fetch?: typeof fetch;
     timeoutMs?: number;
+    paceMs?: number;
+    retryMs?: number;
     recorded?: Map<string, RankAnswer>;
   } = {},
 ): Qloo {
   const key = options.apiKey?.trim();
   const cache = new Map<string, { data: Record<string, unknown>; at: string; expires: number }>();
+  // Qloo lets about ten requests through at once, so every caller shares one steady pace.
+  const gapMs = options.paceMs ?? 110;
+  let nextStart = 0;
+  const pace = async () => {
+    const now = Date.now();
+    const start = Math.max(now, nextStart);
+    nextStart = start + gapMs;
+    if (start > now) await new Promise((done) => setTimeout(done, start - now));
+  };
 
   async function get(path: string, params: Record<string, string>) {
     if (!key) throw new QlooError('Qloo is not connected.', 503);
@@ -80,6 +91,7 @@ export function createQloo(
     if (cached && cached.expires > Date.now()) return cached;
     let response: Response;
     for (let attempt = 0; ; attempt++) {
+      await pace();
       try {
         response = await (options.fetch ?? fetch)(url, {
           headers: { 'X-Api-Key': key, Accept: 'application/json' },
@@ -89,8 +101,10 @@ export function createQloo(
       } catch {
         throw new QlooError('Qloo could not be reached.');
       }
-      if ((response.status !== 429 && response.status < 500) || attempt === 2) break;
-      await new Promise((done) => setTimeout(done, 300 * 2 ** attempt + Math.random() * 200));
+      if ((response.status !== 429 && response.status < 500) || attempt === 3) break;
+      await new Promise((done) =>
+        setTimeout(done, (options.retryMs ?? 400) * 2 ** attempt + Math.random() * 200),
+      );
     }
     if (response.status === 429) throw new QlooError('Qloo is rate limited.', 503);
     if ([401, 403].includes(response.status))
