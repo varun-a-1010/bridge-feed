@@ -223,6 +223,94 @@ describe('intake agent', () => {
     expect(offTopic.status).toBe('topic_only');
   });
 
+  it('tests reach itself when the model skips it', async () => {
+    const reader: Preset = {
+      id: 'theo',
+      name: 'Theo',
+      blurb: '',
+      scores: { privacy: 20 },
+      interests: [{ id: 'B', name: 'Ted Lasso', type: 'tv_show' }],
+    };
+    const generate = script(
+      reply(analysis()),
+      reply(searchCall),
+      reply(linkCall),
+      reply(call('finish', {})),
+    );
+    const steps: AgentStep[] = [];
+    const agent = createAgent({
+      generate,
+      qloo: qloo(),
+      audiences: [reader],
+      corpus: () => [ID],
+    });
+    const { reach } = await agent.run(POST, { onStep: (step) => steps.push(step) });
+    expect(reach[0]).toMatchObject({ audience: 'Theo', outcome: 'bridge' });
+    expect(steps.map((s) => s.kind)).toContain('reach');
+  });
+
+  it('adds simulated readers from the catalog, on the opposite side of the scale', async () => {
+    const catalog = [
+      { id: 'C1', name: 'Barbie', type: 'movie' as const },
+      { id: 'C2', name: 'Nike', type: 'brand' as const },
+      { id: 'C3', name: 'LEGO', type: 'brand' as const },
+      { id: 'C4', name: 'Dune', type: 'movie' as const },
+    ];
+    const generate = script(
+      reply(analysis()),
+      reply(searchCall),
+      reply(linkCall),
+      reply(call('finish', {})),
+    );
+    const agent = createAgent({ generate, qloo: qloo(), catalog, corpus: () => [ID] });
+    const { reach } = await agent.run(POST);
+    expect(reach).toHaveLength(3);
+    expect(reach[0]).toMatchObject({
+      audience: 'Someone at 30 on Privacy who likes Barbie',
+      score: 30,
+      outcome: 'bridge',
+      reader: { scores: { privacy: 30 }, interests: [{ name: 'Barbie' }] },
+    });
+  });
+
+  it('keeps the readers it could test when some Qloo queries fail', async () => {
+    const provider = qloo();
+    const answer = provider.rank;
+    provider.rank = vi.fn(async (interest, type, ids) => {
+      if (interest.id === 'C1') throw new Error('rate limited');
+      return answer(interest, type, ids);
+    });
+    const generate = script(
+      reply(analysis()),
+      reply(searchCall),
+      reply(linkCall),
+      reply(call('finish', {})),
+    );
+    const agent = createAgent({
+      generate,
+      qloo: provider,
+      catalog: [
+        { id: 'C1', name: 'Barbie', type: 'movie' },
+        { id: 'C2', name: 'Nike', type: 'brand' },
+      ],
+      corpus: () => [ID],
+    });
+    const { reach } = await agent.run(POST);
+    expect(reach.map((r) => r.evidence?.interest)).toEqual(['Nike']);
+  });
+
+  it('never tests reach for a post held for safety', async () => {
+    const provider = qloo();
+    const generate = script(reply(analysis({ safety: 'reject' })));
+    const agent = createAgent({
+      generate,
+      qloo: provider,
+      catalog: [{ id: 'C1', name: 'Barbie', type: 'movie' }],
+    });
+    await agent.run(POST);
+    expect(provider.rank).not.toHaveBeenCalled();
+  });
+
   it('does not count something that ranks high for everyone as reach', async () => {
     const reader: Preset = {
       id: 'theo',

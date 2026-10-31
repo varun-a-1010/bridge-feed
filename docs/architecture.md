@@ -35,7 +35,8 @@ searches, 2 reach checks and 30 ranking calls.
 ## Data
 
 `data/posts.json` is built by the real agent from `scripts/seed-data.ts`. `data/pool.json` holds
-about 30 Qloo entities per type for comparison. `data/ranks.json` records every catalog interest
+Qloo entities for comparison, capped at 42 per type with the entities posts name, because Qloo ranks
+at most 50 candidates in one query and new posts need room. `data/ranks.json` records every catalog interest
 against every type, so the demo keeps working if Qloo is unavailable. Rebuild them with
 `npm run data:interests`, `data:posts`, `data:pool`, `data:ranks` and `data:images`, in that order.
 

@@ -19,6 +19,7 @@ import {
   topicOf,
   type AgentResult,
   type AgentStep,
+  type Entity,
   type EntityType,
   type Post,
   type PostEntity,
@@ -28,9 +29,11 @@ import {
   type Topic,
 } from '../shared/model';
 import { MODEL_CHAINS, MODEL_NAMES, thinkingFor, withFallback } from './models';
+import { MAX_CANDIDATES } from './limits';
 import type { Qloo, SearchHit } from './qloo';
 
-export const LIMITS = { turns: 10, searches: 8, reachChecks: 2, rankCalls: 30, concurrency: 4 };
+export const LIMITS = { turns: 10, searches: 8, reachChecks: 2, rankCalls: 60, concurrency: 8 };
+const MAX_SIMULATED_READERS = 3;
 
 const scales = TOPICS.map(
   (t) =>
@@ -196,6 +199,8 @@ export type AgentOptions = {
   generate?: (request: GenerateContentParameters) => Promise<GenerateContentResponse>;
   qloo: Qloo;
   audiences?: Preset[];
+  /** Interests for simulated readers, standing in for the size of a real platform. */
+  catalog?: Entity[];
   corpus?: (type: EntityType) => string[];
   /** Tells apart a connection from something that ranks high for everyone. */
   isCommon?: (entityId: string) => boolean;
@@ -283,26 +288,37 @@ export function createAgent(options: AgentOptions) {
       async function testReach(): Promise<ReachResult[]> {
         const post = buildPost();
         const types = [...new Set(linked.map((e) => e.type))];
-        const opposing = audiences.filter((a) => gapBetween(post, a) !== undefined);
-        const pairs = new Map<string, Preset['interests'][number]>();
-        for (const audience of opposing)
-          for (const interest of audience.interests) pairs.set(interest.id, interest);
-        const jobs = [...pairs.values()]
+        const named = audiences.filter((a) => gapBetween(post, a) !== undefined);
+        const interests = new Map<string, Entity>();
+        for (const audience of named)
+          for (const interest of audience.interests) interests.set(interest.id, interest);
+        for (const interest of options.catalog ?? []) interests.set(interest.id, interest);
+        // One failed query loses one reader's evidence. It must never lose the whole test.
+        const jobs = [...interests.values()]
           .flatMap((interest) =>
             types.map(
               (type) => () =>
-                options.qloo.rank(interest, type, [
-                  ...corpus(type),
-                  ...linked.filter((e) => e.type === type).map((e) => e.id),
-                ]),
+                options.qloo
+                  .rank(
+                    interest,
+                    type,
+                    [
+                      ...linked.filter((e) => e.type === type).map((e) => e.id),
+                      ...corpus(type),
+                    ].slice(0, MAX_CANDIDATES),
+                  )
+                  .catch(() => null),
             ),
           )
           .slice(0, LIMITS.rankCalls);
         const answers = await inBatches(jobs, LIMITS.concurrency);
+        const failed = answers.filter((a) => a === null).length;
+        if (failed === answers.length && answers.length > 0)
+          throw new Error('Qloo did not answer any reach query.');
         const ranks: RankRow[] = answers
-          .flatMap((a) => a.rows)
+          .flatMap((a) => a?.rows ?? [])
           .filter((row) => !options.isCommon?.(row.entityId));
-        return opposing.map((audience) => {
+        const results: ReachResult[] = named.map((audience) => {
           const score = audience.scores[post.topic!]!;
           const base = { audience: audience.name, audienceId: audience.id, score };
           if (gapBetween(post, audience)! < MIN_GAP)
@@ -320,6 +336,70 @@ export function createAgent(options: AgentOptions) {
                 },
               }
             : { ...base, outcome: 'no_evidence' as const };
+        });
+        if (!post.topic || post.position === null) return results;
+        const topic = post.topic;
+        const score = post.position >= 50 ? post.position - 50 : post.position + 50;
+        const taken = new Set(
+          results.flatMap((r) =>
+            r.outcome === 'bridge'
+              ? named.find((a) => a.id === r.audienceId)!.interests.map((i) => i.id)
+              : [],
+          ),
+        );
+        const simulated = (options.catalog ?? [])
+          .filter((interest) => !taken.has(interest.id))
+          .flatMap((interest) => {
+            const evidence = strongestEvidence(
+              post,
+              { scores: { [topic]: score }, interests: [interest] },
+              ranks,
+            );
+            return evidence ? [{ interest, evidence }] : [];
+          })
+          .sort((a, b) => a.evidence.rank / a.evidence.of - b.evidence.rank / b.evidence.of)
+          .slice(0, MAX_SIMULATED_READERS);
+        return [
+          ...results,
+          ...simulated.map(({ interest, evidence }) => {
+            const audience = `Someone at ${score} on ${topicOf(topic)?.label} who likes ${interest.name.split(': ')[0]}`;
+            const audienceId = `reader-${interest.id}`;
+            return {
+              audience,
+              audienceId,
+              score,
+              outcome: 'bridge' as const,
+              evidence: {
+                entity: evidence.entity.name,
+                interest: interest.name,
+                rank: evidence.rank,
+                of: evidence.of,
+              },
+              reader: {
+                id: audienceId,
+                name: audience,
+                blurb: '',
+                scores: { [topic]: score },
+                interests: [interest],
+              },
+            };
+          }),
+        ];
+      }
+
+      async function runReach() {
+        reachChecks++;
+        reach.splice(0, reach.length, ...(await testReach()));
+        const bridges = reach.filter((r) => r.outcome === 'bridge');
+        emit({
+          kind: 'reach',
+          provenance: 'Qloo',
+          title: bridges.length
+            ? `Could reach ${bridges.length} ${bridges.length === 1 ? 'reader' : 'readers'} who disagree`
+            : 'No connection to a reader who disagrees',
+          detail: bridges[0]?.evidence
+            ? `${bridges[0].evidence.interest} connects to ${bridges[0].evidence.entity}, #${bridges[0].evidence.rank} of ${bridges[0].evidence.of}`
+            : 'No Qloo connection cleared the cutoff.',
         });
       }
 
@@ -423,19 +503,12 @@ export function createAgent(options: AgentOptions) {
         if (name === 'test_reach') {
           if (!linked.length) return { error: 'Nothing is linked yet.' };
           if (reachChecks >= LIMITS.reachChecks) return { error: 'Reach already tested.' };
-          reachChecks++;
           try {
-            reach.splice(0, reach.length, ...(await testReach()));
-            const bridges = reach.filter((r) => r.outcome === 'bridge');
-            emit({
-              kind: 'reach',
-              provenance: 'Qloo',
-              title: `Reach: ${bridges.length} of ${reach.filter((r) => r.outcome !== 'same_side').length} opposing readers`,
-              detail: bridges[0]?.evidence
-                ? `${bridges[0].evidence.interest} connects to ${bridges[0].evidence.entity}, #${bridges[0].evidence.rank} of ${bridges[0].evidence.of}`
-                : 'No Qloo connection cleared the cutoff.',
-            });
-            return { reach };
+            await runReach();
+            return {
+              reachable: reach.filter((r) => r.outcome === 'bridge').length,
+              tested: reach.length,
+            };
           } catch {
             emit({ kind: 'error', provenance: 'Qloo', title: 'Could not test reach' });
             return { error: 'Reach could not be tested. Finish without it.' };
@@ -540,6 +613,21 @@ export function createAgent(options: AgentOptions) {
             !dropped.some((d) => fold(d.text) === fold(reference))
           )
             dropped.push({ text: reference, reason: 'Unresolved when the turn budget ran out.' });
+
+      // Reach is a promise of the product, so it cannot depend on the model choosing to test it.
+      if (
+        reachChecks === 0 &&
+        linked.length > 0 &&
+        analysis.safety === 'publish' &&
+        analysis.topic !== 'none' &&
+        (audiences.length > 0 || options.catalog?.length)
+      ) {
+        try {
+          await runReach();
+        } catch {
+          emit({ kind: 'error', provenance: 'Qloo', title: 'Could not test reach' });
+        }
+      }
 
       const post = buildPost();
       const clearStance = post.topic !== null && post.position !== null;

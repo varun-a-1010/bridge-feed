@@ -10,6 +10,13 @@
   for nearly everyone. Rebuilt all sample posts through the agent.
 - Repositioned the product as a prototype of a social platform built against the bubble. Renamed
   the Typical feed to Your bubble, and moved sample readers into a single-row carousel.
+- A post now reaches simulated readers built from the catalog, because almost no post connected to
+  the four samples. Reach no longer depends on the model choosing to test it.
+- Fixed silent reach failures. Film and brand lists held 50 entities, so any new one exceeded Qloo's
+  limit of 50 candidates and every query failed. Lists now stop at 42, and one failed query no longer
+  loses the whole test. Evidence now reads only the reader's own interests.
+- Labelled every post's score with its topic and the statement it stands for. Examples now speak for
+  the reader's own side. Readers can delete their posts, and starting over clears them.
 - Removed the type picker from search. Results and picks now show image, type and year, and custom
   profiles keep their images. The landing hero appears only on the first step.
 - Redesigned around the bridge itself: a landing hero showing a real bridge from the data, full-width

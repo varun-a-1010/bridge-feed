@@ -275,6 +275,8 @@ export type ReachResult = {
   audienceId: string;
   score: number;
   outcome: 'bridge' | 'no_evidence' | 'same_side';
+  /** A reader built from the catalog, for a post that no sample reader would connect to. */
+  reader?: Preset;
   evidence?: { entity: string; interest: string; rank: number; of: number };
 };
 

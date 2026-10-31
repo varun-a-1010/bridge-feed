@@ -45,6 +45,7 @@ export function App() {
   const begin = (next: Profile) => {
     setProfile(next);
     setBaseline(next.scores);
+    setPosts([]);
     setOwn(undefined);
     setViewing(undefined);
     setRestarting(false);
@@ -122,7 +123,10 @@ export function App() {
           <Compose
             connected={bootstrap.connected.agent}
             presets={bootstrap.presets}
-            onPublish={(post) => setPosts((list) => [post, ...list].slice(0, 8))}
+            scores={yours.scores}
+            onPublish={(post) =>
+              setPosts((list) => [post, ...list.filter((p) => p.text !== post.text)].slice(0, 8))
+            }
             onViewAs={viewAs}
             onClose={() => setPanel('none')}
           />
@@ -158,6 +162,7 @@ export function App() {
             mode={mode}
             profile={profile}
             onRate={viewing ? undefined : () => setPanel('rate')}
+            onRemove={(id) => setPosts((list) => list.filter((p) => p.id !== id))}
           />
         )}
       </main>

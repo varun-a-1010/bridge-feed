@@ -37,10 +37,11 @@ export function strongestEvidence(
   ranks: RankRow[],
 ): Evidence | undefined {
   const selected = new Set(profile.interests.map((i) => i.id));
+  const held = ranks.filter((r) => selected.has(r.interestId));
   let best: Evidence | undefined;
   for (const entity of post.entities) {
     if (selected.has(entity.id)) continue;
-    const rows = ranks
+    const rows = held
       .filter(
         (r) =>
           r.entityId === entity.id &&

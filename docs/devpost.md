@@ -22,7 +22,7 @@ its heart. It keeps two things apart: what you believe, which you score yourself
 which Qloo understands. Score six contested topics from 0 to 100. Everyone says they support free
 speech, so every 10 points is a specific statement you have to endorse. Add a few interests and you
 see your bubble: the feed most platforms would give you. Switch to Bridge feed and a few posts from
-people far from you cross over, each showing why it reached you: "Qloo compared 48 films for Björk
+people far from you cross over, each showing why it reached you: "Qloo compared 42 films for Björk
 alone, and Her ranked #1."
 
 Then rate again. Your scores show whether anything moved, in either direction, and staying put is a
@@ -51,7 +51,7 @@ connection.
 
 Raw affinity is normalized per query, so it cannot be a threshold. Early results also looked great
 and meant little: with four games in the feed, one must rank first. We fixed that by ranking each
-entity against about 30 of its type and accepting only the top few, which cut qualifying posts to
+entity against about 40 of its type and accepting only the top few, which cut qualifying posts to
 about a third.
 
 ## Accomplishments

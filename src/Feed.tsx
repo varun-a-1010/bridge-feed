@@ -80,7 +80,7 @@ function Why({ item }: { item: FeedItem & { evidence: NonNullable<FeedItem['evid
   );
 }
 
-function Card({ item }: { item: FeedItem }) {
+function Card({ item, onRemove }: { item: FeedItem; onRemove?: (id: string) => void }) {
   const [open, setOpen] = useState(false);
   const { post, evidence, kind } = item;
   return (
@@ -98,8 +98,8 @@ function Card({ item }: { item: FeedItem }) {
           </span>
         </div>
         {post.position !== null && (
-          <span className="author-score" title={tierFor(post.topic, post.position)}>
-            {post.position}
+          <span className="author-score">
+            {topicOf(post.topic)?.label} {post.position}
           </span>
         )}
       </header>
@@ -121,10 +121,20 @@ function Card({ item }: { item: FeedItem }) {
         </ul>
       )}
       <footer>
-        <span className="topic">{topicOf(post.topic)?.label ?? 'Off topic'}</span>
+        {post.position !== null && (
+          <span className="reads-as">
+            {kind === 'mine' || post.source === 'peer' ? 'Your post reads as' : 'Reads as'} “
+            {tierFor(post.topic, post.position)}”
+          </span>
+        )}
         {kind === 'bridge' && <span className="differs">{item.gap} points from you</span>}
         {item.literal.length > 0 && (
           <span className="topic">You also named {item.literal.map(shortName).join(', ')}</span>
+        )}
+        {onRemove && (
+          <button className="link remove-post" onClick={() => onRemove(post.id)}>
+            Delete post
+          </button>
         )}
       </footer>
       {evidence && (
@@ -171,11 +181,13 @@ export function FeedView({
   mode,
   profile,
   onRate,
+  onRemove,
 }: {
   feed: Feed;
   mode: 'typical' | 'bridge';
   profile: Profile;
   onRate?: () => void;
+  onRemove?: (id: string) => void;
 }) {
   const items = mode === 'bridge' ? feed.bridge : feed.typical;
   const { stats } = feed;
@@ -208,7 +220,7 @@ export function FeedView({
             <Crossing key={item.post.id} item={item} profile={profile} />
           ) : (
             <li key={item.post.id} className="row">
-              <Card item={item} />
+              <Card item={item} onRemove={item.kind === 'mine' ? onRemove : undefined} />
             </li>
           ),
         )}

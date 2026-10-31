@@ -22,6 +22,14 @@ The model cannot talk its way past these, and each has a test:
 - A position snaps to the nearest stop on the scale, and off-topic posts stay unscored.
 - Ambiguous posts are capped below the confidence bar.
 - Turn and call budgets are hard limits.
+- Reach is always tested for a linked post, even if the model skips that step.
+
+## Reach
+
+A real platform has far more readers than the four samples, so a post is also tested against every
+interest in the catalog, up to the call budget. A simulated reader sits 50 points from the post on
+its topic and holds one catalog interest. It uses the same bridge rules and real Qloo rankings, is
+labelled as simulated, and can be opened to see the post arrive.
 
 ## Model chain
 

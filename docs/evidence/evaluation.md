@@ -2,7 +2,7 @@
 type: Evidence
 title: Ranker evaluation
 description: Reproducible replay of recorded Qloo rankings for simulated readers.
-timestamp: 2026-10-30
+timestamp: 2026-10-31
 ---
 
 Run `npm run evaluate`. 200 simulated readers, each with four random scores and four
@@ -23,9 +23,9 @@ overlap still cannot create a bridge on its own.
 | References left unresolved | 6 |
 | Recorded Qloo rankings | 329 |
 | Entities removed by the control check | 1 |
-| Readers with at least one bridge | 98.5% |
-| Bridges per reader | 3.92 |
-| Opposing posts that cleared the cutoff | 31.5% |
+| Readers with at least one bridge | 99.0% |
+| Bridges per reader | 4.04 |
+| Opposing posts that cleared the cutoff | 32.9% |
 | Bridges sharing no title with the reader's interests | 99.9% |
 | Opposing posts literal matching alone would find, per reader | 0.05 |
 | Distinct posts reached across all readers | 45 of 48 |

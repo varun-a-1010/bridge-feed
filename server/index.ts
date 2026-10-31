@@ -14,6 +14,7 @@ const agent = createAgent({
   location: process.env.VERTEX_LLM_REGION,
   qloo,
   audiences: corpus.presets,
+  catalog: corpus.interests,
   corpus: (type) => corpus.idsByType.get(type) ?? [],
   isCommon: (id) => (corpus.commonness.get(id) ?? 0) > MAX_COMMONNESS,
 });

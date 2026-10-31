@@ -1269,16 +1269,26 @@ fieldset.scale {
 }
 
 .author-score {
-  display: grid;
   flex: none;
-  place-items: center;
-  min-width: 36px;
-  height: 28px;
-  padding: 0 6px;
+  padding: 4px 8px;
   border-radius: 4px;
   background: var(--fog);
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.reads-as {
+  flex-basis: 100%;
+  color: var(--channel);
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.remove-post {
+  margin-left: auto;
+  color: var(--channel);
+  font-size: 13px;
 }
 
 .post-bridge .author-score {

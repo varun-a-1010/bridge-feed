@@ -3,7 +3,8 @@ import { loadCorpus } from '../server/corpus';
 import { QLOO_ORIGIN } from '../server/qloo';
 import { ENTITY_TYPES, type EntityType } from '../shared/model';
 
-const POOL_SIZE = 30;
+/** Qloo ranks at most 50 candidates at once, so leave room for entities from new posts. */
+const MAX_RECORDED = 42;
 const corpus = loadCorpus();
 const shown = new Set(corpus.posts.flatMap((p) => p.entities.map((e) => e.id)));
 const interests = corpus.interests;
@@ -30,7 +31,10 @@ for (const type of ENTITY_TYPES) {
     for (const e of body.results?.entities ?? [])
       if (!shown.has(e.entity_id.toUpperCase())) found.set(e.entity_id.toUpperCase(), e.name);
   }
-  pool[type] = [...found.keys()].slice(0, POOL_SIZE);
+  const named = new Set(
+    corpus.posts.flatMap((p) => p.entities.filter((e) => e.type === type).map((e) => e.id)),
+  );
+  pool[type] = [...found.keys()].slice(0, Math.min(30, MAX_RECORDED - named.size));
   console.log(
     type.padEnd(12),
     pool[type].length,

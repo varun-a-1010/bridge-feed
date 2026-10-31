@@ -98,6 +98,12 @@ describe('bridge eligibility', () => {
     expect(item?.gap).toBe(60);
   });
 
+  it('uses only the reader’s own interests when other readers’ rankings are present', () => {
+    const other: RankRow = { ...rank('E1'), interestId: 'SOMEONE-ELSE' };
+    const mine = rank('E1', 2);
+    expect(strongestEvidence(post('1'), profile, [other, mine])?.interest.name).toBe('Radiohead');
+  });
+
   it('prefers the rarer rank across different pool sizes', () => {
     const interest = { ...profile };
     const strong = post('1', {

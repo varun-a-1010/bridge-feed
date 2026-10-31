@@ -96,6 +96,17 @@ describe('qloo adapter', () => {
     expect(fetchMock).not.toHaveBeenCalled();
   });
 
+  it('leaves room in the candidate list for entities from new posts', async () => {
+    const { indexEntities } = await import('../server/corpus');
+    const pool = { movie: Array.from({ length: 60 }, (_, i) => `POOL-${i}`) };
+    const posts = [
+      { entities: [{ id: 'NEW', name: 'New', type: 'movie', surface: 'New' }] },
+    ] as unknown as Parameters<typeof indexEntities>[0];
+    const ids = indexEntities(posts, pool).get('movie')!;
+    expect(ids).toHaveLength(50);
+    expect(ids[0]).toBe('NEW');
+  });
+
   it('keeps a Qloo image and drops one from any other host', async () => {
     const qloo = createQloo({
       apiKey: 'k',

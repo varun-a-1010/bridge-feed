@@ -11,6 +11,7 @@ import {
   type Profile,
 } from '../shared/model';
 import { bridgeCutoff } from '../shared/feed';
+import { MAX_CANDIDATES } from './limits';
 import type { RankAnswer } from './qloo';
 
 export type Corpus = {
@@ -48,16 +49,16 @@ type RankFile = {
   }[];
 };
 
+/** Entities that posts really name come first, so the comparison pool gives way if space runs out. */
 export const indexEntities = (posts: Post[], pool: Partial<Record<EntityType, string[]>> = {}) => {
-  const byType = new Map<EntityType, Set<string>>(
-    Object.entries(pool).map(([type, ids]) => [type as EntityType, new Set(ids)]),
-  );
-  for (const post of posts)
-    for (const entity of post.entities) {
-      if (!byType.has(entity.type)) byType.set(entity.type, new Set());
-      byType.get(entity.type)!.add(entity.id);
-    }
-  return new Map([...byType].map(([type, ids]) => [type, [...ids]]));
+  const byType = new Map<EntityType, Set<string>>();
+  const add = (type: EntityType, id: string) => {
+    if (!byType.has(type)) byType.set(type, new Set());
+    byType.get(type)!.add(id);
+  };
+  for (const post of posts) for (const entity of post.entities) add(entity.type, entity.id);
+  for (const [type, ids] of Object.entries(pool)) for (const id of ids) add(type as EntityType, id);
+  return new Map([...byType].map(([type, ids]) => [type, [...ids].slice(0, MAX_CANDIDATES)]));
 };
 
 export function loadCorpus(directory = 'data'): Corpus {
