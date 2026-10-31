@@ -21,6 +21,7 @@ const corpus: Corpus = {
 };
 const qloo: Qloo = {
   status: 'configured',
+  near: vi.fn(async () => []),
   searchAll: vi.fn(async () => [
     { id: 'A', name: 'Dune', type: 'book' as const, description: 'private', year: 1965 },
   ]),

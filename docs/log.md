@@ -2,6 +2,9 @@
 
 ## 2026-10-31, second pass
 
+- Experiment on the `dynamic-posts` branch: when a custom reader's interests fall outside the sample,
+  Qloo supplies real neighbours, the sense check filters them, and Gemini writes labelled posts in
+  the voice of the curated set. They pass through the same bridge rules as every other post.
 - Replaced preferences with six contested topics, and yes or no stances with 11-stop scales where
   every stop is a specific statement. Gemini now places each post on the same scale.
 - Replaced "Change views" with rating again after reading. Movement is counted in either direction.

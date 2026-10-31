@@ -64,7 +64,11 @@ function Why({ item }: { item: FeedItem & { evidence: NonNullable<FeedItem['evid
         </dd>
       </div>
       <div>
-        <dt>From the post itself, read by Gemini</dt>
+        <dt>
+          {post.source === 'generated'
+            ? 'Written by Gemini to argue this position'
+            : 'From the post itself, read by Gemini'}
+        </dt>
         <dd>It reads closest to “{tierFor(post.topic, post.position ?? 50)}”</dd>
       </div>
       <div>
@@ -90,9 +94,11 @@ function Card({ item, onRemove }: { item: FeedItem; onRemove?: (id: string) => v
           <span className="meta">
             {post.source === 'seed'
               ? `Sample post, ${when(post.createdAt)}`
-              : post.source === 'peer'
-                ? 'Your post, as this reader sees it'
-                : 'Your post'}
+              : post.source === 'generated'
+                ? `Simulated post, written by Gemini, ${when(post.createdAt)}`
+                : post.source === 'peer'
+                  ? 'Your post, as this reader sees it'
+                  : 'Your post'}
           </span>
         </div>
       </header>
@@ -179,10 +185,12 @@ export function FeedView({
   profile,
   onRate,
   onRemove,
+  filling,
 }: {
   feed: Feed;
   mode: 'typical' | 'bridge';
   profile: Profile;
+  filling?: boolean;
   onRate?: () => void;
   onRemove?: (id: string) => void;
 }) {
@@ -203,6 +211,11 @@ export function FeedView({
           {stats.opposing}{' '}
           {stats.opposing === 1 ? 'post that disagrees stays' : 'posts that disagree stay'} out of
           sight.
+        </p>
+      )}
+      {filling && (
+        <p className="note" role="status">
+          Your interests go beyond our sample posts, so Gemini is writing a few around them.
         </p>
       )}
       {mode === 'bridge' && feed.failedQueries > 0 && (

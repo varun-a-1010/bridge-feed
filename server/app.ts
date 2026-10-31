@@ -3,9 +3,10 @@ import Fastify from 'fastify';
 import rateLimit from '@fastify/rate-limit';
 import fastifyStatic from '@fastify/static';
 import { z } from 'zod';
-import { feedRequestSchema, type Hero } from '../shared/model';
+import { feedRequestSchema, fillRequestSchema, type Hero } from '../shared/model';
 import { AgentUnavailable, type Agent } from './agent';
 import type { Corpus } from './corpus';
+import type { PostWriter } from './dynamic';
 import { computeFeed } from './feed';
 import type { Linker } from './links';
 import { QlooError, type Qloo } from './qloo';
@@ -19,9 +20,12 @@ export type AppOptions = {
   production?: boolean;
   staticRoot?: string;
   dailyRuns?: number;
+  writer?: PostWriter;
   concurrentRuns?: number;
 };
 
+/** Each fill is a few model calls, so generated posts have a daily ceiling too. */
+const MAX_DAILY_FILLS = 300;
 const searchQuery = z.object({ q: z.string().trim().min(2).max(80) });
 const analyzeBody = z.object({ text: z.string().trim().min(12).max(500) });
 
@@ -35,6 +39,8 @@ export async function buildApp(options: AppOptions) {
   let active = 0;
   let day = '';
   let runsToday = 0;
+  let fillDay = '';
+  let fillsToday = 0;
   const dailyRuns = options.dailyRuns ?? 400;
   const concurrentRuns = options.concurrentRuns ?? 4;
 
@@ -123,6 +129,22 @@ export async function buildApp(options: AppOptions) {
     async (request) => {
       const { profile, posts } = feedRequestSchema.parse(request.body);
       return computeFeed(qloo, corpus, profile, posts, linker);
+    },
+  );
+
+  app.post(
+    '/api/fill',
+    { config: { rateLimit: { max: 6, timeWindow: '1 minute' } } },
+    async (request) => {
+      const { profile, uncovered } = fillRequestSchema.parse(request.body);
+      const today = new Date().toISOString().slice(0, 10);
+      if (today !== fillDay) {
+        fillDay = today;
+        fillsToday = 0;
+      }
+      if (!options.writer || fillsToday >= MAX_DAILY_FILLS) return { posts: [] };
+      fillsToday++;
+      return { posts: await options.writer.write(profile, uncovered).catch(() => []) };
     },
   );
 

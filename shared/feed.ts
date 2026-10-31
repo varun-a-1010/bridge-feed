@@ -96,7 +96,8 @@ export function composeFeeds(posts: Post[], profile: Profile, ranks: RankRow[]) 
         kind: gap <= 20 ? ('aligned' as const) : ('nearby' as const),
         gap,
         literal,
-        score: (literal.length ? 15 : 0) - gap,
+        // Generated posts exist because this reader's interests are missing from the sample.
+        score: (literal.length ? 15 : 0) + (post.source === 'generated' ? 30 : 0) - gap,
       },
     ];
   });

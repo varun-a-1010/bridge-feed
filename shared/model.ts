@@ -173,9 +173,19 @@ export type Entity = z.infer<typeof entitySchema>;
 export const postEntitySchema = entitySchema.extend({ surface: z.string().min(1).max(200) });
 export type PostEntity = z.infer<typeof postEntitySchema>;
 
+export const rankRowSchema = z.object({
+  interestId: entityId,
+  type: z.enum(ENTITY_TYPES),
+  entityId: entityId,
+  rank: z.number().int().min(1),
+  of: z.number().int().min(1),
+});
+/** One Qloo answer: this entity's position among the candidates, for one interest alone. */
+export type RankRow = z.infer<typeof rankRowSchema>;
+
 export const postSchema = z.object({
   id: z.string().min(1).max(80),
-  source: z.enum(['seed', 'user', 'peer']),
+  source: z.enum(['seed', 'user', 'peer', 'generated']),
   author: z.string().min(1).max(60),
   text: z.string().min(1).max(600),
   createdAt: z.string().max(40),
@@ -187,6 +197,8 @@ export const postSchema = z.object({
   entities: z.array(postEntitySchema).max(8),
   unresolved: z.array(z.object({ text: z.string().max(200), reason: z.string().max(300) })).max(8),
   safety: z.enum(['publish', 'review', 'reject']),
+  /** A generated post carries the Qloo rankings that put its entity near the reader's interest. */
+  ranks: z.array(rankRowSchema).max(8).optional(),
 });
 export type Post = z.infer<typeof postSchema>;
 
@@ -198,21 +210,17 @@ export type Profile = z.infer<typeof profileSchema>;
 
 export const feedRequestSchema = z.object({
   profile: profileSchema,
-  posts: z.array(postSchema).max(8).default([]),
+  posts: z.array(postSchema).max(20).default([]),
+});
+
+export const fillRequestSchema = z.object({
+  profile: profileSchema,
+  uncovered: z.array(entityId).min(1).max(6),
 });
 
 export type Preset = Profile & { id: string; name: string; blurb: string };
 
 export type CatalogItem = Entity & { group?: 'sports' };
-
-/** One Qloo answer: this entity's position among the candidates, for one interest alone. */
-export type RankRow = {
-  interestId: string;
-  type: EntityType;
-  entityId: string;
-  rank: number;
-  of: number;
-};
 
 export type Receipt = {
   interest: string;
@@ -271,6 +279,8 @@ export type FeedResponse = {
   receipts: Receipt[];
   /** Links that could not be checked, so they were left out. */
   uncheckedLinks: number;
+  /** A custom reader's interests that no bridge reaches yet, so generated posts can fill in. */
+  uncovered: string[];
 };
 
 export type ReachResult = {

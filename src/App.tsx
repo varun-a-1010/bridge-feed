@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Gauge, PenLine } from 'lucide-react';
 import type { Post, Preset, Profile } from '../shared/model';
-import { getBootstrap, getFeed, loadSaved, save, type Bootstrap, type Feed } from './api';
+import { fillFeed, getBootstrap, getFeed, loadSaved, save, type Bootstrap, type Feed } from './api';
 import { Compose } from './Compose';
 import { FeedView } from './Feed';
 import { Onboarding } from './Onboarding';
@@ -14,6 +14,8 @@ export function App() {
   const [baseline, setBaseline] = useState<Profile['scores']>(saved.baseline ?? {});
   const [posts, setPosts] = useState<Post[]>(saved.posts ?? []);
   const [feed, setFeed] = useState<Feed>();
+  const [generated, setGenerated] = useState<Post[]>([]);
+  const [filling, setFilling] = useState(false);
   const [mode, setMode] = useState<'typical' | 'bridge'>('typical');
   const [viewing, setViewing] = useState<string>();
   const [own, setOwn] = useState<Profile>();
@@ -31,10 +33,32 @@ export function App() {
     if (!profile) return;
     setError('');
     setFeed(undefined);
-    getFeed(profile, viewing ? posts.map((p) => ({ ...p, source: 'peer' as const })) : posts)
-      .then(setFeed)
+    const mine = viewing ? posts.map((p) => ({ ...p, source: 'peer' as const })) : posts;
+    getFeed(profile, mine)
+      .then(async (first) => {
+        setFeed(first);
+        if (viewing || !first.uncovered.length) return;
+        // The curated posts cannot reach everyone, so Gemini writes around what is missing.
+        const written = generated.length > 0 ? generated : await fillGap(profile, first.uncovered);
+        if (written.length) setFeed(await getFeed(profile, [...mine, ...written]));
+      })
       .catch((e: Error) => setError(e.message));
+    // Generated posts are read here once, so a new set never reloads the feed by itself.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [profile, posts, viewing]);
+
+  const fillGap = async (reader: Profile, uncovered: string[]) => {
+    setFilling(true);
+    try {
+      const { posts: written } = await fillFeed(reader, uncovered);
+      setGenerated(written);
+      return written;
+    } catch {
+      return [];
+    } finally {
+      setFilling(false);
+    }
+  };
 
   useEffect(load, [load]);
   useEffect(
@@ -43,6 +67,7 @@ export function App() {
   );
 
   const begin = (next: Profile) => {
+    setGenerated([]);
     setProfile(next);
     setBaseline(next.scores);
     setPosts([]);
@@ -168,6 +193,7 @@ export function App() {
         {feed && (
           <FeedView
             feed={feed}
+            filling={filling}
             mode={mode}
             profile={profile}
             onRate={viewing ? undefined : () => setPanel('rate')}

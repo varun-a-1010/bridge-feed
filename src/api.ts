@@ -37,6 +37,12 @@ export const searchEntities = (q: string) =>
     (r) => r.results,
   );
 
+export const fillFeed = (profile: Profile, uncovered: string[]) =>
+  request<{ posts: Post[] }>('/api/fill', {
+    method: 'POST',
+    body: JSON.stringify({ profile, uncovered }),
+  });
+
 export const getFeed = (profile: Profile, posts: Post[]) =>
   request<Feed>('/api/feed', { method: 'POST', body: JSON.stringify({ profile, posts }) });
 

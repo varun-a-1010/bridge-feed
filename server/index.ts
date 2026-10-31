@@ -1,5 +1,6 @@
 import { resolve } from 'node:path';
 import { createAgent } from './agent';
+import { createPostWriter } from './dynamic';
 import { buildApp } from './app';
 import { loadCorpus } from './corpus';
 import { MAX_COMMONNESS } from './feed';
@@ -29,9 +30,17 @@ const agent = createAgent({
   corpus: (type) => corpus.idsByType.get(type) ?? [],
   isCommon: (id) => (corpus.commonness.get(id) ?? 0) > MAX_COMMONNESS,
 });
+const writer = createPostWriter({
+  generate,
+  qloo,
+  linker,
+  examples: corpus.posts,
+  isCommon: (id) => (corpus.commonness.get(id) ?? 0) > MAX_COMMONNESS,
+});
 const app = await buildApp({
   qloo,
   agent,
+  writer,
   corpus,
   linker,
   origin: process.env.APP_ORIGIN,

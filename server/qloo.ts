@@ -29,6 +29,8 @@ export interface Qloo {
   /** Descriptive taste tags for one entity. Hints for the link check, never shown to readers. */
   tags(entityId: string): Promise<string[]>;
   /** Rank `candidateIds` for one interest alone. Only opaque entity IDs ever reach Qloo. */
+  /** Qloo's own nearest entities of one type for one interest, strongest first. */
+  near(interest: Entity, type: EntityType, take: number): Promise<SearchHit[]>;
   rank(interest: Entity, type: EntityType, candidateIds: string[]): Promise<RankAnswer>;
 }
 
@@ -183,6 +185,16 @@ export function createQloo(
         const hit = type && parseHit(raw, type);
         return hit ? [hit] : [];
       });
+    },
+    async near(interest, type, take) {
+      const { data } = await get('/v2/insights', {
+        'filter.type': `urn:entity:${type}`,
+        'signal.interests.entities': interest.id,
+        take: String(Math.min(take, 50)),
+      });
+      const rows = record(data.results).entities;
+      if (!Array.isArray(rows)) throw new QlooError('Qloo returned an invalid list.');
+      return rows.map((r) => parseHit(r, type)).filter((e): e is SearchHit => e !== null);
     },
     async rank(interest, type, candidateIds) {
       const ids = [...new Set(candidateIds.map((id) => id.toUpperCase()))]

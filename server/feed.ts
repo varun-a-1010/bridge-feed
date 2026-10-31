@@ -15,6 +15,8 @@ import type { Qloo } from './qloo';
 const CONCURRENCY = 5;
 /** An entity high on nearly everyone's list is popular, not a connection to this reader. */
 export const MAX_COMMONNESS = 0.25;
+/** Below this, a custom reader's feed gets generated posts around all of their interests. */
+const MIN_BRIDGES = 4;
 
 /** Rank every entity in the feed for each interest alone. No score ever goes to Qloo. */
 export async function computeFeed(
@@ -25,9 +27,11 @@ export async function computeFeed(
   linker?: Linker,
 ): Promise<FeedResponse & { failedQueries: number }> {
   const posts = [...localPosts, ...corpus.posts];
-  const byType = indexEntities(posts, corpus.pool);
+  // Generated posts bring their own rankings, so they never change what is compared here.
+  const ranked = posts.filter((post) => post.source !== 'generated');
+  const byType = indexEntities(ranked, corpus.pool);
   const opposingTypes = new Set<EntityType>();
-  for (const post of posts) {
+  for (const post of ranked) {
     const gap = gapBetween(post, profile);
     if (gap !== undefined && gap >= MIN_GAP)
       post.entities.forEach((e) => opposingTypes.add(e.type));
@@ -53,6 +57,7 @@ export async function computeFeed(
       }
     }),
   );
+  ranks.push(...localPosts.flatMap((post) => post.ranks ?? []));
   const specific = ranks.filter(
     (row) => (corpus.commonness.get(row.entityId) ?? 0) <= MAX_COMMONNESS,
   );
@@ -81,6 +86,13 @@ export async function computeFeed(
   );
   // Unreviewed links only matter when the reader's feed came up short because of them.
   const short = feeds.bridge.filter((item) => item.kind === 'bridge').length < MAX_BRIDGES;
+  const idsOf = (interests: { id: string }[]) =>
+    interests
+      .map((i) => i.id)
+      .sort()
+      .join();
+  const sample = corpus.presets.some((p) => idsOf(p.interests) === idsOf(profile.interests));
+  const reached = new Set(feeds.bridge.flatMap((item) => item.evidence?.interest.id ?? []));
   return {
     ...feeds,
     typical: feeds.typical,
@@ -88,5 +100,10 @@ export async function computeFeed(
     receipts,
     failedQueries,
     uncheckedLinks: linker && short ? linker.unchecked(inCutoff) : 0,
+    uncovered: sample
+      ? []
+      : profile.interests
+          .map((i) => i.id)
+          .filter((id) => !reached.has(id) || feeds.stats.shown < MIN_BRIDGES),
   };
 }
