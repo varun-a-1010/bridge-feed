@@ -1,5 +1,11 @@
 import { z } from 'zod';
-import type { Entity, EntityType, RankRow, Receipt } from '../shared/model';
+import {
+  ENTITY_TYPES,
+  type Entity,
+  type EntityType,
+  type RankRow,
+  type Receipt,
+} from '../shared/model';
 
 export const QLOO_ORIGIN = 'https://hackathon.api.qloo.com';
 
@@ -18,6 +24,8 @@ export type RankAnswer = { rows: RankRow[]; receipt: Receipt };
 export interface Qloo {
   status: 'configured' | 'not-connected';
   search(query: string, type: EntityType): Promise<SearchHit[]>;
+  /** One search across every supported type, for a reader typing a name. */
+  searchAll(query: string): Promise<SearchHit[]>;
   /** Rank `candidateIds` for one interest alone. Only opaque entity IDs ever reach Qloo. */
   rank(interest: Entity, type: EntityType, candidateIds: string[]): Promise<RankAnswer>;
 }
@@ -27,23 +35,29 @@ const record = (v: unknown): Record<string, unknown> =>
 const text = (v: unknown, length = 240) => (typeof v === 'string' ? v.slice(0, length) : '');
 const uuid = z.string().uuid();
 
+const typesOf = (raw: Record<string, unknown>) => [
+  ...(Array.isArray(raw.types) ? raw.types : []),
+  raw.subtype,
+];
+
 function parseHit(raw: unknown, type: EntityType): SearchHit | null {
   const r = record(raw);
   const p = record(r.properties);
-  const types = Array.isArray(r.types) ? r.types : [];
   if (
     !uuid.safeParse(r.entity_id).success ||
     !text(r.name) ||
-    ![...types, r.subtype].includes(`urn:entity:${type}`)
+    !typesOf(r).includes(`urn:entity:${type}`)
   )
     return null;
   const image = text(record(p.image).url, 300);
+  const year = Number(p.release_year ?? p.publication_year);
   return {
     id: String(r.entity_id).toUpperCase(),
     name: text(r.name, 200),
     type,
     description: text(p.short_description ?? p.description),
     ...(image.startsWith('https://images.qloo.com/') ? { image } : {}),
+    ...(Number.isInteger(year) && year >= 1000 && year <= 3000 ? { year } : {}),
   };
 }
 
@@ -108,6 +122,20 @@ export function createQloo(
       });
       if (!Array.isArray(data.results)) throw new QlooError('Qloo returned an invalid result.');
       return data.results.map((r) => parseHit(r, type)).filter((e): e is SearchHit => e !== null);
+    },
+    async searchAll(query) {
+      const { data } = await get('/search', {
+        query: query.trim(),
+        types: ENTITY_TYPES.map((type) => `urn:entity:${type}`).join(','),
+        take: '10',
+      });
+      if (!Array.isArray(data.results)) throw new QlooError('Qloo returned an invalid result.');
+      return data.results.flatMap((raw) => {
+        const r = record(raw);
+        const type = ENTITY_TYPES.find((t) => typesOf(r).includes(`urn:entity:${t}`));
+        const hit = type && parseHit(raw, type);
+        return hit ? [hit] : [];
+      });
     },
     async rank(interest, type, candidateIds) {
       const ids = [...new Set(candidateIds.map((id) => id.toUpperCase()))]

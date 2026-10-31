@@ -24,6 +24,7 @@ const analysis = (over: Record<string, unknown> = {}) =>
   });
 const qloo = (): Qloo => ({
   status: 'configured',
+  searchAll: vi.fn(async () => []),
   search: vi.fn(async () => [
     { id: ID, name: 'Black Mirror', type: 'tv_show' as const, description: '' },
   ]),

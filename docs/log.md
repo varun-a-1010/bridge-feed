@@ -10,6 +10,8 @@
   for nearly everyone. Rebuilt all sample posts through the agent.
 - Repositioned the product as a prototype of a social platform built against the bubble. Renamed
   the Typical feed to Your bubble, and moved sample readers into a single-row carousel.
+- Removed the type picker from search. Results and picks now show image, type and year, and custom
+  profiles keep their images. The landing hero appears only on the first step.
 - Redesigned around the bridge itself: a landing hero showing a real bridge from the data, full-width
   crossing bands in the feed, Qloo images as post attachments, avatars and a score line.
 

@@ -4,8 +4,8 @@ import {
   ENTITY_TYPES,
   TOPICS,
   TYPE_LABELS,
+  describeEntity,
   type Entity,
-  type EntityType,
   type Preset,
   type Profile,
   type Topic,
@@ -28,6 +28,10 @@ export function Onboarding({
   onDone: (profile: Profile) => void;
 }) {
   const [step, setStep] = useState<1 | 2>(1);
+  const goTo = (next: 1 | 2) => {
+    setStep(next);
+    window.scrollTo({ top: 0 });
+  };
   const [scores, setScores] = useState<Profile['scores']>(initial?.scores ?? {});
   const [interests, setInterests] = useState<Entity[]>(initial?.interests ?? []);
   const chosen = TOPICS.filter((t) => scores[t.id] !== undefined).length;
@@ -51,20 +55,27 @@ export function Onboarding({
 
   return (
     <main className="onboarding">
-      <header className="hero">
-        <div className="hero-copy">
+      {step === 1 ? (
+        <header className="hero">
+          <div className="hero-copy">
+            <p className="brand">Bridge Feed</p>
+            <h1>
+              Other platforms keep you in your bubble. This one uses what you love to get you out.
+            </h1>
+            <p>
+              Most social platforms learn what you like and keep showing you people who agree with
+              you. Bridge Feed is a prototype of one built the other way around: it brings you views
+              you disagree with, and reaches you through the culture you already share.
+            </p>
+          </div>
+          {bootstrap.hero && <HeroBridge hero={bootstrap.hero} />}
+        </header>
+      ) : (
+        <header className="step-bar">
           <p className="brand">Bridge Feed</p>
-          <h1>
-            Other platforms keep you in your bubble. This one uses what you love to get you out.
-          </h1>
-          <p>
-            Most social platforms learn what you like and keep showing you people who agree with
-            you. Bridge Feed is a prototype of one built the other way around: it brings you views
-            you disagree with, and reaches you through the culture you already share.
-          </p>
-        </div>
-        {bootstrap.hero && <HeroBridge hero={bootstrap.hero} />}
-      </header>
+          <span>Step 2 of 2</span>
+        </header>
+      )}
 
       <div className="onboarding-body">
         {bootstrap.presets.length > 0 && step === 1 && (
@@ -95,7 +106,7 @@ export function Onboarding({
                 />
               ))}
             </div>
-            <button className="primary" disabled={chosen < 2} onClick={() => setStep(2)}>
+            <button className="primary" disabled={chosen < 2} onClick={() => goTo(2)}>
               Choose interests
             </button>
           </section>
@@ -106,6 +117,22 @@ export function Onboarding({
               Pick up to {MAX_INTERESTS}. These go to Qloo as entity IDs. Your scores never do.
             </p>
             <EntitySearch selected={interests} onPick={toggle} />
+            {interests.length > 0 && (
+              <ul className="picked" aria-label="Your interests">
+                {interests.map((item) => (
+                  <li key={item.id}>
+                    <EntityImage entity={item} />
+                    <div>
+                      <strong>{shortName(item.name)}</strong>
+                      <span>{describeEntity(item)}</span>
+                    </div>
+                    <button aria-label={`Remove ${item.name}`} onClick={() => toggle(item)}>
+                      <X size={14} aria-hidden />
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
             <div className="catalog">
               {groups.map(({ label, items }) => (
                 <div key={label} className="catalog-row">
@@ -126,20 +153,8 @@ export function Onboarding({
                 </div>
               ))}
             </div>
-            {interests.length > 0 && (
-              <ul className="picked" aria-label="Your interests">
-                {interests.map((item) => (
-                  <li key={item.id}>
-                    {shortName(item.name)}
-                    <button aria-label={`Remove ${item.name}`} onClick={() => toggle(item)}>
-                      <X size={14} aria-hidden />
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            )}
             <div className="actions">
-              <button className="quiet" onClick={() => setStep(1)}>
+              <button className="quiet" onClick={() => goTo(1)}>
                 Back
               </button>
               <button
@@ -148,7 +163,13 @@ export function Onboarding({
                 onClick={() =>
                   onDone({
                     scores,
-                    interests: interests.map(({ id, name, type }) => ({ id, name, type })),
+                    interests: interests.map(({ id, name, type, image, year }) => ({
+                      id,
+                      name,
+                      type,
+                      ...(image ? { image } : {}),
+                      ...(year ? { year } : {}),
+                    })),
                   })
                 }
               >
@@ -192,7 +213,6 @@ function EntitySearch({
   selected: Entity[];
   onPick: (entity: Entity) => void;
 }) {
-  const [type, setType] = useState<EntityType>('artist');
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<Entity[]>([]);
   const [error, setError] = useState('');
@@ -201,18 +221,19 @@ function EntitySearch({
     const q = query.trim();
     if (q.length < 2) {
       setResults([]);
+      setError('');
       return;
     }
     const timer = setTimeout(() => {
-      searchEntities(q, type)
+      searchEntities(q)
         .then((found) => {
-          setResults(found.slice(0, 5));
-          setError(found.length ? '' : `Qloo found no ${TYPE_LABELS[type].many} for that.`);
+          setResults(found);
+          setError(found.length ? '' : 'Qloo found nothing for that. Try another spelling.');
         })
         .catch((e: Error) => setError(e.message));
     }, 300);
     return () => clearTimeout(timer);
-  }, [query, type]);
+  }, [query]);
 
   return (
     <div className="search">
@@ -221,32 +242,25 @@ function EntitySearch({
         <input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search Qloo for anything else"
+          placeholder="Search films, shows, artists, books, brands and games"
           aria-label="Search Qloo"
         />
-        <select
-          value={type}
-          onChange={(e) => setType(e.target.value as EntityType)}
-          aria-label="Type"
-        >
-          {ENTITY_TYPES.map((t) => (
-            <option key={t} value={t}>
-              {TYPE_LABELS[t].one}
-            </option>
-          ))}
-        </select>
       </div>
       {error && <p className="error">{error}</p>}
       {results.length > 0 && (
-        <div className="chips">
+        <div className="results">
           {results.map((r) => (
             <button
               key={r.id}
-              className="chip"
+              className="result"
               aria-pressed={selected.some((i) => i.id === r.id)}
               onClick={() => onPick(r)}
             >
-              {shortName(r.name)}
+              <EntityImage entity={r} />
+              <span>
+                <strong>{shortName(r.name)}</strong>
+                <small>{describeEntity(r)}</small>
+              </span>
             </button>
           ))}
         </div>

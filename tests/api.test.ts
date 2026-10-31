@@ -19,6 +19,9 @@ const corpus: Corpus = {
 };
 const qloo: Qloo = {
   status: 'configured',
+  searchAll: vi.fn(async () => [
+    { id: 'A', name: 'Dune', type: 'book' as const, description: 'private', year: 1965 },
+  ]),
   search: vi.fn(async () => []),
   rank: vi.fn(),
 };
@@ -47,6 +50,14 @@ describe('api', () => {
     await expect(
       buildApp({ qloo, agent: agentWith(async () => result), corpus, production: true }),
     ).rejects.toThrow('APP_ORIGIN');
+  });
+
+  it('searches without a type and returns only what the client shows', async () => {
+    const app = await setup();
+    const response = await app.inject({ url: '/api/search?q=dune' });
+    expect(response.json()).toEqual({
+      results: [{ id: 'A', name: 'Dune', type: 'book', year: 1965 }],
+    });
   });
 
   it('rejects invalid feed requests', async () => {

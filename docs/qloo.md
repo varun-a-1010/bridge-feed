@@ -9,7 +9,8 @@ last_verified: 2026-10-31
 The adapter calls only `https://hackathon.api.qloo.com`, with the key in a header, a 12-second
 timeout and bounded retries on rate limits and server errors.
 
-- `/search` resolves a named reference or interest to an entity.
+- `/search` resolves a named reference to an entity. A reader's search covers every supported type
+  in one call, so results that share a name are told apart by type and year.
 - `/v2/insights` with `filter.type`, one ID in `signal.interests.entities` and the candidates in
   `filter.results.entities` ranks those candidates for that one interest.
 

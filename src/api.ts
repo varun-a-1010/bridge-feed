@@ -3,7 +3,6 @@ import type {
   AgentStep,
   CatalogItem,
   Entity,
-  EntityType,
   FeedResponse,
   Hero,
   Post,
@@ -33,8 +32,8 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
 
 export const getBootstrap = () => request<Bootstrap>('/api/bootstrap');
 
-export const searchEntities = (q: string, type: EntityType) =>
-  request<{ results: Entity[] }>(`/api/search?${new URLSearchParams({ q, type }).toString()}`).then(
+export const searchEntities = (q: string) =>
+  request<{ results: Entity[] }>(`/api/search?${new URLSearchParams({ q }).toString()}`).then(
     (r) => r.results,
   );
 

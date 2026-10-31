@@ -440,14 +440,77 @@ legend {
   background: none;
 }
 
-.search-bar select {
-  border: 0;
-  background: none;
-}
-
-.search .chips,
 .search .error {
   margin-top: 10px;
+}
+
+.results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.result {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  min-width: 0;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--paper);
+  text-align: left;
+}
+
+.result:hover {
+  border-color: var(--bay);
+}
+
+.result .entity-image {
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+}
+
+.result span:last-child {
+  min-width: 0;
+}
+
+.result strong {
+  display: block;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.result small {
+  color: var(--channel);
+  font-size: 13px;
+}
+
+.result[aria-pressed='true'] {
+  border-color: var(--bay);
+  background: var(--bay);
+  color: var(--paper);
+}
+
+.result[aria-pressed='true'] small {
+  color: #c5d6d9;
+}
+
+.step-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px max(20px, calc((100% - 880px) / 2));
+  background: var(--bay);
+  color: #c5d6d9;
+  font-size: 14px;
 }
 
 .catalog {
@@ -499,24 +562,53 @@ legend {
 }
 
 .picked {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 16px;
-  padding-top: 14px;
-  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 8px;
+  margin-top: 14px;
 }
 
 .picked li {
-  display: inline-flex;
-  gap: 4px;
+  display: flex;
+  gap: 10px;
   align-items: center;
-  font-weight: 600;
+  min-width: 0;
+  padding: 6px;
+  border: 1px solid var(--bay);
+  border-radius: 6px;
+  background: var(--paper);
+}
+
+.picked .entity-image {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 4px;
+}
+
+.picked div {
+  flex: 1;
+  min-width: 0;
+}
+
+.picked strong {
+  display: block;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.picked span:not(.entity-image) {
+  color: var(--channel);
+  font-size: 13px;
 }
 
 .picked button {
   display: inline-flex;
-  padding: 2px;
+  flex: none;
+  padding: 4px;
   border: 0;
   background: none;
 }

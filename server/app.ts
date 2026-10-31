@@ -3,7 +3,7 @@ import Fastify from 'fastify';
 import rateLimit from '@fastify/rate-limit';
 import fastifyStatic from '@fastify/static';
 import { z } from 'zod';
-import { ENTITY_TYPES, feedRequestSchema, type Hero } from '../shared/model';
+import { feedRequestSchema, type Hero } from '../shared/model';
 import { AgentUnavailable, type Agent } from './agent';
 import type { Corpus } from './corpus';
 import { computeFeed } from './feed';
@@ -20,10 +20,7 @@ export type AppOptions = {
   concurrentRuns?: number;
 };
 
-const searchQuery = z.object({
-  q: z.string().trim().min(2).max(80),
-  type: z.enum(ENTITY_TYPES),
-});
+const searchQuery = z.object({ q: z.string().trim().min(2).max(80) });
 const analyzeBody = z.object({ text: z.string().trim().min(12).max(500) });
 
 export async function buildApp(options: AppOptions) {
@@ -103,13 +100,15 @@ export async function buildApp(options: AppOptions) {
     '/api/search',
     { config: { rateLimit: { max: 40, timeWindow: '1 minute' } } },
     async (request) => {
-      const { q, type } = searchQuery.parse(request.query);
+      const { q } = searchQuery.parse(request.query);
+      const found = await qloo.searchAll(q);
       return {
-        results: (await qloo.search(q, type)).map(({ id, name, type, image }) => ({
+        results: found.slice(0, 8).map(({ id, name, type, image, year }) => ({
           id,
           name,
           type,
           ...(image ? { image } : {}),
+          ...(year ? { year } : {}),
         })),
       };
     },

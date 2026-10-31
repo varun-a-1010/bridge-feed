@@ -141,6 +141,10 @@ export const TOPICS = [
 
 export type Topic = (typeof TOPICS)[number]['id'];
 export const TOPIC_IDS = TOPICS.map((t) => t.id) as [Topic, ...Topic[]];
+/** Tells apart entities that share a name, such as a show and the book it came from. */
+export const describeEntity = (entity: { type: EntityType; year?: number }) =>
+  entity.year ? `${TYPE_LABELS[entity.type].one}, ${entity.year}` : TYPE_LABELS[entity.type].one;
+
 export const STOPS = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100] as const;
 
 export const topicOf = (id: string | null | undefined) => TOPICS.find((t) => t.id === id);
@@ -164,6 +168,7 @@ export const entitySchema = z.object({
   name: z.string().min(1).max(200),
   type: z.enum(ENTITY_TYPES),
   image: qlooImage.optional(),
+  year: z.number().int().min(1000).max(3000).optional(),
 });
 export type Entity = z.infer<typeof entitySchema>;
 

@@ -398,6 +398,7 @@ export function createAgent(options: AgentOptions) {
             type: hit.type,
             surface: reference,
             ...(hit.image ? { image: hit.image } : {}),
+            ...(hit.year ? { year: hit.year } : {}),
           });
           emit({
             kind: 'link',

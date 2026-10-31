@@ -123,6 +123,38 @@ describe('qloo adapter', () => {
     expect(hits[1]?.image).toBeUndefined();
   });
 
+  it('searches every type at once, labels each hit and ignores unsupported types', async () => {
+    const fetchMock = vi.fn(async (_url: URL | RequestInfo, _init?: RequestInit) =>
+      json({
+        success: true,
+        results: [
+          {
+            entity_id: A,
+            name: 'Game of Thrones',
+            subtype: 'urn:entity:tv_show',
+            properties: { release_year: 2011 },
+          },
+          {
+            entity_id: B,
+            name: 'Game of Thrones',
+            types: ['urn:entity:book'],
+            properties: { publication_year: 1996 },
+          },
+          { entity_id: C, name: 'Soundtrack', subtype: 'urn:entity:album' },
+        ],
+      }),
+    );
+    const qloo = createQloo({ apiKey: 'k', fetch: fetchMock as typeof fetch });
+    const hits = await qloo.searchAll('game of thrones');
+    expect(hits.map((h) => [h.type, h.year])).toEqual([
+      ['tv_show', 2011],
+      ['book', 1996],
+    ]);
+    const url = new URL(String(fetchMock.mock.calls[0]![0]));
+    expect(url.searchParams.get('types')).toContain('urn:entity:videogame');
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+
   it('rejects a search hit of the wrong type and reports a missing key', async () => {
     const qloo = createQloo({
       apiKey: 'k',
